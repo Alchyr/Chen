@@ -121,7 +121,7 @@ public class Chen extends TwoFormCharacter {
 
         startingRelics.add(Catnip.ID);
         UnlockTracker.markRelicAsSeen(Catnip.ID);
-        
+
         return startingRelics;
     }
 

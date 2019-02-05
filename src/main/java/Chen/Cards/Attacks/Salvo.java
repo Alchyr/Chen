@@ -30,13 +30,13 @@ public class Salvo extends BaseCard implements DamageSpellCard {
             1,
             CardType.ATTACK,
             CardTarget.ALL_ENEMY,
-            CardRarity.COMMON
+            CardRarity.UNCOMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE = 7;
-    private final static int UPG_DAMAGE = 3;
+    private final static int UPG_DAMAGE = 2;
 
     public Salvo()
     {

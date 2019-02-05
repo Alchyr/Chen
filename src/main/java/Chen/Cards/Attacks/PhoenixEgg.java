@@ -27,10 +27,10 @@ public class PhoenixEgg extends BaseCard implements SpellCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 5;
+    private final static int DAMAGE = 4;
     private final static int UPG_DAMAGE = 1;
 
-    private final static int HITS = 2;
+    private final static int HITS = 3;
 
     public PhoenixEgg()
     {

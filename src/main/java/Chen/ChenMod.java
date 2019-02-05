@@ -8,6 +8,7 @@ import Chen.Patches.CharacterEnum;
 
 import Chen.Powers.Disoriented;
 import Chen.Relics.Catnip;
+import Chen.Relics.SacredCatnip;
 import Chen.Util.CardFilter;
 
 import Chen.Character.Chen;
@@ -154,6 +155,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         logger.info("Adding relics.");
 
         BaseMod.addRelicToCustomPool(new Catnip(), CardColorEnum.CHEN_COLOR);
+        BaseMod.addRelicToCustomPool(new SacredCatnip(), CardColorEnum.CHEN_COLOR);
     }
 
     @Override
