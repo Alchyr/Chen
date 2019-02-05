@@ -1,0 +1,16 @@
+{
+  "Chen:Catnip": {
+    "NAME": "Catnip",
+    "FLAVOR": "It's irresistible. At least, for the weak willed.",
+    "DESCRIPTIONS": [
+      "The first time you #yShapeshift each turn, draw #b1 card."
+    ]
+  },
+  "Chen:SacredCatnip": {
+    "NAME": "Sacred Catnip",
+    "FLAVOR": "Its light pulls in all who witness it. You shall desire it. There are no choices.",
+    "DESCRIPTIONS": [
+      "The first time you #yShapeshift each turn, gain [E] and draw #b1 card."
+    ]
+  }
+}

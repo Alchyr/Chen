@@ -1,0 +1,40 @@
+[
+  {
+    "PROPER_NAME": "Shift",
+    "NAMES": [
+      "shift"
+    ],
+    "DESCRIPTION": "This card transforms upon #yShapeshifting."
+  },
+  {
+    "PROPER_NAME": "Shapeshifting",
+    "NAMES": [
+      "shapeshift",
+      "shapeshift:",
+      "shapeshifted",
+      "shapeshifting"
+    ],
+    "DESCRIPTION": "Change forms, transforming all cards with #yShift."
+  },
+  {
+    "PROPER_NAME": "Disoriented",
+    "NAMES": [
+      "disoriented"
+    ],
+    "DESCRIPTION": "Upon losing HP, loses #yStrength equal to HP lost until end of turn. Decreases at end of turn or when used."
+  },
+  {
+    "PROPER_NAME": "Hemorrhage",
+    "NAMES": [
+      "hemorrhage"
+    ],
+    "DESCRIPTION": "Upon attacking, loses HP."
+  },
+  {
+    "PROPER_NAME": "Spell",
+    "NAMES": [
+      "spell"
+    ],
+    "DESCRIPTION": "The specified value scales with #yFocus."
+  }
+]

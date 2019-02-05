@@ -1,0 +1,100 @@
+{
+  "Chen:Hemorrhage": {
+    "NAME": "Hemorrhage",
+    "DESCRIPTIONS": [
+      "Upon attacking, loses ",
+      " HP.",
+      " NL Will lose ",
+      " HP, assuming it attacks ",
+      " times."
+    ]
+  },
+  "Chen:Possession": {
+    "NAME": "Possession",
+    "DESCRIPTIONS": [
+      "At the start of your turn, gain ",
+      " #yStrength and #yFocus. Upon taking unblocked damage, lose ",
+      " #yStrength and #yFocus."
+    ]
+  },
+  "Chen:Curled": {
+    "NAME": "Curled",
+    "DESCRIPTIONS": [
+      "Take #b50% less damage for ",
+      " turn.",
+      " turns."
+    ]
+  },
+  "Chen:Unstable Block": {
+    "NAME": "Unstable Block",
+    "DESCRIPTIONS": [
+      "The next time you #yShapeshift, gain ",
+      " #yBlock."
+    ]
+  },
+  "Chen:ShikigamiBase": {
+    "NAME": "Shikigami",
+    "DESCRIPTIONS": [
+      "At the start of your turn, play ",
+      " random #ySpell.",
+      " random #ySpells."
+    ]
+  },
+  "Chen:ShikigamiUpgraded": {
+    "NAME": "Shikigami",
+    "DESCRIPTIONS": [
+      "At the start of your turn, play ",
+      " random upgraded #ySpell.",
+      " random upgraded #ySpells."
+    ]
+  },
+  "Chen:Sharpen": {
+    "NAME": "Sharpen",
+    "DESCRIPTIONS": [
+      "Whenever you deal unblocked attack damage, apply ",
+      " #yHemorrhage."
+    ]
+  },
+  "Chen:Disoriented": {
+    "NAME": "Disoriented",
+    "DESCRIPTIONS": [
+      "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when used or at end of turn."
+    ]
+  },
+  "Chen:No Block": {
+    "NAME": "No Block",
+    "DESCRIPTIONS": [
+      "You cannot gain #yBlock for ",
+      " turn.",
+      " turns."
+    ]
+  },
+  "Chen:Rapidfire": {
+    "NAME": "Rapidfire",
+    "DESCRIPTIONS": [
+      "Upon playing a #ySkill, deal ",
+      " damage to a random enemy."
+    ]
+  },
+  "Chen:Evasive": {
+    "NAME": "Evasive",
+    "DESCRIPTIONS": [
+      "Upon playing an #yAttack, gain ",
+      " #yBlock."
+    ]
+  },
+  "Chen:Catseye": {
+    "NAME": "Catseye",
+    "DESCRIPTIONS": [
+      "Your next attack does additional damage equal to the amount of #yHemorrhage the target has.",
+      "Your next attack does additional damage equal to ",
+      " times the amount of #yHemorrhage the target has."
+    ]
+  },
+  "Chen:DivideAttack": {
+    "NAME": "Afterimages",
+    "DESCRIPTIONS": [
+      "This enemy's attack is divided into twice as many hits. But, you shouldn't be seeing this."
+    ]
+  }
+}

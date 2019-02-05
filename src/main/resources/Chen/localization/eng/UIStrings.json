@@ -1,0 +1,12 @@
+{
+  "SomeChenAction": {
+    "TEXT": [
+      "Choose a Card to ______."
+    ]
+  },
+  "ChenResetAction": {
+    "TEXT": [
+      "Reset."
+    ]
+  }
+}
