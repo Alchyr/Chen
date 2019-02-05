@@ -7,6 +7,7 @@ import Chen.Cards.Basic.Strike;
 
 import Chen.Cards.Other.GlitterPoke;
 import Chen.Patches.CardColorEnum;
+import Chen.Relics.Catnip;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -117,10 +119,9 @@ public class Chen extends TwoFormCharacter {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> startingRelics = new ArrayList<>();
 
-        startingRelics.add(com.megacrit.cardcrawl.relics.SnakeRing.ID);
-
-        //startingRelics.add(relic.ID);
-        //UnlockTracker.markRelicAsSeen(relic.ID);
+        startingRelics.add(Catnip.ID);
+        UnlockTracker.markRelicAsSeen(Catnip.ID);
+        
         return startingRelics;
     }
 
