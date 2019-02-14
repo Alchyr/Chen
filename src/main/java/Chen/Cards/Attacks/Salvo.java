@@ -55,13 +55,10 @@ public class Salvo extends DamageSpellCard {
 
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        if (this.baseMagicNumber > 0)
-        {
-            Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
+        Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 
-            copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
+        copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
 
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
-        }
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
     }
 }

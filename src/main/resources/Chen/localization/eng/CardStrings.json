@@ -234,6 +234,14 @@
     "NAME": "Salvo",
     "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL Add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
   },
+  "Chen:Shot": {
+    "NAME": "Shot",
+    "DESCRIPTION": "Deal !D! damage, then deal twice as much damage to a random enemy."
+  },
+  "Chen:Assault": {
+    "NAME": "Assault",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! chen:Hemorrhage to ALL enemies."
+  },
   "Chen:CurlUp": {
     "NAME": "Curl Up",
     "DESCRIPTION": "chen:Shapeshift: Cat. NL Take 50% less damage for one turn. NL Exhaust.",
