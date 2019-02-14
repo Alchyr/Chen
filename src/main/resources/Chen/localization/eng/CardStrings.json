@@ -232,7 +232,7 @@
   },
   "Chen:Salvo": {
     "NAME": "Salvo",
-    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to all enemies. NL If this card's base damage is not 0, add a copy of this card with halved base damage to your hand. NL Exhaust."
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL Add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
   },
   "Chen:CurlUp": {
     "NAME": "Curl Up",

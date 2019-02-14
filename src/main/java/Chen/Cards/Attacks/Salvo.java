@@ -27,8 +27,8 @@ public class Salvo extends DamageSpellCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 8;
-    private final static int UPG_DAMAGE = 2;
+    private final static int DAMAGE = 9;
+    private final static int UPG_DAMAGE = 3;
 
     public Salvo()
     {
@@ -59,7 +59,7 @@ public class Salvo extends DamageSpellCard {
         {
             Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 
-            copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber / 2;
+            copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
 
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
         }

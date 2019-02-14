@@ -97,7 +97,7 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
         {
             for (AbstractPower p : m.get(i).powers)
             {
-                    tmp[i] = p.atDamageReceive(tmp[i], this.damageTypeForTurn);
+                tmp[i] = p.atDamageReceive(tmp[i], this.damageTypeForTurn);
             }
         }
 
