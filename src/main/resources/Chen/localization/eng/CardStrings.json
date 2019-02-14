@@ -236,7 +236,8 @@
   },
   "Chen:CurlUp": {
     "NAME": "Curl Up",
-    "DESCRIPTION": "chen:Shapeshift: Cat. NL Take 50% less damage for one turn."
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Take 50% less damage for one turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "chen:Shapeshift: Cat. NL Take 50% less damage for one turn."
   },
   "Chen:SelfConfidence": {
     "NAME": "Self-Confidence",
@@ -250,6 +251,10 @@
   "Chen:Barrier": {
     "NAME": "Barrier",
     "DESCRIPTION": "chen:Spell: Block. NL Gain !SPELL! Block."
+  },
+  "Chen:FollowUp": {
+    "NAME": "Follow Up",
+    "DESCRIPTION": "The first time you play an Attack each turn, draw 1 card and reduce its cost by 1."
   },
   "Chen:Possession": {
     "NAME": "Possession",

@@ -98,6 +98,14 @@
       " more damage."
     ]
   },
+  "Chen:FollowUp": {
+    "NAME": "Follow Up",
+    "DESCRIPTIONS": [
+      "Your first ",
+      "Attack each turn draws #b1 card and reduces its cost by #b1.",
+      " Attacks each turn draw #b1 card and reduce its cost by #b1."
+    ]
+  },
   "Chen:Evasive": {
     "NAME": "Evasive",
     "DESCRIPTIONS": [
