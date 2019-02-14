@@ -66,6 +66,14 @@
       "chen:Shift. NL Deal !D! damage twice."
     ]
   },
+  "Chen:GuardCounter": {
+    "NAME": "Guard",
+    "DESCRIPTION": "chen:Shift. NL Gain !B! Block. NL Gain !M! Dexterity. At the end of this turn, lose !M! Dexterity.",
+    "EXTENDED_DESCRIPTION": [
+      "Counter",
+      "chen:Shift. NL Gain !B! Block. NL Whenever you are attacked this turn, deal !M! damage back and apply !M! Hemorrhage."
+    ]
+  },
   "Chen:Nimbleness": {
     "NAME": "Nimbleness",
     "DESCRIPTION": "chen:Shift. NL Draw !M! cards. NL Gain [E] for each Skill drawn.",
@@ -236,7 +244,7 @@
   },
   "Chen:Shot": {
     "NAME": "Shot",
-    "DESCRIPTION": "Deal !D! damage, then deal twice as much damage to a random enemy."
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage, then deal twice as much damage to a random enemy."
   },
   "Chen:Assault": {
     "NAME": "Assault",

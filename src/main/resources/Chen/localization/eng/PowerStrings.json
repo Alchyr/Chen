@@ -101,9 +101,17 @@
   "Chen:FollowUp": {
     "NAME": "Follow Up",
     "DESCRIPTIONS": [
-      "Your first ",
-      "Attack each turn draws #b1 card and reduces its cost by #b1.",
-      " Attacks each turn draw #b1 card and reduce its cost by #b1."
+      "The first ",
+      "time you play an Attack each turn draw #b1 card and reduce its cost by #b1.",
+      " times you play an Attack each turn draw #b1 card and reduce its cost by #b1."
+    ]
+  },
+  "Chen:Counter": {
+    "NAME": "Counter",
+    "DESCRIPTIONS": [
+      "When attacked, deals ",
+      " damage back and applies ",
+      " #yHemorrhage."
     ]
   },
   "Chen:Evasive": {
