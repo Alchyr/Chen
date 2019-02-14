@@ -1,6 +1,8 @@
 package Chen;
 
 import Chen.Abstracts.TwoFormCharacter;
+import Chen.Actions.ChenActions.ResetShiftCountAction;
+import Chen.Interfaces.Colorless;
 import Chen.Interfaces.OnShiftSubscriber;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.CardColorEnum;
@@ -58,7 +60,7 @@ import java.util.Iterator;
 @SpireInitializer
 public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber,
         EditCharactersSubscriber, EditKeywordsSubscriber, PostPowerApplySubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
-        PostInitializeSubscriber, StartGameSubscriber, PreMonsterTurnSubscriber
+        PostInitializeSubscriber, StartGameSubscriber, PreMonsterTurnSubscriber, OnCardUseSubscriber
 {
     public static final Logger logger = LogManager.getLogger(ChenMod.class.getSimpleName());
 
@@ -85,6 +87,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
     //Tracking
     public static int battleDisorientCount = 0;
+    public static int spellsThisCombat = 0;
     public static int shiftsThisTurn = 0;
 
     
@@ -233,8 +236,6 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     public static void initialize() {
         logger.info("Initializing ChenMod.");
         new ChenMod();
-
-
     }
 
 
@@ -242,6 +243,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     public void receiveStartGame() {
         battleDisorientCount = 0;
         shiftsThisTurn = 0;
+        spellsThisCombat = 0;
     }
     @Override
     public void receivePostPowerApplySubscriber(AbstractPower abstractPower, AbstractCreature target, AbstractCreature source) {
@@ -256,17 +258,30 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         battleDisorientCount = 0;
         shiftsThisTurn = 0;
+        spellsThisCombat = 0;
     }
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         battleDisorientCount = 0;
         shiftsThisTurn = 0;
+        spellsThisCombat = 0;
     }
 
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
-        shiftsThisTurn = 0;
+        if (AbstractDungeon.player instanceof TwoFormCharacter)
+        {
+            AbstractDungeon.actionManager.addToBottom(new ResetShiftCountAction());
+        }
         return true;
+    }
+
+    @Override
+    public void receiveCardUsed(AbstractCard abstractCard) {
+        if (abstractCard instanceof SpellCard)
+        {
+            spellsThisCombat += 1;
+        }
     }
 
     //I totally didn't copy this from Hubris, made by kiooeht.
@@ -284,6 +299,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
                         new CardFilter()
                 );
         Collection<ClassInfo> foundClasses = new ArrayList<>();
+        ArrayList<AbstractCard> addedCards = new ArrayList<>();
         finder.findClasses(foundClasses, filter);
 
         for (ClassInfo classInfo : foundClasses) {
@@ -308,8 +324,14 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
             logger.info("Card: " + classInfo.getClassName());
 
             AbstractCard card = (AbstractCard) Loader.getClassPool().toClass(cls).newInstance();
+
             BaseMod.addCard(card);
-            UnlockTracker.unlockCard(card.cardID);
+            addedCards.add(card);
+
+        }
+        for (AbstractCard c : addedCards)
+        {
+            UnlockTracker.unlockCard(c.cardID);
         }
     }
 

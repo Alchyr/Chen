@@ -32,8 +32,8 @@ public abstract class TwoFormCharacter extends CustomPlayer {
         this.animationA = animationA;
         this.animationB = animationB;
 
-        this.colorA = colorA;
-        this.colorB = colorB;
+        this.colorA = colorA.cpy();
+        this.colorB = colorB.cpy();
 
         this.Form = DEFAULT_FORM;
 

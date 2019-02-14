@@ -19,8 +19,14 @@ public class DrawAndSaveCardsAction extends AbstractGameAction {
     private boolean shuffleCheck;
     private ArrayList<AbstractCard> drawnCards;
 
+    private DrawAndSaveCardsAction recursiveSource = null;
+
     public ArrayList<AbstractCard> getDrawnCards()
     {
+        if (recursiveSource != null)
+        {
+            drawnCards.addAll(recursiveSource.drawnCards);
+        }
         return drawnCards;
     }
 
@@ -75,14 +81,17 @@ public class DrawAndSaveCardsAction extends AbstractGameAction {
 
                         if (this.amount > deckSize) {
                             tmp = this.amount - deckSize;
-                            AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, tmp));
+                            recursiveSource = new DrawAndSaveCardsAction(AbstractDungeon.player, tmp, false);
+                            AbstractDungeon.actionManager.addToTop(recursiveSource);
                             AbstractDungeon.actionManager.addToTop(new EmptyDeckShuffleAction());
                             if (deckSize != 0) {
-                                AbstractDungeon.actionManager.addToTop(new DrawCardAction(AbstractDungeon.player, deckSize));
+                                this.amount = deckSize;
                             }
-
-                            this.amount = 0;
-                            this.isDone = true;
+                            else
+                            {
+                                this.amount = 0;
+                                this.isDone = true;
+                            }
                         }
 
                         this.shuffleCheck = true;

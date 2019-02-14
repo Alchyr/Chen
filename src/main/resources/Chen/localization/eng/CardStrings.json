@@ -76,10 +76,10 @@
   },
   "Chen:EvasiveFireShift": {
     "NAME": "Evasive Shift",
-    "DESCRIPTION": "chen:Shift. NL chen:Spell: Block. NL chen:Shapeshift: Cat. NL Gain !SPELL! Block. NL If you've chen:Shapeshifted this turn, gain !SPELL! Block.",
+    "DESCRIPTION": "chen:Shift. NL chen:Shapeshift: Cat. NL Gain !B! Block. NL If you've chen:Shapeshifted this turn, gain !B! Block.",
     "EXTENDED_DESCRIPTION": [
       "Evasive Fire",
-      "chen:Shift. NL chen:Spell: Block. NL chen:Shapeshift: Human. NL Gain !SPELL! Block. NL If you've chen:Shapeshifted this turn, deal !D! damage."
+      "chen:Shift. NL chen:Shapeshift: Human. NL Gain !B! Block. NL If you've chen:Shapeshifted this turn, deal !D! damage."
     ]
   },
   "Chen:RapidfireEvasive": {
@@ -96,6 +96,14 @@
     "EXTENDED_DESCRIPTION": [
       "Sharpen",
       "chen:Shift. NL Whenever an attack deals unblocked damage, apply !M! chen:Hemorrhage."
+    ]
+  },
+  "Chen:UpperHand": {
+    "NAME": "Upper Hand",
+    "DESCRIPTION": "chen:Shift. NL Deal !D! damage. NL If the enemy has chen:Disoriented, gain [E] and draw !M! card.",
+    "EXTENDED_DESCRIPTION": [
+      "Upper Paw",
+      "chen:Shift. NL Deal !D! damage. NL If the enemy has chen:Hemorrhage, gain [E] and draw !M! card."
     ]
   },
   "Chen:TauntHiss": {
@@ -127,25 +135,85 @@
       "chen:Shift. NL Play a random Attack in your hand."
     ]
   },
+  "Chen:PhoenixWings": {
+    "NAME": "Phoenix's Wings",
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to ALL enemies, then deal damage equal to the total damage dealt.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
+  },
   "Chen:Honk": {
     "NAME": "Honk",
     "DESCRIPTION": "Apply 99 Vulnerable to ALL enemies. NL ALL enemies gain !M! Strength. NL Exhaust."
   },
+  "Chen:Shapeshift": {
+    "NAME": "Shapeshift",
+    "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn.",
+    "UPGRADE_DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn."
+  },
   "Chen:Sneak": {
     "NAME": "Sneak",
-    "DESCRIPTION": "Gain !B! Block. NL Next turn, draw !M! additional cards."
+    "DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional card.",
+    "UPGRADE_DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional cards."
   },
   "Chen:Catseye": {
     "NAME": "Catseye",
     "DESCRIPTION": "Your next attack deals additional damage equal to the amount of chen:Hemorrhage the target has."
   },
+  "Chen:Flit": {
+    "NAME": "Flit",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Discard a random card.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Discard a card."
+  },
   "Chen:UnstableBoundary": {
     "NAME": "Unstable Boundary",
-    "DESCRIPTION": "Gain !B! Block. NL The next time you chen:Shapeshift, gain !B! Block."
+    "DESCRIPTION": "chen:Spell: Block. NL Gain !SPELL! Block. NL The next time you chen:Shapeshift, gain !SPELL! Block."
+  },
+  "Chen:BlueOniRedOni": {
+    "NAME": "Blue Oni, Red Oni",
+    "DESCRIPTION": "chen:Shapeshift: Human. NL Add a chen:Blue_Oni and chen:Red_Oni to your hand.",
+    "UPGRADE_DESCRIPTION": "chen:Shapeshift: Human. NL Add an upgraded chen:Blue_Oni and chen:Red_Oni to your hand."
+  },
+  "Chen:BlueOni": {
+    "NAME": "Blue Oni",
+    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to the farthest right enemy. NL Exhaust."
+  },
+  "Chen:RedOni": {
+    "NAME": "Red Oni",
+    "DESCRIPTION": "Deal !D! damage to the farthest left enemy. NL Exhaust."
+  },
+  "Chen:Flicker": {
+    "NAME": "Flicker",
+    "DESCRIPTION": "chen:Spell: chen:Disoriented. NL chen:Shapeshift: Human. NL Apply !SPELL! chen:Disoriented. NL Draw !M! cards."
+  },
+  "Chen:FlankingStrike": {
+    "NAME": "Flanking Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Your next attack this turn deals 50% more damage."
   },
   "Chen:Tear": {
     "NAME": "Tear",
     "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Apply !M! chen:Hemorrhage."
+  },
+  "Chen:Mixup": {
+    "NAME": "Mix Up",
+    "DESCRIPTION": "chen:Swift. NL Deal !D! damage. NL Apply !M! Weak."
+  },
+  "Chen:RecklessLeap": {
+    "NAME": "Reckless Leap",
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Draw !M! cards. NL Next turn, draw 1 less card."
+  },
+  "Chen:Clarity": {
+    "NAME": "Clarity",
+    "DESCRIPTION": "Double your Focus. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Double your Focus."
+  },
+  "Chen:SurpriseAttack": {
+    "NAME": "Surprise Attack",
+    "DESCRIPTION": "Innate. NL chen:Shapeshift: Cat. NL Deal !D! damage. NL Apply !M! chen:Disoriented. NL Exhaust."
+  },
+  "Chen:Recuperate": {
+    "NAME": "Recuperate",
+    "DESCRIPTION": "Remove all debuffs on yourself. NL Exhaust."
   },
   "Chen:Gash": {
     "NAME": "Gash",
@@ -155,9 +223,16 @@
     "NAME": "Phoenix Egg",
     "DESCRIPTION": "chen:Spell: Hit count. NL chen:Shapeshift: Human. NL Deal !D! damage to a random enemy !SPELL! times."
   },
+  "Chen:Kimontonkou": {
+    "NAME": "Kimontonkou",
+    "DESCRIPTION": "chen:Spell: Hit count. NL chen:Shapeshift: Human. NL Deal damage equal to the number of chen:Spells played this combat to ALL enemies X + !SPELL! times.",
+    "EXTENDED_DESCRIPTION": [
+       " NL (Deals !D! damage.)"
+    ]
+  },
   "Chen:Salvo": {
     "NAME": "Salvo",
-    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to all enemies. NL Add a copy of this card to your hand. NL Exhaust."
+    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to all enemies. NL If this card's base damage is not 0, add a copy of this card with halved base damage to your hand. NL Exhaust."
   },
   "Chen:CurlUp": {
     "NAME": "Curl Up",
@@ -167,6 +242,11 @@
     "NAME": "Self-Confidence",
     "DESCRIPTION": "Remove all your Block. NL You cannot gain Block for 1 turn. NL Gain !M! Strength and Focus."
   },
+  "Chen:WhateverWorks": {
+    "NAME": "Whatever Works",
+    "DESCRIPTION": "Exhaust your hand. NL For each card Exhausted, add a random card with its cost reduced by !M! to your hand.",
+    "UPGRADE_DESCRIPTION": "Exhaust your hand. NL For each card Exhausted, add a random upgraded card with its cost reduced by !M! to your hand."
+  },
   "Chen:Barrier": {
     "NAME": "Barrier",
     "DESCRIPTION": "chen:Spell: Block. NL Gain !SPELL! Block."
@@ -175,6 +255,11 @@
     "NAME": "Possession",
     "DESCRIPTION": "At the start of your turn, gain !M! Strength and !M! Focus. NL Upon taking unblocked attack damage, lose all gained Strength and Focus.",
     "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain !M! Strength and !M! Focus. NL Upon taking unblocked attack damage, lose all gained Strength and Focus."
+  },
+  "Chen:FinalSpellCard": {
+    "NAME": "Final Spell Card",
+    "DESCRIPTION": "Ethereal. NL Costs 1 less [E] for each time you lose HP this combat. NL All cards are played 1 additional time. NL All cards have Ethereal and Exhaust.",
+    "UPGRADE_DESCRIPTION": "Costs 1 less [E] for each time you lose HP this combat. NL All cards are played 1 additional time. NL All cards have Ethereal and Exhaust."
   },
   "Chen:ShikigamiForm": {
     "NAME": "Shikigami Form",

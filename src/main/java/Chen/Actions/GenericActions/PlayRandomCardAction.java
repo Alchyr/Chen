@@ -36,18 +36,29 @@ public class PlayRandomCardAction extends AbstractGameAction {
     public void update() {
         ArrayList<AbstractCard> possibleCards = new ArrayList<>();
 
+        AbstractMonster cardTarget = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+
         for (AbstractCard c : cardSource.group)
         {
-            if (condition.test(c))
+            if (condition.test(c) && c.canUse(AbstractDungeon.player, cardTarget))
             {
                 possibleCards.add(c);
+            }
+        }
+        if (possibleCards.isEmpty() && !cardSource.group.isEmpty()) //prioritize usable cards first
+        {
+            for (AbstractCard c : cardSource.group)
+            {
+                if (condition.test(c))
+                {
+                    possibleCards.add(c);
+                }
             }
         }
 
         if (possibleCards.size() > 0)
         {
             AbstractCard card = possibleCards.get(AbstractDungeon.cardRandomRng.random(0, possibleCards.size() - 1));
-            this.target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
             card.freeToPlayOnce = true;
             card.exhaustOnUseOnce = this.exhaustCards;
@@ -67,7 +78,7 @@ public class PlayRandomCardAction extends AbstractGameAction {
             card.lighten(false);
             card.targetDrawScale = 0.75F;
 
-            if (!card.canUse(AbstractDungeon.player, (AbstractMonster)this.target)) {
+            if (!card.canUse(AbstractDungeon.player, cardTarget)) {
                 if (this.exhaustCards) {
                     AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
                 } else {
@@ -77,7 +88,7 @@ public class PlayRandomCardAction extends AbstractGameAction {
                 }
             } else {
                 card.applyPowers();
-                AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, this.target));
+                AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, cardTarget));
                 AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
                 AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
             }

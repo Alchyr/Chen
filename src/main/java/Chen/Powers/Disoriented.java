@@ -5,6 +5,7 @@ import Chen.ChenMod;
 import Chen.Util.PowerImages;
 import Chen.Util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -48,16 +49,11 @@ public class Disoriented extends Power {
         return damageAmount;
     }
 
-    @Override
-    public void reducePower(int reduceAmount) {
-        super.reducePower(reduceAmount);
-    }
-
     public void atEndOfRound() {
-        if (this.amount <= 0) {
+        this.amount = MathUtils.floor(this.amount / 2.0f);
+        if (this.amount <= 0)
+        {
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-        } else {
-            AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
         }
     }
 

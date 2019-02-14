@@ -32,6 +32,8 @@ public class PlayCardAction extends AbstractGameAction {
 
         AbstractMonster cardTarget = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
+        AbstractDungeon.actionManager.addToTop(new UpdateHandAction());
+
         if (sourceGroup == null)
         {
             AbstractDungeon.player.limbo.addToBottom(card);
@@ -50,16 +52,15 @@ public class PlayCardAction extends AbstractGameAction {
             if (this.exhaustCards) {
                 AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, sourceGroup));
             } else {
-                AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, sourceGroup));
                 AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
+                AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, sourceGroup));
             }
         } else {
             card.applyPowers();
-            AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, cardTarget));
             AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
+            AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, cardTarget));
         }
 
-        AbstractDungeon.actionManager.addToTop(new UpdateHandAction());
 
         this.isDone = true;
     }

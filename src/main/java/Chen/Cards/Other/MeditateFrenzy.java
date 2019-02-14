@@ -42,6 +42,8 @@ public class MeditateFrenzy extends ShiftChenCard {
 
     private final static int MAGIC_A = 1;
     private final static int MAGIC_B = 1;
+    private final static int UPG_MAGIC_A = 1;
+    private final static int UPG_MAGIC_B = 1;
 
     private final static int HITS = 6;
 
@@ -51,7 +53,9 @@ public class MeditateFrenzy extends ShiftChenCard {
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
-        setMagic(MAGIC_A, MAGIC_B);
+        setMagic(MAGIC_A, MAGIC_B, UPG_MAGIC_A, UPG_MAGIC_B);
+
+        setExhaust(true, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

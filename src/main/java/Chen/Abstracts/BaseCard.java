@@ -17,6 +17,8 @@ public abstract class BaseCard extends CustomCard {
 
     protected boolean upgradesDescription;
 
+    protected int baseCost;
+
     protected boolean upgradeCost;
     protected boolean upgradeDamage;
     protected boolean upgradeBlock;
@@ -50,6 +52,8 @@ public abstract class BaseCard extends CustomCard {
         this.rawDescription = cardStrings.DESCRIPTION;
         this.originalName = cardStrings.NAME;
         this.name = originalName;
+
+        this.baseCost = cost;
 
         this.upgradesDescription = upgradesDescription;
 
@@ -121,6 +125,7 @@ public abstract class BaseCard extends CustomCard {
     protected void setInnate(boolean baseInnate, boolean upgInnate)
     {
         this.baseInnate = baseInnate;
+        this.isInnate = baseInnate;
         this.upgInnate = upgInnate;
     }
 
@@ -132,6 +137,8 @@ public abstract class BaseCard extends CustomCard {
         {
             card.rawDescription = this.rawDescription;
             ((BaseCard) card).upgradesDescription = this.upgradesDescription;
+
+            ((BaseCard) card).baseCost = this.baseCost;
 
             ((BaseCard) card).upgradeCost = this.upgradeCost;
             ((BaseCard) card).upgradeDamage = this.upgradeDamage;
@@ -163,7 +170,18 @@ public abstract class BaseCard extends CustomCard {
                 this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
 
             if (upgradeCost)
+            {
+                int diff = this.baseCost - this.cost; //positive if cost is reduced
+
                 this.upgradeBaseCost(costUpgrade);
+                this.cost -= diff;
+                this.costForTurn -= diff;
+                if (cost < 0)
+                    cost = 0;
+
+                if (costForTurn < 0)
+                    costForTurn = 0;
+            }
 
             if (upgradeDamage)
                 this.upgradeDamage(damageUpgrade);

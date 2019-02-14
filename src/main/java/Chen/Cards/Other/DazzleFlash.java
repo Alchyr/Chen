@@ -55,7 +55,9 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (Form) //human
         {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new DazzleEffect(m.hb.cX, m.hb.cY)));
+            if (m != null) {
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new DazzleEffect(m.hb.cX, m.hb.cY)));
+            }
 
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Disoriented(m, SpellDamage.getSpellDamage(this)), SpellDamage.getSpellDamage(this)));
         }

@@ -35,10 +35,10 @@ public class Gash extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 18;
-    private final static int UPG_DAMAGE = 2;
+    private final static int DAMAGE = 12;
+    private final static int UPG_DAMAGE = 3;
 
-    private final static int DEBUFF = 7;
+    private final static int DEBUFF = 8;
     private final static int UPG_DEBUFF = 4;
 
     public Gash()

@@ -18,8 +18,8 @@ public class GashEffect extends AbstractGameEffect {
     public GashEffect(float x, float y, Color color1, Color color2) {
         this.x = x;
         this.y = y;
-        this.color = color1;
-        this.color2 = color2;
+        this.color = color1.cpy();
+        this.color2 = color2.cpy();
         this.startingDuration = 0.1F;
         this.duration = this.startingDuration;
     }

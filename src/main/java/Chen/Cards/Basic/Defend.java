@@ -4,6 +4,7 @@ import Chen.Abstracts.ShiftChenCard;
 import Chen.Util.CardInfo;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,6 +26,11 @@ public class Defend extends ShiftChenCard {
     private final static int BLOCK_B = 4;
     private final static int UPG_BLOCK_A = 3;
     private final static int UPG_BLOCK_B = 3;
+
+    @Override
+    public boolean canPlay(AbstractCard card) {
+        return super.canPlay(card);
+    }
 
     public Defend()
     {

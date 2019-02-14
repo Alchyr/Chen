@@ -61,12 +61,27 @@
       "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when used or at end of turn."
     ]
   },
+  "Chen:LoseFocusPower": {
+    "NAME": "Focus Down",
+    "DESCRIPTIONS": [
+      "At the end of this turn, lose ",
+      " #yFocus."
+    ]
+  },
   "Chen:No Block": {
     "NAME": "No Block",
     "DESCRIPTIONS": [
       "You cannot gain #yBlock for ",
       " turn.",
       " turns."
+    ]
+  },
+  "Chen:Draw Reduction": {
+    "NAME": "Draw Reduction",
+    "DESCRIPTIONS": [
+      "Draw ",
+      " less card next turn.",
+      " less cards next turn."
     ]
   },
   "Chen:Rapidfire": {
@@ -76,11 +91,26 @@
       " damage to a random enemy."
     ]
   },
+  "Chen:DamageUpPower": {
+    "NAME": "Increased Damage",
+    "DESCRIPTIONS": [
+      "Your next attack this turn deals ",
+      " more damage."
+    ]
+  },
   "Chen:Evasive": {
     "NAME": "Evasive",
     "DESCRIPTIONS": [
       "Upon playing an #yAttack, gain ",
       " #yBlock."
+    ]
+  },
+  "Chen:FinalSpellCard": {
+    "NAME": "Final Spell Card",
+    "DESCRIPTIONS": [
+      "All cards are played ",
+      " additional time. All cards have #yEthereal and #yExhaust.",
+      " additional times. All cards have #yEthereal and #yExhaust."
     ]
   },
   "Chen:Catseye": {

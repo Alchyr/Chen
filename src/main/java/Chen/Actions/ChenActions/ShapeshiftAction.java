@@ -22,12 +22,22 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 
 public class ShapeshiftAction extends AbstractGameAction {
     private boolean targetForm;
+    private boolean autoForm = false;
     private AbstractCard sourceCard;
     private boolean firstCheck;
     private boolean trigger;
 
     private static final float DUR = 0.15F;
 
+    public ShapeshiftAction(AbstractCard sourceCard)
+    {
+        this.autoForm = true;
+        this.sourceCard = sourceCard;
+        this.duration = DUR;
+        this.actionType = ActionType.SPECIAL;
+        this.firstCheck = true;
+        this.trigger = false;
+    }
     public ShapeshiftAction(AbstractCard sourceCard, boolean Form)
     {
         this.sourceCard = sourceCard;
@@ -42,10 +52,16 @@ public class ShapeshiftAction extends AbstractGameAction {
     public void update() {
         if (AbstractDungeon.isPlayerInDungeon() && firstCheck) {
             firstCheck = false;
-            if (AbstractDungeon.player != null) {
-                if (AbstractDungeon.player instanceof TwoFormCharacter && ((TwoFormCharacter) AbstractDungeon.player).Form != targetForm)
+            if (AbstractDungeon.player instanceof TwoFormCharacter) {
+                if (autoForm)
+                {
+                    targetForm = !((TwoFormCharacter) AbstractDungeon.player).Form;
+                }
+
+                if (((TwoFormCharacter) AbstractDungeon.player).Form != targetForm)
                 {
                     trigger = true;
+
                     AbstractDungeon.effectList.add(new PoofEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY));
 
                     for (AbstractCard c : AbstractDungeon.player.hand.group)

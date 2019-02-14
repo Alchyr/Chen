@@ -99,19 +99,19 @@ public abstract class ShiftChenCard extends BaseCard {
 
     //Discourage use of inherited base methods
     @Override
-    protected void setDamage(int DONOTUSE)
+    protected void setDamage(int damage)
     {
-        this.setDamage(DONOTUSE, DONOTUSE, 0, 0);
+        this.setDamage(damage, damage, 0, 0);
     }
     @Override
-    protected void setBlock(int DONOTUSE)
+    protected void setBlock(int block)
     {
-        this.setBlock(DONOTUSE, DONOTUSE, 0, 0);
+        this.setBlock(block, block, 0, 0);
     }
     @Override
-    protected void setMagic(int DONOTUSE)
+    protected void setMagic(int magic)
     {
-        this.setMagic(DONOTUSE, DONOTUSE, 0, 0);
+        this.setMagic(magic, magic, 0, 0);
     }
     //Methods meant for constructor use
 

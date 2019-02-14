@@ -46,7 +46,7 @@ public class ShiftCardEffect extends AbstractGameEffect {
             this.c.targetTransparency = 1.0f;
             this.c.transparency = 1.0f;
             c.Shift(targetForm);
-            c.flash(ChenMod.CHEN_COLOR);
+            c.flash(ChenMod.CHEN_COLOR.cpy());
         }
     }
 

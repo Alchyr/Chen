@@ -1,4 +1,4 @@
-package Chen.Cards.Other;
+package Chen.Cards.Basic;
 
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Effects.DazzleEffect;
@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -47,7 +48,9 @@ public class GlitterPoke extends ShiftChenCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (Form) //human
         {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new DazzleEffect(m.hb.cX, m.hb.cY)));
+            if (m != null) {
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new DazzleEffect(m.hb.cX, m.hb.cY)));
+            }
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Disoriented(m, this.magicNumber), this.magicNumber));
         }
         else //cat

@@ -1,6 +1,6 @@
 package Chen.Cards.Skills;
 
-import Chen.Abstracts.BaseCard;
+import Chen.Abstracts.SwiftCard;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import static Chen.ChenMod.makeID;
 
-public class Sneak extends BaseCard {
+public class Sneak extends SwiftCard {
     private final static CardInfo cardInfo = new CardInfo(
             "Sneak",
-            2,
+            1,
             CardType.SKILL,
             CardTarget.SELF,
             CardRarity.UNCOMMON
@@ -22,17 +22,16 @@ public class Sneak extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int BLOCK = 14;
+    private final static int BLOCK = 7;
     private final static int UPG_BLOCK = 3;
-    private final static int DRAW = 2;
-    private final static int UPG_DRAW = 1;
+    private final static int DRAW = 1;
 
     public Sneak()
     {
-        super(cardInfo, false);
+        super(cardInfo, true);
 
         setBlock(BLOCK, UPG_BLOCK);
-        setMagic(DRAW, UPG_DRAW);
+        setMagic(DRAW);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

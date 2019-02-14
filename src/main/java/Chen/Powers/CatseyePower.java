@@ -30,7 +30,8 @@ public class CatseyePower extends Power implements BetterOnDamageGiveSubscriber 
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this.ID));
+        if (info.type == DamageInfo.DamageType.NORMAL)
+            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this.ID));
     }
 
     @Override

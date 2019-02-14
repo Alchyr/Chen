@@ -29,7 +29,6 @@ public class Nimbleness extends ShiftChenCard {
         super(cardInfo, false);
 
         setMagic(DRAW, DRAW, UPG_DRAW, UPG_DRAW);
-        setExhaust(true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

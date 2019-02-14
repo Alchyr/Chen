@@ -31,8 +31,6 @@ public class ShikigamiFormUpgraded extends Power {
             toPlay.applyPowers();
 
             AbstractDungeon.actionManager.addToBottom(new PlayCardAction(toPlay, null, true));
-
-            AbstractDungeon.actionManager.addToBottom(new WaitAction(0.2F));
         }
     }
 

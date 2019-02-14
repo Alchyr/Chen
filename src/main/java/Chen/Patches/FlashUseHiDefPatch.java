@@ -65,6 +65,7 @@ public class FlashUseHiDefPatch {
             if (hasHighQualityTexture)
             {
                 sb.draw((Texture)img[0], x - 42.0F, y - 42.0F, 42.0F, 42.0F, 84.0F, 84.0F, scale * 4.5F, scale * 4.5F, 0.0F, 0, 0, 84, 84, false, false);
+                sb.setBlendFunction(770, 771);
                 return SpireReturn.Return(null);
             }
             return SpireReturn.Continue();

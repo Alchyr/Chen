@@ -5,7 +5,7 @@ import Chen.Cards.Basic.Defend;
 import Chen.Cards.Basic.PounceTurnTail;
 import Chen.Cards.Basic.Strike;
 
-import Chen.Cards.Other.GlitterPoke;
+import Chen.Cards.Basic.GlitterPoke;
 import Chen.Patches.CardColorEnum;
 import Chen.Relics.Catnip;
 import basemod.animations.SpriterAnimation;
@@ -29,7 +29,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 import static Chen.ChenMod.assetPath;
-import static Chen.ChenMod.shiftsThisTurn;
 
 public class Chen extends TwoFormCharacter {
     private final static Logger logger = LogManager.getLogger(Chen.class.getSimpleName());
@@ -99,8 +98,8 @@ public class Chen extends TwoFormCharacter {
         startingDeck.add(Strike.ID);
         startingDeck.add(Strike.ID);
         startingDeck.add(Strike.ID);
+        startingDeck.add(Strike.ID);
 
-        startingDeck.add(Defend.ID);
         startingDeck.add(Defend.ID);
         startingDeck.add(Defend.ID);
         startingDeck.add(Defend.ID);
@@ -191,6 +190,14 @@ public class Chen extends TwoFormCharacter {
     }
 
     @Override
+    public Color getSlashAttackColor() {
+        if (Form)
+            return Color.WHITE.cpy();
+
+        return Color.BLACK.cpy();
+    }
+
+    @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
         return new AbstractGameAction.AttackEffect[] {
                 AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
@@ -208,6 +215,6 @@ public class Chen extends TwoFormCharacter {
 
     @Override
     public String getVampireText() {
-        return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. They smell like vampires. Vampires are no good.";
+        return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. They smell like vampires. Vampires are no good. NL NL As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
     }
 }
