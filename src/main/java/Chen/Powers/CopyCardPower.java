@@ -44,9 +44,9 @@ public class CopyCardPower extends Power {
         {
             this.upToDateAmount--; //In case of cards playing other cards and adding to top, which will cause them to trigger before the reducepoweraction
 
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(card, 1, false, true, false));
+            AbstractDungeon.actionManager.addToTop(new MakeTempCardInDrawPileAction(card.makeStatEquivalentCopy(), 1, false, true, false));
 
-            AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
+            AbstractDungeon.actionManager.addToTop(new ReducePowerAction(this.owner, this.owner, this.ID, 1));
         }
     }
 

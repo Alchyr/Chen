@@ -26,7 +26,7 @@ public class FollowUp extends BaseCard {
 
     public FollowUp()
     {
-        super(cardInfo, true);
+        super(cardInfo, false);
 
         setMagic(BUFF);
         setCostUpgrade(UPG_COST);

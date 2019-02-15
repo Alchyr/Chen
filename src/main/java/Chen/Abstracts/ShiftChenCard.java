@@ -324,7 +324,18 @@ public abstract class ShiftChenCard extends BaseCard {
 
     @Override
     public AbstractCard makeStatEquivalentCopy() {
-        return super.makeStatEquivalentCopy();
+        AbstractCard baseCopy = super.makeStatEquivalentCopy();
+
+        if (baseCopy instanceof ShiftChenCard) {
+            ((ShiftChenCard) baseCopy).baseBlockA = this.baseBlockA;
+            ((ShiftChenCard) baseCopy).baseBlockB = this.baseBlockB;
+            ((ShiftChenCard) baseCopy).baseDamageA = this.baseDamageA;
+            ((ShiftChenCard) baseCopy).baseDamageB = this.baseDamageB;
+            ((ShiftChenCard) baseCopy).baseMagicNumberA = this.baseMagicNumberA;
+            ((ShiftChenCard) baseCopy).baseMagicNumberB = this.baseMagicNumberB;
+        }
+
+        return baseCopy;
     }
 
     //return what is not currently the main data
@@ -336,6 +347,8 @@ public abstract class ShiftChenCard extends BaseCard {
     {
         String rawAltDescription = Form ? descriptionB : descriptionA;
 
+
+        //todo - make this not hardcoded
         rawAltDescription = rawAltDescription.replaceFirst("chen:Shift. NL ", "");
         rawAltDescription = rawAltDescription.replaceFirst("chen:Shapeshift: Cat. NL ", "");
         rawAltDescription = rawAltDescription.replaceFirst("chen:Shapeshift: Human. NL ", "");
