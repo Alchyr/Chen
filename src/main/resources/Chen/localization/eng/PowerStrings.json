@@ -98,6 +98,14 @@
       " more damage."
     ]
   },
+  "Chen:Copy": {
+    "NAME": "Copycat",
+    "DESCRIPTIONS": [
+      "Put a copy of the next ",
+      "card you play this turn on top of your draw pile.",
+      " cards you play this turn on top of your draw pile."
+    ]
+  },
   "Chen:FollowUp": {
     "NAME": "Follow Up",
     "DESCRIPTIONS": [

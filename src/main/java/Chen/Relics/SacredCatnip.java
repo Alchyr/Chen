@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.Boot;
+import com.megacrit.cardcrawl.relics.StrangeSpoon;
 
 public class SacredCatnip extends Relic implements OnShiftSubscriber {
     public static final String ID = ChenMod.makeID("SacredCatnip");

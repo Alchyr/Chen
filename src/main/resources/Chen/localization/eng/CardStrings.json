@@ -291,6 +291,10 @@
     "NAME": "Pentagram Flight",
     "DESCRIPTION": "chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented to ALL enemies. NL Lose 1 Focus."
   },
+  "Chen:Copycat": {
+    "NAME": "Copycat",
+    "DESCRIPTION": "Put a copy of the next card you play on top of your draw pile."
+  },
   "Chen:ResistTemptation": {
     "NAME": "Resist Temptation",
     "DESCRIPTION": "Gain !M! Focus. NL Lose 1 Strength."
