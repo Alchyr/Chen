@@ -28,7 +28,7 @@ public class FlankingStrike extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 4;
+    private final static int DAMAGE = 5;
     private final static int UPG_DAMAGE = 3;
 
     public FlankingStrike()
@@ -41,27 +41,10 @@ public class FlankingStrike extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Change effect based on form
-        if (AbstractDungeon.player instanceof TwoFormCharacter)
-        {
-            if (((TwoFormCharacter) AbstractDungeon.player).Form) //human
-            {
-                if (Settings.FAST_MODE) {
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new BloodShotEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, m.hb.cX, m.hb.cY, 2), 0.25F));
-                } else {
-                    AbstractDungeon.actionManager.addToBottom(new VFXAction(new BloodShotEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, m.hb.cX, m.hb.cY, 2), 0.6F));
-                }
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.NONE));
-            }
-            else //cat
-            {
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-            }
-        }
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
+                new DamageInfo(p, this.damage, this.damageTypeForTurn),
+                AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+
 
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DamageUpPower(p, 1), 1));
     }

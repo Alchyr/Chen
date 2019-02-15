@@ -8,5 +8,12 @@
     "TEXT": [
       "Reset."
     ]
+  },
+  "ChenRemoveShiftStrings": {
+    "TEXT": [
+      "chen:Shift. NL ",
+      "chen:Shapeshift: Cat. NL ",
+      "chen:Shapeshift: Human. NL "
+    ]
   }
 }

@@ -11,6 +11,9 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.Dodecahedron;
+import com.megacrit.cardcrawl.relics.Lantern;
+import com.megacrit.cardcrawl.relics.NinjaScroll;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 import static Chen.ChenMod.makeID;
@@ -39,6 +42,8 @@ public class Assault extends BaseCard {
         setMagic(DEBUFF, UPG_DEBUFF);
 
         this.isMultiDamage = true;
+
+
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

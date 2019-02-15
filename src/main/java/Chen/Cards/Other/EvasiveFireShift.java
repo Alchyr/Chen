@@ -31,12 +31,12 @@ public class EvasiveFireShift extends ShiftChenCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE_A = 0;
-    private final static int DAMAGE_B = 7;
+    private final static int DAMAGE_B = 6;
     private final static int UPG_DAMAGE_A = 0;
     private final static int UPG_DAMAGE_B = 2;
 
-    private final static int BLOCK_A = 7;
-    private final static int BLOCK_B = 7;
+    private final static int BLOCK_A = 6;
+    private final static int BLOCK_B = 6;
     private final static int UPG_BLOCK_A = 2;
     private final static int UPG_BLOCK_B = 2;
 
@@ -48,6 +48,11 @@ public class EvasiveFireShift extends ShiftChenCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (shiftsThisTurn > 0)
+        {
+            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+        }
+
         if (Form) //human
         {
             if (p instanceof TwoFormCharacter) {
@@ -55,10 +60,6 @@ public class EvasiveFireShift extends ShiftChenCard {
                     AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
             }
 
-            if (shiftsThisTurn > 0)
-            {
-                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-            }
             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
         }
         else //cat
@@ -67,14 +68,9 @@ public class EvasiveFireShift extends ShiftChenCard {
                 AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
             }
 
-
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-            if (shiftsThisTurn > 0 && m != null)
-            {
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
-                        new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.FIRE));
-            }
+            AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
+                    new DamageInfo(p, this.damage, this.damageTypeForTurn),
+                    AbstractGameAction.AttackEffect.FIRE));
         }
     }
 }

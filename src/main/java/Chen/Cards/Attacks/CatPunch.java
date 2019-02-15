@@ -23,8 +23,10 @@ public class CatPunch extends ShiftChenCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 6;
-    private final static int UPG_DAMAGE = 2;
+    private final static int DAMAGE_A = 7;
+    private final static int DAMAGE_B = 5;
+    private final static int UPG_DAMAGE_A = 1;
+    private final static int UPG_DAMAGE_B = 2;
 
     private final static int BLOCK = 4;
     private final static int UPG_BLOCK = 2;
@@ -33,17 +35,17 @@ public class CatPunch extends ShiftChenCard {
     {
         super(cardInfo, false);
 
-        setDamage(DAMAGE, DAMAGE, UPG_DAMAGE, UPG_DAMAGE);
+        setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK, 0, UPG_BLOCK, 0);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (Form) //human
         {
+            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
                     new DamageInfo(p, this.damage, this.damageTypeForTurn),
                     AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
         }
         else //cat
         {

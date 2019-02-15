@@ -87,7 +87,7 @@
     "DESCRIPTION": "chen:Shift. NL chen:Shapeshift: Cat. NL Gain !B! Block. NL If you've chen:Shapeshifted this turn, gain !B! Block.",
     "EXTENDED_DESCRIPTION": [
       "Evasive Fire",
-      "chen:Shift. NL chen:Shapeshift: Human. NL Gain !B! Block. NL If you've chen:Shapeshifted this turn, deal !D! damage."
+      "chen:Shift. NL chen:Shapeshift: Human. NL Deal !D! damage. NL If you've chen:Shapeshifted this turn, gain !B! Block."
     ]
   },
   "Chen:RapidfireEvasive": {

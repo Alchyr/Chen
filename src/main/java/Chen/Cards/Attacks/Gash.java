@@ -38,8 +38,8 @@ public class Gash extends BaseCard {
     private final static int DAMAGE = 12;
     private final static int UPG_DAMAGE = 3;
 
-    private final static int DEBUFF = 8;
-    private final static int UPG_DEBUFF = 4;
+    private final static int DEBUFF = 9;
+    private final static int UPG_DEBUFF = 3;
 
     public Gash()
     {

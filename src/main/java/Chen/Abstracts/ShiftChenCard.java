@@ -7,6 +7,7 @@ import Chen.Variables.SpellDamage;
 import basemod.BaseMod;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -38,6 +39,8 @@ public abstract class ShiftChenCard extends BaseCard {
     private int magicUpgradeB;
 
     private String shiftImg = null;
+
+    private static String[] removeStrings = CardCrawlGame.languagePack.getUIString("ChenRemoveShiftStrings").TEXT;
 
 
     public ShiftChenCard(CardInfo cardInfo, boolean upgradesDescription)
@@ -221,7 +224,6 @@ public abstract class ShiftChenCard extends BaseCard {
 
         this.initializeTitle();
         this.initializeDescription();
-        this.resetAttributes();
     }
 
     @Override
@@ -347,11 +349,10 @@ public abstract class ShiftChenCard extends BaseCard {
     {
         String rawAltDescription = Form ? descriptionB : descriptionA;
 
-
-        //todo - make this not hardcoded
-        rawAltDescription = rawAltDescription.replaceFirst("chen:Shift. NL ", "");
-        rawAltDescription = rawAltDescription.replaceFirst("chen:Shapeshift: Cat. NL ", "");
-        rawAltDescription = rawAltDescription.replaceFirst("chen:Shapeshift: Human. NL ", "");
+        for (String s : removeStrings)
+        {
+            rawAltDescription = rawAltDescription.replaceFirst(s, "");
+        }
 
         return processDescriptionForShiftKeyword(rawAltDescription);
     }

@@ -33,7 +33,7 @@ public class CounterPower extends Power {
         if (info.owner != null && info.type == DamageInfo.DamageType.NORMAL && info.owner != this.owner) {
             this.flash();
             AbstractDungeon.actionManager.addToTop(new DamageAction(info.owner, this.thornsInfo, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(info.owner, this.owner, new Hemorrhage(info.owner, this.owner, this.amount)));
+            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(info.owner, this.owner, new Hemorrhage(info.owner, this.owner, this.amount), this.amount));
         }
 
         return damageAmount;

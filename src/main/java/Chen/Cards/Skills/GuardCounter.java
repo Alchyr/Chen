@@ -36,7 +36,7 @@ public class GuardCounter extends ShiftChenCard {
     {
         super(cardInfo, false);
 
-        setBlock(BLOCK, UPG_BLOCK);
+        setBlock(BLOCK, BLOCK, UPG_BLOCK, UPG_BLOCK);
         setMagic(BUFF_A, BUFF_B, UPG_BUFF_A, UPG_BUFF_B);
     }
 

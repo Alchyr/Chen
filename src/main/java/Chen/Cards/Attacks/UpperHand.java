@@ -28,7 +28,7 @@ public class UpperHand extends ShiftChenCard {
     private final static int DAMAGE_A = 8;
     private final static int DAMAGE_B = 4;
     private final static int UPG_DAMAGE_A = 2;
-    private final static int UPG_DAMAGE_B = 1;
+    private final static int UPG_DAMAGE_B = 2;
     private final static int MAGIC = 1;
 
     public UpperHand() {

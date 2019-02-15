@@ -189,6 +189,29 @@ public class Chen extends TwoFormCharacter {
         super.applyStartOfCombatLogic();
     }
 
+
+
+
+
+
+    public void applyStartOfTurnRelics() {
+        //Whatever your code is to add cards
+
+
+
+        super.applyStartOfTurnRelics();
+    }
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public Color getSlashAttackColor() {
         if (Form)
