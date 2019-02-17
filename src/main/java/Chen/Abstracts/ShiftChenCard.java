@@ -89,11 +89,9 @@ public abstract class ShiftChenCard extends BaseCard {
         this.magicUpgradeB = 0;
 
         if (AbstractDungeon.isPlayerInDungeon()) {
-            if (AbstractDungeon.player != null) {
-                if (AbstractDungeon.player instanceof TwoFormCharacter)
-                {
-                    this.Form = ((TwoFormCharacter)AbstractDungeon.player).Form;
-                }
+            if (AbstractDungeon.player instanceof TwoFormCharacter)
+            {
+                this.Form = ((TwoFormCharacter)AbstractDungeon.player).Form;
             }
         }
 

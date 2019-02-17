@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.NoBlockPower;
 
 
 public class PreventAllBlockPower extends Power implements BetterOnGainBlockSubscriber {
@@ -17,6 +18,8 @@ public class PreventAllBlockPower extends Power implements BetterOnGainBlockSubs
 
     public PreventAllBlockPower(final AbstractCreature owner, final int amount) {
         super(NAME, TYPE, TURN_BASED, owner, null, amount);
+
+        this.priority = 911;
     }
 
     public float modifyBlock(float blockAmount) {

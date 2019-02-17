@@ -20,7 +20,7 @@ public class PentagramFlight extends BaseCard implements SpellCard {
             1,
             CardType.SKILL,
             CardTarget.ALL_ENEMY,
-            CardRarity.UNCOMMON
+            CardRarity.COMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);

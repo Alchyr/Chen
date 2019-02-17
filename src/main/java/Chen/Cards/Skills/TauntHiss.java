@@ -18,7 +18,7 @@ public class TauntHiss extends ShiftChenCard {
             0,
             CardType.SKILL,
             CardTarget.ENEMY,
-            CardRarity.UNCOMMON
+            CardRarity.COMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);

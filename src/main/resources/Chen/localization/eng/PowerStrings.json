@@ -48,6 +48,13 @@
       " random upgraded #ySpells."
     ]
   },
+  "Chen:Deceitful": {
+    "NAME": "Deceitful",
+    "DESCRIPTIONS": [
+      "The first time you #yShapeshift each turn, apply ",
+      " #yDisoriented to a random enemy."
+    ]
+  },
   "Chen:Sharpen": {
     "NAME": "Sharpen",
     "DESCRIPTIONS": [
@@ -58,7 +65,7 @@
   "Chen:Disoriented": {
     "NAME": "Disoriented",
     "DESCRIPTIONS": [
-      "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when used or at end of turn."
+      "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when triggered, and is halved at the end of the turn."
     ]
   },
   "Chen:LoseFocusPower": {
@@ -74,6 +81,14 @@
       "You cannot gain #yBlock for ",
       " turn.",
       " turns."
+    ]
+  },
+  "Chen:Self Control": {
+    "NAME": "Self Control",
+    "DESCRIPTIONS": [
+      "You cannot #yShapeshift. When #yShapeshifting is prevented, draw ",
+      "a card.",
+      " cards."
     ]
   },
   "Chen:Draw Reduction": {

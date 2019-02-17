@@ -5,6 +5,7 @@ import Chen.Abstracts.TwoFormCharacter;
 import Chen.ChenMod;
 import Chen.Effects.PoofEffect;
 import Chen.Effects.ShiftCardEffect;
+import Chen.Interfaces.NoShapeshiftPower;
 import Chen.Interfaces.OnShiftSubscriber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -52,7 +53,10 @@ public class ShapeshiftAction extends AbstractGameAction {
     public void update() {
         if (AbstractDungeon.isPlayerInDungeon() && firstCheck) {
             firstCheck = false;
-            if (AbstractDungeon.player instanceof TwoFormCharacter) {
+            boolean canTrigger = true;
+
+
+            if ((AbstractDungeon.player instanceof TwoFormCharacter)) {
                 if (autoForm)
                 {
                     targetForm = !((TwoFormCharacter) AbstractDungeon.player).Form;
@@ -60,60 +64,83 @@ public class ShapeshiftAction extends AbstractGameAction {
 
                 if (((TwoFormCharacter) AbstractDungeon.player).Form != targetForm)
                 {
-                    trigger = true;
-
-                    AbstractDungeon.effectList.add(new PoofEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY));
-
-                    for (AbstractCard c : AbstractDungeon.player.hand.group)
-                    {
-                        if (c instanceof ShiftChenCard)
-                        {
-                            AbstractDungeon.effectList.add(new ShiftCardEffect((ShiftChenCard)c, targetForm));
-                        }
-                    }
-                    for (AbstractCard c : AbstractDungeon.player.drawPile.group)
-                    {
-                        if (c instanceof ShiftChenCard)
-                        {
-                            ((ShiftChenCard)c).Shift(targetForm);
-                        }
-                    }
-                    for (AbstractCard c : AbstractDungeon.player.discardPile.group)
-                    {
-                        if (c instanceof ShiftChenCard)
-                        {
-                            ((ShiftChenCard)c).Shift(targetForm);
-                        }
-                    }
-                    for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
-                    {
-                        if (c instanceof ShiftChenCard)
-                        {
-                            ((ShiftChenCard)c).Shift(targetForm);
-                        }
-                    }
-                    if (sourceCard != null && sourceCard instanceof ShiftChenCard)
-                    {
-                        AbstractDungeon.effectList.add(new ShiftCardEffect((ShiftChenCard)sourceCard, targetForm));
-                    }
-
-                    //trigger shift subscribers
-                    for (AbstractRelic r : AbstractDungeon.player.relics)
-                    {
-                        if (r instanceof OnShiftSubscriber)
-                        {
-                            ((OnShiftSubscriber) r).OnShiftForm();
-                        }
-                    }
-
                     for (AbstractPower p : AbstractDungeon.player.powers)
                     {
-                        if (p instanceof OnShiftSubscriber)
+                        if (p instanceof NoShapeshiftPower)
                         {
-                            ((OnShiftSubscriber) p).OnShiftForm();
+                            ((NoShapeshiftPower) p).onCancelShapeshift();
+                            canTrigger = false;
+                            this.isDone = true;
                         }
                     }
 
+                    if (canTrigger)
+                    {
+                        trigger = true;
+
+                        AbstractDungeon.effectList.add(new PoofEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY));
+
+                        for (AbstractCard c : AbstractDungeon.player.hand.group)
+                        {
+                            if (c instanceof ShiftChenCard)
+                            {
+                                AbstractDungeon.effectList.add(new ShiftCardEffect((ShiftChenCard)c, targetForm));
+                            }
+                        }
+                        for (AbstractCard c : AbstractDungeon.player.drawPile.group)
+                        {
+                            if (c instanceof ShiftChenCard)
+                            {
+                                ((ShiftChenCard)c).Shift(targetForm);
+                            }
+                        }
+                        for (AbstractCard c : AbstractDungeon.player.discardPile.group)
+                        {
+                            if (c instanceof ShiftChenCard)
+                            {
+                                ((ShiftChenCard)c).Shift(targetForm);
+                            }
+                        }
+                        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
+                        {
+                            if (c instanceof ShiftChenCard)
+                            {
+                                ((ShiftChenCard)c).Shift(targetForm);
+                            }
+                        }
+                        if (sourceCard != null && sourceCard instanceof ShiftChenCard)
+                        {
+                            AbstractDungeon.effectList.add(new ShiftCardEffect((ShiftChenCard)sourceCard, targetForm));
+                        }
+
+                        //trigger shift subscribers
+                        for (AbstractRelic r : AbstractDungeon.player.relics)
+                        {
+                            if (r instanceof OnShiftSubscriber)
+                            {
+                                ((OnShiftSubscriber) r).OnShiftForm();
+                            }
+                        }
+
+                        for (AbstractPower p : AbstractDungeon.player.powers)
+                        {
+                            if (p instanceof OnShiftSubscriber)
+                            {
+                                ((OnShiftSubscriber) p).OnShiftForm();
+                            }
+                        }
+                    }
+                }
+            }
+            else if (AbstractDungeon.player != null)
+            {
+                for (AbstractPower p : AbstractDungeon.player.powers)
+                {
+                    if (p instanceof NoShapeshiftPower)
+                    {
+                        ((NoShapeshiftPower) p).onCancelShapeshift();
+                        this.isDone = true;
+                    }
                 }
             }
         }

@@ -36,14 +36,14 @@ public class PlayCardAction extends AbstractGameAction {
 
         if (sourceGroup == null)
         {
+            if (target != null) {
+                card.calculateCardDamage(cardTarget);
+            }
             AbstractDungeon.player.limbo.addToBottom(card);
             card.current_x = (float)Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
             card.current_y = (float)Settings.HEIGHT / 2.0F;
             card.target_x = (float)Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
             card.target_y = (float)Settings.HEIGHT / 2.0F;
-            if (target != null) {
-                card.calculateCardDamage(cardTarget);
-            }
 
             card.purgeOnUse = true;
             AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(card, cardTarget, AbstractDungeon.player.energy.energy));

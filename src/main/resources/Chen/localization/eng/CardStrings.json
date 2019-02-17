@@ -253,13 +253,29 @@
       " NL (Currently chen:Shapeshifted !M! times.)"
     ]
   },
+  "Chen:Instinct": {
+    "NAME": "Instinct",
+    "DESCRIPTION": "When this card is drawn or played, gain !M! Strength and lose !M! Strength at the end of the turn."
+  },
+  "Chen:Knockout": {
+    "NAME": "Knockout",
+    "DESCRIPTION": "Deal !D! damage. NL Deals twice as much damage if the enemy has chen:Disoriented."
+  },
+  "Chen:Rush": {
+    "NAME": "Rush",
+    "DESCRIPTION": "chen:Swift. NL Draw !M! cards."
+  },
+  "Chen:SelfControl": {
+    "NAME": "Self Control",
+    "DESCRIPTION": "You can no longer chen:Shapeshift. NL Whenever you would have chen:Shapeshifted, draw !M! card."
+  },
   "Chen:Impale": {
     "NAME": "Impale",
     "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage and apply !M! chen:Hemorrhage X times."
   },
   "Chen:Salvo": {
     "NAME": "Salvo",
-    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL Add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL If this card's damage is not 0, add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
   },
   "Chen:Unpredictable": {
     "NAME": "Unpredictable",
@@ -298,7 +314,11 @@
   },
   "Chen:Frivolous": {
     "NAME": "Frivolous",
-    "DESCRIPTION": "At the start of your turn, reduce the cost of !M! random card in your hand by 2 and increase the cost of !M! random card in your hand by 1."
+    "DESCRIPTION": "At the start of your turn, reduce the cost of a random card in your hand by 2 and increase the cost of a random card in your hand by 1."
+  },
+  "Chen:Deceitful": {
+    "NAME": "Deceitful",
+    "DESCRIPTION": "The first time you chen:Shapeshift each turn, apply !M! chen:Disoriented to a random enemy."
   },
   "Chen:FollowUp": {
     "NAME": "Follow Up",
@@ -325,7 +345,7 @@
   },
   "Chen:Copycat": {
     "NAME": "Copycat",
-    "DESCRIPTION": "Put a copy of the next card you play on top of your draw pile."
+    "DESCRIPTION": "Put a copy of the next card you play this turn on top of your draw pile."
   },
   "Chen:ResistTemptation": {
     "NAME": "Resist Temptation",

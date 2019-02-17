@@ -24,7 +24,7 @@ public class ResistTemptation extends BaseCard {
             0,
             CardType.SKILL,
             CardTarget.SELF,
-            CardRarity.UNCOMMON
+            CardRarity.COMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);

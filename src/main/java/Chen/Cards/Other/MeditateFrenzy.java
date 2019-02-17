@@ -35,9 +35,9 @@ public class MeditateFrenzy extends ShiftChenCard {
     private final static int UPG_DAMAGE_A = 0;
     private final static int UPG_DAMAGE_B = 1;
 
-    private final static int BLOCK_A = 14;
+    private final static int BLOCK_A = 16;
     private final static int BLOCK_B = 0;
-    private final static int UPG_BLOCK_A = 4;
+    private final static int UPG_BLOCK_A = 6;
     private final static int UPG_BLOCK_B = 0;
 
     private final static int MAGIC_A = 1;

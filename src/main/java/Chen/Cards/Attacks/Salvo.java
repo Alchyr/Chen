@@ -1,6 +1,9 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.DamageSpellCard;
+import Chen.Abstracts.TwoFormCharacter;
+import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Character.Chen;
 import Chen.Effects.SalvoEffect;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
@@ -47,6 +50,10 @@ public class Salvo extends DamageSpellCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int salvoCount = this.baseMagicNumber + 1;
+        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+            AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
+        }
+
         if (Settings.FAST_MODE) {
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new SalvoEffect(salvoCount, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.25F));
         } else {
@@ -55,10 +62,13 @@ public class Salvo extends DamageSpellCard {
 
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
+        if (this.magicNumber > 0)
+        {
+            Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 
-        copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
+            copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
 
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
+        }
     }
 }
