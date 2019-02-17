@@ -63,6 +63,8 @@ public class Chen extends TwoFormCharacter {
             assetPath("img/Character/orb/layer5d.png")
     };
 
+    private static final float[] layerSpeeds = new float[]{0F, 30.0F, -40.0F, 0.0F, 10.0F};
+
     public Chen(String name, PlayerClass setClass) {
         super(name,
                 setClass,

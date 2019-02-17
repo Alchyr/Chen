@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import static Chen.Patches.CardTagsEnum.CHEN_SHIFT_CARD;
+
 public abstract class ShiftChenCard extends BaseCard {
     protected boolean Form; //true = A, false = B
 
@@ -59,6 +61,8 @@ public abstract class ShiftChenCard extends BaseCard {
     public ShiftChenCard(String cardName, int cost, CardType cardTypeA, CardType cardTypeB, CardTarget cardTargetA, CardTarget cardTargetB, CardRarity rarity, boolean upgradesDescription)
     {
         super(cardName, cost, cardTypeA, cardTargetA, rarity, upgradesDescription);
+
+        this.tags.add(CHEN_SHIFT_CARD);
 
         this.cardTypeA = cardTypeA;
         this.cardTypeB = cardTypeB;
