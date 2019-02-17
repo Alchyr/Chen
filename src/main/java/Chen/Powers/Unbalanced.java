@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class Unbalanced extends Power implements OnShiftSubscriber {
     public static final String NAME = "Unbalanced";
-    public static final PowerType TYPE = PowerType.BUFF;
+    public static final PowerType TYPE = PowerType.DEBUFF;
     public static final boolean TURN_BASED = false;
 
     public Unbalanced(final AbstractCreature owner) {

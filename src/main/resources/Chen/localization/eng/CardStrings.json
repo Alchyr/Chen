@@ -19,11 +19,13 @@
   "Chen:Adaptability": {
     "NAME": "Adaptability",
     "DESCRIPTION": "chen:Shift. NL Gain Block equal to the number of cards you have with chen:Shift.",
+    "UPGRADE_DESCRIPTION": "chen:Shift. NL Gain Block equal to the number of cards you have with chen:Shift +5.",
     "EXTENDED_DESCRIPTION": [
       "Adaptability",
       "chen:Shift. NL Deal damage equal to the number of cards you have with chen:Shift.",
+      "chen:Shift. NL Deal damage equal to the number of cards you have with chen:Shift +5.",
       " NL (Gain !B! Block.)",
-      " NL (Deal !D! Block.)"
+      " NL (Deal !D! damage.)"
     ]
   },
   "Chen:Defend": {

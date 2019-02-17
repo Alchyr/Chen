@@ -1,8 +1,7 @@
-package Chen.Cards.Skills;
+package Chen.Cards.Other;
 
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -26,22 +25,27 @@ public class Adaptability extends ShiftChenCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
+    private final static int BASE_BONUS = 0;
+    private final static int UPG_BONUS = 5;
+
     public Adaptability()
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY,false);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY,true);
+
+        setMagic(BASE_BONUS, BASE_BONUS, UPG_BONUS, UPG_BONUS);
     }
 
     @Override
     public void applyPowers() {
-        this.baseBlock = countShiftCards();
+        this.block = this.baseBlock = countShiftCards() + this.baseMagicNumber;
         this.baseDamage = this.baseBlock;
 
         if (this.Form) {
-            this.rawDescription = descriptionA + cardStrings.EXTENDED_DESCRIPTION[2];
+            this.rawDescription = descriptionA + cardStrings.EXTENDED_DESCRIPTION[3];
             this.initializeDescription();
         }
         else {
-            this.rawDescription = descriptionA + cardStrings.EXTENDED_DESCRIPTION[3];
+            this.rawDescription = descriptionB + cardStrings.EXTENDED_DESCRIPTION[4];
             this.initializeDescription();
         }
         super.applyPowers();
