@@ -2,8 +2,6 @@ package Chen;
 
 import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ResetShiftCountAction;
-import Chen.Interfaces.Colorless;
-import Chen.Interfaces.OnShiftSubscriber;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.CardColorEnum;
 import Chen.Patches.CharacterEnum;
@@ -35,7 +33,6 @@ import com.megacrit.cardcrawl.localization.*;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.DeadBranch;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CtClass;

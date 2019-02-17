@@ -39,7 +39,7 @@ public class PossessionPower extends TwoAmountPower {
             HiDefPowerPatch.HiDefImage.img84.set(this, HiDefImage);
     }
 
-    public void atStartOfTurnPostDraw() {
+    public void atStartOfTurn() {
         this.flash();
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, this.amount), this.amount));
         AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new FocusPower(this.owner, this.amount), this.amount));

@@ -22,14 +22,13 @@ public class FollowUp extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private static final int BUFF = 1;
-    private static final int UPG_COST = 1;
 
     public FollowUp()
     {
-        super(cardInfo, false);
+        super(cardInfo, true);
 
         setMagic(BUFF);
-        setCostUpgrade(UPG_COST);
+        setInnate(false, true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -15,7 +15,7 @@ public class Panic extends ShiftChenCard {
             0,
             CardType.SKILL,
             CardTarget.NONE,
-            CardRarity.UNCOMMON
+            CardRarity.COMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);

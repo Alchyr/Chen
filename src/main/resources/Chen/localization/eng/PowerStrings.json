@@ -98,6 +98,15 @@
       " more damage."
     ]
   },
+  "Chen:Frivolous": {
+    "NAME": "Frivolous",
+    "DESCRIPTIONS": [
+      "At the start of your turn, reduce the cost of ",
+      "a random card in your hand by #b2 and increase the cost of a random card in your hand by #b1.",
+      " random cards in your hand by #b2 and increase the cost of ",
+      " random cards in your hand by #b1."
+    ]
+  },
   "Chen:Copy": {
     "NAME": "Copycat",
     "DESCRIPTIONS": [
