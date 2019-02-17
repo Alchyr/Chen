@@ -1,15 +1,10 @@
 {
-  "SomeChenAction": {
-    "TEXT": [
-      "Choose a Card to ______."
-    ]
-  },
   "ChenResetAction": {
     "TEXT": [
       "Reset."
     ]
   },
-  "ChenRemoveShiftStrings": {
+  "chen:RemoveShiftStrings": {
     "TEXT": [
       "chen:Shift. NL ",
       "chen:Shapeshift: Cat. NL ",

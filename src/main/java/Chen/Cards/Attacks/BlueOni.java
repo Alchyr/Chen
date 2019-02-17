@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateParticle;
 
@@ -31,7 +30,7 @@ public class BlueOni extends DamageSpellCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE = 10;
-    private final static int UPG_DAMAGE = 2;
+    private final static int UPG_DAMAGE = 3;
 
     public BlueOni()
     {

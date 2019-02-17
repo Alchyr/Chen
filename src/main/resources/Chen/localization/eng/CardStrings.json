@@ -156,8 +156,15 @@
   },
   "Chen:Shapeshift": {
     "NAME": "Shapeshift",
-    "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn.",
-    "UPGRADE_DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn."
+    "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn."
+  },
+  "Chen:EmergencyEscape": {
+    "NAME": "Emergency Escape",
+    "DESCRIPTION": "chen:Shapeshift. NL Gain !B! Block. NL The next time you chen:Shapeshift, end your turn. NL Exhaust."
+  },
+  "Chen:Stability": {
+    "NAME": "Stability",
+    "DESCRIPTION": "Gain !B! Block. NL Block is not removed at the start of your turn until you chen:Shapeshift. NL Exhaust."
   },
   "Chen:Sneak": {
     "NAME": "Sneak",
@@ -221,7 +228,7 @@
   },
   "Chen:Recuperate": {
     "NAME": "Recuperate",
-    "DESCRIPTION": "Remove all debuffs on yourself. NL Exhaust."
+    "DESCRIPTION": "Remove all debuffs on yourself. NL Draw a card. NL Exhaust."
   },
   "Chen:Gash": {
     "NAME": "Gash",
@@ -238,9 +245,22 @@
        " NL (Deals !D! damage.)"
     ]
   },
+  "Chen:Impale": {
+    "NAME": "Impale",
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage and apply !M! chen:Hemorrhage X times."
+  },
   "Chen:Salvo": {
     "NAME": "Salvo",
     "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL Add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
+  },
+  "Chen:Unpredictable": {
+    "NAME": "Unpredictable",
+    "DESCRIPTION": "Autoplay. NL chen:Shapeshift. NL Draw !M! card.",
+    "UPGRADE_DESCRIPTION": "Autoplay. NL chen:Shapeshift. NL Draw !M! cards."
+  },
+  "Chen:Sweep": {
+    "NAME": "Sweep",
+    "DESCRIPTION": "chen:Swift. NL Deal !D! damage to all enemies !M! times."
   },
   "Chen:Shot": {
     "NAME": "Shot",
@@ -248,7 +268,7 @@
   },
   "Chen:Assault": {
     "NAME": "Assault",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! chen:Hemorrhage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage and apply !M! chen:Hemorrhage to ALL enemies."
   },
   "Chen:CurlUp": {
     "NAME": "Curl Up",

@@ -4,6 +4,7 @@ import Chen.Abstracts.BaseCard;
 import Chen.Powers.ShikigamiFormBase;
 import Chen.Powers.ShikigamiFormUpgraded;
 import Chen.Util.CardInfo;
+import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -29,6 +30,8 @@ public class ShikigamiForm extends BaseCard {
         super(cardInfo, true);
 
         setMagic(BUFF);
+
+        this.tags.add(BaseModCardTags.FORM);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

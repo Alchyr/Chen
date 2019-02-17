@@ -23,7 +23,7 @@ public class RedOni extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE = 10;
-    private final static int UPG_DAMAGE = 2;
+    private final static int UPG_DAMAGE = 3;
 
     public RedOni()
     {

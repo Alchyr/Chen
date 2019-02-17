@@ -4,18 +4,22 @@ import Chen.Abstracts.DamageSpellCard;
 import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.PhoenixWingsAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Actions.GenericActions.ApplyDamageAction;
+import Chen.Actions.GenericActions.VFXIfAliveAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
 import Chen.Util.DamageInfoUtil;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.Necronomicon;
+import com.megacrit.cardcrawl.vfx.FireBurstParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 
 import static Chen.ChenMod.makeID;
@@ -32,7 +36,7 @@ public class PhoenixWings extends DamageSpellCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE = 15;
-    private final static int UPG_DAMAGE = 5;
+    private final static int UPG_DAMAGE = 4;
 
     public PhoenixWings()
     {
@@ -96,15 +100,6 @@ public class PhoenixWings extends DamageSpellCard {
         isDamageModified = false;
         this.baseDamage = baseTotal;
         this.damage = totalDamage;
-
-        if (mo != null)
-        {
-            DamageInfo finalHitInfo = new DamageInfo(null, totalDamage, DamageInfo.DamageType.NORMAL);
-            DamageInfoUtil.ApplyTargetPowers(finalHitInfo, mo);
-            this.damage = finalHitInfo.output;
-            if (damage != baseDamage)
-                this.isDamageModified = true;
-        }
     }
 
     @Override
@@ -118,10 +113,9 @@ public class PhoenixWings extends DamageSpellCard {
         }
 
         AbstractDungeon.actionManager.addToBottom(new PhoenixWingsAction(p, m, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
-        if (m != null)
-        {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new InflameEffect(m)));
-        }
 
+        AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(m, new FireBurstParticleEffect(m.hb.cX, m.hb.cY)));
+        AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(m, new InflameEffect(m)));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
     }
 }

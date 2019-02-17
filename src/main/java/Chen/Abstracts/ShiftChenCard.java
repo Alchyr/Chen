@@ -40,7 +40,7 @@ public abstract class ShiftChenCard extends BaseCard {
 
     private String shiftImg = null;
 
-    private static String[] removeStrings = CardCrawlGame.languagePack.getUIString("ChenRemoveShiftStrings").TEXT;
+    private static String[] removeStrings = CardCrawlGame.languagePack.getUIString("chen:RemoveShiftStrings").TEXT;
 
 
     public ShiftChenCard(CardInfo cardInfo, boolean upgradesDescription)

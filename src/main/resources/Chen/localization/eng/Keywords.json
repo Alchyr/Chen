@@ -21,7 +21,7 @@
       "blue oni",
       "blue_oni"
     ],
-    "DESCRIPTION": "Damages the farthest right enemy."
+    "DESCRIPTION": "#ySpell: Damage. Deals 10 [13] damage to the farthest right enemy."
   },
   {
     "PROPER_NAME": "Red Oni",
@@ -29,7 +29,7 @@
       "red oni",
       "red_oni"
     ],
-    "DESCRIPTION": "Damages the farthest left enemy."
+    "DESCRIPTION": "Deals 10 [13] damage to the farthest left enemy."
   },
   {
     "PROPER_NAME": "Disoriented",

@@ -148,7 +148,19 @@
   "Chen:DivideAttack": {
     "NAME": "Afterimages",
     "DESCRIPTIONS": [
-      "This enemy's attack is divided into twice as many hits. But, you shouldn't be seeing this."
+      "This enemy's attack is divided into more hits. But, you shouldn't be seeing this."
+    ]
+  },
+  "Chen:Stability": {
+    "NAME": "Stability",
+    "DESCRIPTIONS": [
+      "Block is not removed at the start of your turn. Is removed upon #yShapeshifting."
+    ]
+  },
+  "Chen:Unbalanced": {
+    "NAME": "Unbalanced",
+    "DESCRIPTIONS": [
+      "The next time you #yShapeshift, end your turn immediately."
     ]
   }
 }

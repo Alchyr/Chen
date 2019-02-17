@@ -29,7 +29,7 @@ public class Shapeshift extends BaseCard {
 
     public Shapeshift()
     {
-        super(cardInfo, true);
+        super(cardInfo, false);
 
         setMagic(MAGIC, UPG_MAGIC);
         AlwaysRetainField.alwaysRetain.set(this, true);

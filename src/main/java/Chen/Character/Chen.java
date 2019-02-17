@@ -20,7 +20,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -33,9 +32,10 @@ import static Chen.ChenMod.assetPath;
 public class Chen extends TwoFormCharacter {
     private final static Logger logger = LogManager.getLogger(Chen.class.getSimpleName());
 
+    public static final com.megacrit.cardcrawl.localization.CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("chen:Character");
+
     private static final int ENERGY_PER_TURN = 3;
-    private static final int STARTING_HP = 65;
-    private static final int MAX_HP = 65;
+    private static final int MAX_HP = 70;
     private static final int STARTING_GOLD = 99;
     private static final int CARD_DRAW = 5;
     private static final int ORB_SLOTS = 0;
@@ -84,9 +84,8 @@ public class Chen extends TwoFormCharacter {
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo("The Black Cat of Ill Omens",
-                "A shikigami's shikigami. NL " + "A bakeneko who can take human or cat form.",
-                STARTING_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
+        return new CharSelectInfo(characterStrings.NAMES[0], characterStrings.TEXT[0],
+                MAX_HP, MAX_HP, ORB_SLOTS, STARTING_GOLD, CARD_DRAW, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
@@ -125,13 +124,6 @@ public class Chen extends TwoFormCharacter {
     }
 
     @Override
-    public void useCard(AbstractCard c, AbstractMonster monster, int energyOnUse) {
-        super.useCard(c, monster, energyOnUse);
-
-
-    }
-
-    @Override
     public void doCharSelectScreenSelectEffect() {
         CardCrawlGame.sound.playA("BYRD_DEATH", 0.2f); // TODO: Get a proper meow
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.SHORT,
@@ -141,7 +133,7 @@ public class Chen extends TwoFormCharacter {
     // Character select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_IRON_1";
+        return "ATTACK_WHIFF_1";
     }
 
     @Override
@@ -161,16 +153,11 @@ public class Chen extends TwoFormCharacter {
 
     @Override
     public String getLocalizedCharacterName() {
-
-        switch (Settings.language)
-        {
-            default:
-                return "The Black Cat of Ill Omen";
-        }
+        return characterStrings.NAMES[0];
     }
     @Override
     public String getTitle(AbstractPlayer.PlayerClass playerClass) {
-        return "the Black Cat of Ill Omen";
+        return characterStrings.NAMES[1];
     }
 
     @Override
@@ -233,11 +220,11 @@ public class Chen extends TwoFormCharacter {
 
     @Override
     public String getSpireHeartText() {
-        return "You sharpen your claws.";
+        return characterStrings.TEXT[1];
     }
 
     @Override
     public String getVampireText() {
-        return "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. They smell like vampires. Vampires are no good. NL NL As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~";
+        return characterStrings.TEXT[2];
     }
 }

@@ -107,7 +107,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     @Override
     public void receiveEditCharacters() {
         logger.info("Adding Chen");
-        BaseMod.addCharacter(new Chen("the Black Cat of Ill Omens", CharacterEnum.CHEN),
+        BaseMod.addCharacter(new Chen(Chen.characterStrings.NAMES[1], CharacterEnum.CHEN),
                 assetPath(CHEN_BUTTON), assetPath(CHEN_PORTRAIT), CharacterEnum.CHEN);
     }
 
@@ -171,6 +171,9 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
         logger.info("Adding card strings.");
         BaseMod.loadCustomStringsFile(CardStrings.class, assetPath("localization/" + lang + "/CardStrings.json"));
+
+        logger.info("Adding character strings.");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, assetPath("localization/" + lang + "/CharacterStrings.json"));
 
         logger.info("Adding power strings.");
         BaseMod.loadCustomStringsFile(PowerStrings.class, assetPath("localization/" + lang + "/PowerStrings.json"));

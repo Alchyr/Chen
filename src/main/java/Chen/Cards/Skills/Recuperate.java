@@ -2,6 +2,7 @@ package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
 import Chen.Util.CardInfo;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -33,6 +34,8 @@ public class Recuperate extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+
+
         for (AbstractPower power : p.powers)
         {
             if (power.type == AbstractPower.PowerType.DEBUFF)
@@ -40,5 +43,6 @@ public class Recuperate extends BaseCard {
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p, p, power));
             }
         }
+        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
     }
 }

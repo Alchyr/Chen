@@ -28,23 +28,11 @@ public class PhoenixWingsAction extends AbstractGameAction {
         {
             AbstractDungeon.actionManager.addToTop(new DamageAllEnemiesAction(source, multiDamage, damageType, attackEffect));
 
-            int totalDamage = 0;
-
             for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
                 if (!AbstractDungeon.getMonsters().monsters.get(i).isDeadOrEscaped()) {
                     AbstractDungeon.actionManager.addToTop(new VFXAction(new InflameEffect(AbstractDungeon.getMonsters().monsters.get(i))));
-                    if (i < multiDamage.length)
-                        totalDamage += multiDamage[i];
                 }
             }
-
-            DamageInfo finalHitInfo = new DamageInfo(source, totalDamage, DamageInfo.DamageType.NORMAL);
-
-            DamageInfoUtil.ApplyTargetPowers(finalHitInfo, target);
-
-            AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(target, new FireBurstParticleEffect(target.hb.cX, target.hb.cY)));
-            AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(target, new InflameEffect(target)));
-            AbstractDungeon.actionManager.addToBottom(new ApplyDamageAction(target, finalHitInfo));
         }
 
         this.isDone = true;
