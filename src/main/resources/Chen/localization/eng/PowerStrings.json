@@ -62,6 +62,13 @@
       " #yHemorrhage."
     ]
   },
+  "Chen:Exploit": {
+    "NAME": "Exploit",
+    "DESCRIPTIONS": [
+      "Whenever you attack an enemy with #yDisoriented, apply ",
+      " #yVulnerable."
+    ]
+  },
   "Chen:Disoriented": {
     "NAME": "Disoriented",
     "DESCRIPTIONS": [
@@ -134,8 +141,8 @@
     "NAME": "Follow Up",
     "DESCRIPTIONS": [
       "The first ",
-      "time you play an Attack each turn draw #b1 card and reduce its cost by #b1.",
-      " times you play an Attack each turn draw #b1 card and reduce its cost by #b1."
+      "time you play an Attack each turn draw a card and reduce its cost by #b1 until the end of the turn.",
+      " times you play an Attack each turn draw a card and reduce its cost by #b1 until the end of the turn."
     ]
   },
   "Chen:Counter": {

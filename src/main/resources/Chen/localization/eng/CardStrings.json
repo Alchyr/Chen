@@ -281,6 +281,10 @@
     "NAME": "Self Control",
     "DESCRIPTION": "You can no longer chen:Shapeshift. NL Whenever you would have chen:Shapeshifted, draw !M! card."
   },
+  "Chen:Exploit": {
+    "NAME": "Exploit",
+    "DESCRIPTION": "Whenever you attack an enemy with chen:Disoriented, apply !M! Vulnerable."
+  },
   "Chen:Impale": {
     "NAME": "Impale",
     "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage and apply !M! chen:Hemorrhage X times."
@@ -334,8 +338,8 @@
   },
   "Chen:FollowUp": {
     "NAME": "Follow Up",
-    "DESCRIPTION": "The first time you play an Attack each turn, draw 1 card and reduce its cost by 1.",
-    "UPGRADE_DESCRIPTION": "Innate. NL The first time you play an Attack each turn, draw 1 card and reduce its cost by 1."
+    "DESCRIPTION": "The first time you play an Attack each turn, draw a card and reduce its cost by 1 until the end of the turn.",
+    "UPGRADE_DESCRIPTION": "Innate. NL The first time you play an Attack each turn, draw a card and reduce its cost by 1 until the end of the turn."
   },
   "Chen:Possession": {
     "NAME": "Possession",

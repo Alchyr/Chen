@@ -31,9 +31,10 @@ public class SurpriseAttack extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE = 5;
-    private final static int UPG_DAMAGE = 3;
+    private final static int UPG_DAMAGE = 2;
 
     private final static int DEBUFF = 1;
+    private final static int UPG_DEBUFF = 1;
 
     public SurpriseAttack()
     {
@@ -41,7 +42,7 @@ public class SurpriseAttack extends BaseCard {
 
         setInnate(true, true);
         setDamage(DAMAGE, UPG_DAMAGE);
-        setMagic(DEBUFF);
+        setMagic(DEBUFF, UPG_DEBUFF);
         setExhaust(true);
     }
 

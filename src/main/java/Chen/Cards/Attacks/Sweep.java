@@ -22,7 +22,7 @@ public class Sweep extends SwiftCard {
             "Sweep",
             1,
             CardType.ATTACK,
-            CardTarget.ENEMY,
+            CardTarget.ALL_ENEMY,
             CardRarity.COMMON
     );
 
@@ -39,6 +39,8 @@ public class Sweep extends SwiftCard {
 
         setDamage(DAMAGE);
         setMagic(HITS, UPG_HITS);
+
+        this.isMultiDamage = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -37,7 +37,7 @@ public class ImpaleAction extends AbstractXAction {
     public void update() {
         if (amount > 0) {
             for(int i = 0; i < amount; ++i) {
-                AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(this.m, new ClashEffect(m.hb.x, m.hb.y)));
+                AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(this.m, new ClashEffect(m.hb.cX, m.hb.cY)));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(this.m, new DamageInfo(this.p, this.damage, this.damageTypeForTurn), AttackEffect.NONE));
             }
         }
