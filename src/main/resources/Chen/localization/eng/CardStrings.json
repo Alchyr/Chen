@@ -373,7 +373,7 @@
   },
   "Chen:ResistTemptation": {
     "NAME": "Resist Temptation",
-    "DESCRIPTION": "Gain !M! Focus. NL Lose 1 Strength."
+    "DESCRIPTION": "Gain !M! Focus."
   },
   "Chen:Afterimages": {
     "NAME": "Afterimages",
