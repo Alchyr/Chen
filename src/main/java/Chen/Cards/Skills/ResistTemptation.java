@@ -21,7 +21,7 @@ import static Chen.ChenMod.makeID;
 public class ResistTemptation extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "ResistTemptation",
-            0,
+            1,
             CardType.SKILL,
             CardTarget.SELF,
             CardRarity.COMMON
@@ -29,19 +29,18 @@ public class ResistTemptation extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DEBUFF = 1;
     private final static int BUFF = 1;
-    private final static int UPG_BUFF = 1;
+    private final static int UPG_COST = 0;
 
     public ResistTemptation()
     {
         super(cardInfo, false);
 
-        setMagic(BUFF, UPG_BUFF);
+        setMagic(BUFF);
+        setCostUpgrade(UPG_COST);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new FocusPower(p, this.magicNumber), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, -DEBUFF), -DEBUFF));
     }
 }

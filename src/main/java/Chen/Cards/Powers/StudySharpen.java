@@ -22,17 +22,16 @@ public class StudySharpen extends ShiftChenCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int MAGIC_A = 2;
+    private final static int MAGIC_A = 3;
+    private final static int UPG_MAGIC_A = 1;
     private final static int MAGIC_B = 1;
-
-    private final static int UPG_COST = 1;
+    private final static int UPG_MAGIC_B = 1;
 
     public StudySharpen()
     {
         super(cardInfo,false);
 
-        setMagic(MAGIC_A, MAGIC_B);
-        setCostUpgrade(UPG_COST);
+        setMagic(MAGIC_A, UPG_MAGIC_A, MAGIC_B, UPG_MAGIC_B);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

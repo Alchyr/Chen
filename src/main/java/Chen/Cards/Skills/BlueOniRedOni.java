@@ -21,7 +21,7 @@ public class BlueOniRedOni extends BaseCard {
             2,
             CardType.SKILL,
             CardTarget.NONE,
-            CardRarity.RARE
+            CardRarity.UNCOMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);

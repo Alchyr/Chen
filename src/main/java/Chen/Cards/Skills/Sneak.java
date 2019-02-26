@@ -28,7 +28,7 @@ public class Sneak extends SwiftCard {
 
     public Sneak()
     {
-        super(cardInfo, true);
+        super(cardInfo, false);
 
         setBlock(BLOCK, UPG_BLOCK);
         setMagic(DRAW);

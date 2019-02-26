@@ -138,7 +138,7 @@
   },
   "Chen:DazzleFlash": {
     "NAME": "Dazzle",
-    "DESCRIPTION": "chen:Shift. NL chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented.",
+    "DESCRIPTION": "chen:Shift. NL chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented and 2 Vulnerable.",
     "EXTENDED_DESCRIPTION": [
       "Flash",
       "chen:Shift. NL Deal !D! damage to a random enemy for each stack of chen:Disoriented you've applied this combat.",
@@ -180,8 +180,7 @@
   },
   "Chen:Sneak": {
     "NAME": "Sneak",
-    "DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional card.",
-    "UPGRADE_DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional cards."
+    "DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional card."
   },
   "Chen:Catseye": {
     "NAME": "Catseye",
@@ -195,6 +194,14 @@
   "Chen:UnstableBoundary": {
     "NAME": "Unstable Boundary",
     "DESCRIPTION": "chen:Spell: Block. NL Gain !SPELL! Block. NL The next time you chen:Shapeshift, gain !SPELL! Block."
+  },
+  "Chen:Fadeout": {
+    "NAME": "Fadeout",
+    "DESCRIPTION": "chen:Spell: Block. NL Gain !SPELL! Block. NL Apply !M! Weak to ALL enemies. NL Exhaust."
+  },
+  "Chen:Spray": {
+    "NAME": "Spray",
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to ALL enemies."
   },
   "Chen:BlueOniRedOni": {
     "NAME": "Blue Oni, Red Oni",
@@ -279,7 +286,8 @@
   },
   "Chen:SelfControl": {
     "NAME": "Self Control",
-    "DESCRIPTION": "You can no longer chen:Shapeshift. NL Whenever you would have chen:Shapeshifted, draw !M! card."
+    "DESCRIPTION": "You can no longer chen:Shapeshift. NL Whenever you would have chen:Shapeshifted, draw !M! card.",
+    "UPGRADE_DESCRIPTION": "You can no longer chen:Shapeshift. NL Whenever you would have chen:Shapeshifted, draw !M! cards."
   },
   "Chen:Exploit": {
     "NAME": "Exploit",

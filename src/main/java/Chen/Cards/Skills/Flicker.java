@@ -9,11 +9,15 @@ import Chen.Interfaces.SpellCard;
 import Chen.Powers.Disoriented;
 import Chen.Util.CardInfo;
 import Chen.Variables.SpellDamage;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EchoPower;
+import com.megacrit.cardcrawl.relics.BronzeScales;
 
 import static Chen.ChenMod.makeID;
 

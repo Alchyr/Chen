@@ -19,6 +19,11 @@ public class Catnip extends Relic implements OnShiftSubscriber {
         canTrigger = true;
     }
 
+    @Override
+    public void onEquip() {
+        super.onEquip();
+    }
+
     public void OnShiftForm()
     {
         if (canTrigger)

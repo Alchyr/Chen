@@ -26,7 +26,7 @@ public class SelfControl extends BaseCard {
 
     public SelfControl()
     {
-        super(cardInfo, false);
+        super(cardInfo, true);
         setMagic(DRAW, UPG_DRAW);
     }
 
