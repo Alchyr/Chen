@@ -100,6 +100,12 @@ public class PhoenixWings extends DamageSpellCard {
         isDamageModified = false;
         this.baseDamage = baseTotal;
         this.damage = totalDamage;
+
+        if (this.damage != baseDamage)
+            isDamageModified = true;
+
+        this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+        this.initializeDescription();
     }
 
     @Override

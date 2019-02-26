@@ -228,6 +228,10 @@
     "NAME": "Tear",
     "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Apply !M! chen:Hemorrhage."
   },
+  "Chen:Scratch": {
+    "NAME": "Scratch",
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Apply !M! chen:Hemorrhage."
+  },
   "Chen:Mixup": {
     "NAME": "Mix Up",
     "DESCRIPTION": "chen:Swift. NL Deal !D! damage. NL Apply !M! Weak."

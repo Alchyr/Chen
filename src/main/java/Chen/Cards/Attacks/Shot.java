@@ -3,6 +3,7 @@ package Chen.Cards.Attacks;
 import Chen.Abstracts.DamageSpellCard;
 import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Actions.GenericActions.AlwaysDamageRandomEnemyAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
@@ -48,6 +49,6 @@ public class Shot extends DamageSpellCard {
         }
 
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.magicNumber, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
-        AbstractDungeon.actionManager.addToBottom(new DamageRandomEnemyAction(new DamageInfo(p, this.magicNumber * 2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
+        AbstractDungeon.actionManager.addToBottom(new AlwaysDamageRandomEnemyAction(new DamageInfo(p, this.magicNumber * 2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
     }
 }

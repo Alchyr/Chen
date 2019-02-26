@@ -7,21 +7,19 @@ import Chen.Character.Chen;
 import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
 import static Chen.ChenMod.makeID;
 
-public class Tear extends BaseCard {
+public class Scratch extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
-            "Tear",
-            1,
+            "Scratch",
+            0,
             CardType.ATTACK,
             CardTarget.ENEMY,
             CardRarity.COMMON
@@ -29,13 +27,13 @@ public class Tear extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 7;
-    private final static int UPG_DAMAGE = 2;
+    private final static int DAMAGE = 4;
+    private final static int UPG_DAMAGE = 1;
 
-    private final static int DEBUFF = 3;
+    private final static int DEBUFF = 2;
     private final static int UPG_DEBUFF = 1;
 
-    public Tear()
+    public Scratch()
     {
         super(cardInfo, false);
 
@@ -48,13 +46,9 @@ public class Tear extends BaseCard {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
         }
 
-        if (m != null)
-        {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY)));
-        }
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
                 new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                AbstractGameAction.AttackEffect.NONE));
+                AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Hemorrhage(m, p, this.magicNumber), this.magicNumber));
     }
 }
