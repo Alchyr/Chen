@@ -7,6 +7,7 @@ import Chen.Util.TextureLoader;
 import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 
 public abstract class BaseCard extends CustomCard {
@@ -45,7 +46,7 @@ public abstract class BaseCard extends CustomCard {
 
         cardStrings = CardCrawlGame.languagePack.getCardStrings(cardID);
 
-        img = TextureLoader.getCardTextureString(cardName, cardType);
+        img = TextureLoader.getAndLoadCardTextureString(cardName, cardType);
         this.textureImg = img;
         loadCardImage(textureImg);
 
@@ -205,6 +206,7 @@ public abstract class BaseCard extends CustomCard {
 
     public void InitializeCard()
     {
+        FontHelper.cardDescFont_N.getData().setScale(1.0f);
         this.initializeTitle();
         this.initializeDescription();
     }

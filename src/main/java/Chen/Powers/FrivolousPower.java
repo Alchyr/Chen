@@ -19,8 +19,7 @@ public class FrivolousPower extends Power {
         this.flash();
         for (int i = 0; i < this.amount; i++)
         {
-            AbstractDungeon.actionManager.addToBottom(new ModifyRandomCardCost(AbstractDungeon.player.hand, -2));
-            AbstractDungeon.actionManager.addToBottom(new ModifyRandomCardCost(AbstractDungeon.player.hand, 1));
+            AbstractDungeon.actionManager.addToBottom(new ModifyRandomCardCost(AbstractDungeon.player.hand, -1));
         }
     }
 
@@ -29,7 +28,7 @@ public class FrivolousPower extends Power {
         if (this.amount == 1) {
             this.description = descriptions[0] + descriptions[1];
         } else {
-            this.description = descriptions[0] + "#b" + this.amount + descriptions[2] + "#b" + this.amount + descriptions[3];
+            this.description = descriptions[0] + "#b" + this.amount + descriptions[2];
         }
     }
 }

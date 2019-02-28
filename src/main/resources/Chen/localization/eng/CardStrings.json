@@ -147,12 +147,12 @@
   },
   "Chen:Panic": {
     "NAME": "Panic",
-    "DESCRIPTION": "chen:Shift. NL Play a random Skill in your hand and Exhaust it.",
-    "UPGRADE_DESCRIPTION": "chen:Shift. NL Play a random Skill in your hand.",
+    "DESCRIPTION": "chen:Shift. NL Play a random Skill in your hand at no cost and Exhaust it.",
+    "UPGRADE_DESCRIPTION": "chen:Shift. NL Play a random Skill in your hand at no cost.",
     "EXTENDED_DESCRIPTION": [
       "Panic",
-      "chen:Shift. NL Play a random Attack in your hand and Exhaust it.",
-      "chen:Shift. NL Play a random Attack in your hand."
+      "chen:Shift. NL Play a random Attack in your hand at no cost and Exhaust it.",
+      "chen:Shift. NL Play a random Attack in your hand at no cost."
     ]
   },
   "Chen:PhoenixWings": {
@@ -182,6 +182,14 @@
     "NAME": "Sneak",
     "DESCRIPTION": "chen:Swift. NL Gain !B! Block. NL Next turn, draw !M! additional card."
   },
+  "Chen:Sidestep": {
+    "NAME": "Sidestep",
+    "DESCRIPTION": "chen:Swift. NL Gain !B! Block twice. NL Apply !M! Vulnerable."
+  },
+  "Chen:Lacerate": {
+    "NAME": "Lacerate",
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Apply !M! chen:Hemorrhage !D! times. NL The number of times scales with damage modifiers."
+  },
   "Chen:Catseye": {
     "NAME": "Catseye",
     "DESCRIPTION": "Your next attack deals additional damage equal to the amount of chen:Hemorrhage the target has."
@@ -210,11 +218,11 @@
   },
   "Chen:BlueOni": {
     "NAME": "Blue Oni",
-    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to the farthest right enemy. NL Exhaust."
+    "DESCRIPTION": "chen:Spell: Damage. NL Deal !SPELL! damage to the rightmost enemy. NL Exhaust."
   },
   "Chen:RedOni": {
     "NAME": "Red Oni",
-    "DESCRIPTION": "Deal !D! damage to the farthest left enemy. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage to the leftmost enemy. NL Exhaust."
   },
   "Chen:Flicker": {
     "NAME": "Flicker",
@@ -255,7 +263,7 @@
   },
   "Chen:Gash": {
     "NAME": "Gash",
-    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Apply !M! chen:Hemorrhage."
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage. NL Double the enemy's chen:Hemorrhage."
   },
   "Chen:PhoenixEgg": {
     "NAME": "Phoenix Egg",
@@ -342,7 +350,7 @@
   },
   "Chen:Frivolous": {
     "NAME": "Frivolous",
-    "DESCRIPTION": "At the start of your turn, reduce the cost of a random card in your hand by 2 and increase the cost of a random card in your hand by 1."
+    "DESCRIPTION": "At the start of your turn, reduce the cost of a random card in your hand by 1."
   },
   "Chen:Deceitful": {
     "NAME": "Deceitful",

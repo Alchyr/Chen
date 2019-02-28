@@ -13,7 +13,7 @@ import static Chen.ChenMod.makeID;
 public class Deceitful extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "Deceitful",
-            3,
+            2,
             CardType.POWER,
             CardTarget.SELF,
             CardRarity.UNCOMMON
@@ -22,7 +22,7 @@ public class Deceitful extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private static final int DEBUFF = 1;
-    private static final int UPG_COST = 2;
+    private static final int UPG_COST = 1;
 
     public Deceitful()
     {

@@ -3,6 +3,7 @@ package Chen.Cards.Attacks;
 import Chen.Abstracts.BaseCard;
 import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Actions.GenericActions.DoublePowerAction;
 import Chen.Character.Chen;
 import Chen.Effects.GashEffect;
 import Chen.Powers.Hemorrhage;
@@ -35,18 +36,14 @@ public class Gash extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 33;
+    private final static int DAMAGE = 20;
     private final static int UPG_DAMAGE = 6;
-
-    private final static int DEBUFF = 6;
-    private final static int UPG_DEBUFF = 3;
 
     public Gash()
     {
         super(cardInfo, false);
 
         setDamage(DAMAGE, UPG_DAMAGE);
-        setMagic(DEBUFF, UPG_DEBUFF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -56,12 +53,16 @@ public class Gash extends BaseCard {
 
         if (m != null)
         {
-            //AbstractDungeon.actionManager.addToBottom(new VFXAction(new GashEffect(m.hb.cX, m.hb.cY, Color.RED, Color.BLACK)));
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new ClashEffect(m.hb.cX, m.hb.cY)));
+
+            AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
+                    new DamageInfo(p, this.damage, this.damageTypeForTurn),
+                    AbstractGameAction.AttackEffect.NONE));
+
+            if (m.hasPower(Hemorrhage.POWER_ID))
+            {
+                AbstractDungeon.actionManager.addToBottom(new DoublePowerAction(m, m.getPower(Hemorrhage.POWER_ID)));
+            }
         }
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
-                new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                AbstractGameAction.AttackEffect.NONE));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Hemorrhage(m, p, this.magicNumber), this.magicNumber));
     }
 }

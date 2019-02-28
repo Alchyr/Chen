@@ -7,35 +7,38 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 import static Chen.ChenMod.makeID;
 
-public class Sneak extends SwiftCard {
+public class Sidestep extends SwiftCard {
     private final static CardInfo cardInfo = new CardInfo(
-            "Sneak",
+            "Sidestep",
             1,
             CardType.SKILL,
-            CardTarget.SELF,
+            CardTarget.ENEMY,
             CardRarity.COMMON
     );
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int BLOCK = 7;
-    private final static int UPG_BLOCK = 3;
-    private final static int DRAW = 1;
+    private final static int BLOCK = 3;
+    private final static int UPG_BLOCK = 1;
+    private final static int DEBUFF = 1;
+    private final static int UPG_DEBUFF = 1;
 
-    public Sneak()
+    public Sidestep()
     {
         super(cardInfo, false);
 
         setBlock(BLOCK, UPG_BLOCK);
-        setMagic(DRAW);
+        setMagic(DEBUFF, UPG_DEBUFF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, this.magicNumber), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, this.magicNumber, false), this.magicNumber));
     }
 }

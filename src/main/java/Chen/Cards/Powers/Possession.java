@@ -13,7 +13,7 @@ import static Chen.ChenMod.makeID;
 public class Possession extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "Possession",
-            3,
+            2,
             CardType.POWER,
             CardTarget.SELF,
             CardRarity.RARE
@@ -21,15 +21,14 @@ public class Possession extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private static final int BUFF = 2;
-    private static final int UPG_COST = 2;
+    private static final int BUFF = 1;
+    private static final int UPG_BUFF = 1;
 
     public Possession()
     {
         super(cardInfo, false);
 
-        setMagic(BUFF);
-        setCostUpgrade(UPG_COST);
+        setMagic(BUFF, UPG_BUFF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

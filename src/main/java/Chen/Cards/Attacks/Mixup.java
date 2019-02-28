@@ -32,18 +32,17 @@ public class Mixup extends SwiftCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 6;
-    private final static int UPG_DAMAGE = 3;
+    private final static int DAMAGE = 5;
+    private final static int UPG_DAMAGE = 2;
 
-    private final static int DEBUFF = 1;
-    private final static int UPG_DEBUFF = 1;
+    private final static int DEBUFF = 2;
 
     public Mixup()
     {
         super(cardInfo, false);
 
         setDamage(DAMAGE, UPG_DAMAGE);
-        setMagic(DEBUFF, UPG_DEBUFF);
+        setMagic(DEBUFF);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

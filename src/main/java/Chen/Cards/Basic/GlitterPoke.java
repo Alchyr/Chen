@@ -1,5 +1,6 @@
 package Chen.Cards.Basic;
 
+import Chen.Abstracts.AnimatedShiftCard;
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Effects.DazzleEffect;
 import Chen.Powers.Disoriented;
@@ -18,7 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Chen.ChenMod.makeID;
 
-public class GlitterPoke extends ShiftChenCard {
+public class GlitterPoke extends AnimatedShiftCard {
     private final static CardInfo cardInfo = new CardInfo(
             "GlitterPoke",
             0,
@@ -39,7 +40,7 @@ public class GlitterPoke extends ShiftChenCard {
 
     public GlitterPoke()
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, true);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, true, 0.35f);
 
         setDamage(DAMAGE_A, DAMAGE_B);
         setMagic(DEBUFF_A, DEBUFF_B);

@@ -48,7 +48,7 @@ public class Impale extends BaseCard {
             this.energyOnUse = EnergyPanel.totalCount;
         }
 
-        ImpaleAction impaleAction = new ImpaleAction(p, m, this.damage, this.damageTypeForTurn);
+        ImpaleAction impaleAction = new ImpaleAction(p, m, this.magicNumber, this.damage, this.damageTypeForTurn);
         AbstractDungeon.actionManager.addToBottom(new PerformXAction(impaleAction, p, this.energyOnUse, this.freeToPlayOnce));
     }
 }

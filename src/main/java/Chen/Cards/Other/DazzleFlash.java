@@ -37,9 +37,9 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
     private final static int UPG_DAMAGE_B = 2;
 
     private final static int DEBUFF_A = 2;
-    private final static int UPG_DEBUFF_A = 2;
+    private final static int UPG_DEBUFF_A = 1;
 
-    private final static int VULN = 2;
+    private final static int VULN = 1;
 
     public DazzleFlash()
     {

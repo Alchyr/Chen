@@ -70,7 +70,7 @@ public abstract class ShiftChenCard extends BaseCard {
         this.cardTargetA = cardTargetA;
         this.cardTargetB = cardTargetB;
 
-        shiftImg = TextureLoader.getShiftedCardTextureString(cardName, cardTypeB);
+        shiftImg = TextureLoader.getAndLoadShiftedCardTextureString(cardName, cardTypeB);
         //ChenMod.logger.info(cardName + " shift image: " + shiftImg);
 
         Form = true;

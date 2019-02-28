@@ -34,7 +34,7 @@ public class Clarity extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (p.hasPower(FocusPower.POWER_ID))
         {
-            AbstractDungeon.actionManager.addToBottom(new DoublePowerAction(p.getPower(FocusPower.POWER_ID)));
+            AbstractDungeon.actionManager.addToBottom(new DoublePowerAction(p, p.getPower(FocusPower.POWER_ID)));
         }
     }
 }

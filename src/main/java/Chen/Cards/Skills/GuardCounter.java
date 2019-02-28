@@ -28,7 +28,7 @@ public class GuardCounter extends ShiftChenCard {
     private final static int UPG_BLOCK = 2;
 
     private final static int BUFF_A = 2;
-    private final static int BUFF_B = 1;
+    private final static int BUFF_B = 2;
     private final static int UPG_BUFF_A = 1;
     private final static int UPG_BUFF_B = 1;
 

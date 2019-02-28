@@ -6,10 +6,12 @@ import Chen.Interfaces.NotMagicSpellCard;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
 import Chen.Variables.SpellDamage;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Chen.ChenMod.makeID;
 
@@ -47,11 +49,11 @@ public class Fadeout extends BaseCard implements BlockSpellCard, NotMagicSpellCa
     public int getBaseValue() {
         if (upgraded)
         {
-            return BLOCK;
+            return UPG_BLOCK;
         }
         else
         {
-            return UPG_BLOCK;
+            return BLOCK;
         }
     }
 
@@ -62,5 +64,10 @@ public class Fadeout extends BaseCard implements BlockSpellCard, NotMagicSpellCa
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, SpellDamage.getSpellDamage(this)));
+
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters)
+        {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(mo, p, new WeakPower(mo, this.magicNumber, false), this.magicNumber));
+        }
     }
 }

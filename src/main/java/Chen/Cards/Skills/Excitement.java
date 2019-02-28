@@ -56,11 +56,11 @@ public class Excitement extends BaseCard {
         this.baseMagicNumber = this.magicNumber = getEnergyGain();
         if (upgraded)
         {
-            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
         }
         else
         {
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
         }
         this.initializeDescription();
     }
