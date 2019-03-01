@@ -43,7 +43,7 @@ public class ImpaleAction extends AbstractXAction {
     public void update() {
         if (amount > 0) {
             for(int i = 0; i < amount; ++i) {
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new GoldenSlashEffect(m.hb.cX + MathUtils.random(-20.0f, 20.0f) * Settings.scale, m.hb.cY, true)));
+                AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(m, new GoldenSlashEffect(m.hb.cX + MathUtils.random(-20.0f, 20.0f) * Settings.scale, m.hb.cY, true)));
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(this.m, new DamageInfo(this.p, this.damage, this.damageTypeForTurn), AttackEffect.NONE));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Hemorrhage(m, p, this.hemorrhage), this.hemorrhage));
             }
