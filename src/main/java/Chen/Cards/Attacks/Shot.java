@@ -7,6 +7,7 @@ import Chen.Actions.GenericActions.AlwaysDamageRandomEnemyAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
+import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
@@ -48,7 +49,7 @@ public class Shot extends DamageSpellCard {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.magicNumber, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
-        AbstractDungeon.actionManager.addToBottom(new AlwaysDamageRandomEnemyAction(new DamageInfo(p, this.magicNumber * 2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, SpellDamage.getSpellDamage(this), DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
+        AbstractDungeon.actionManager.addToBottom(new AlwaysDamageRandomEnemyAction(new DamageInfo(p, SpellDamage.getSpellDamage(this) * 2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
     }
 }

@@ -32,7 +32,6 @@ public class CurlUp extends BaseCard {
 
         setCostUpgrade(UPG_COST);
         setMagic(BUFF);
-        setExhaust(true);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

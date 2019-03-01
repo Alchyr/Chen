@@ -26,6 +26,10 @@ public class SpellDamage extends DynamicVariable {
     {
         if (AbstractDungeon.player != null)
         {
+            if (card instanceof DamageSpellCard)
+            {
+                return ((DamageSpellCard) card).isSpellDamageModified;
+            }
             if (card instanceof NotMagicSpellCard)
             {
                 return baseValue(card) != getSpellDamage(card);
@@ -40,12 +44,11 @@ public class SpellDamage extends DynamicVariable {
     {
         return getSpellDamage(card);
     }
-
     public static int getSpellDamage(AbstractCard card)
     {
         if (card instanceof DamageSpellCard)
         {
-            return card.magicNumber;
+            return ((DamageSpellCard) card).spellDamage;
         }
         return getSpellDamage(card, staticBaseValue(card));
     }

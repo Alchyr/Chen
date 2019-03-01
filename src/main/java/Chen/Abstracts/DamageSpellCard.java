@@ -15,6 +15,14 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import java.util.ArrayList;
 
 public abstract class DamageSpellCard extends BaseCard implements SpellCard {
+    public int spellDamage;
+    public boolean isSpellDamageModified;
+
+    public boolean upgradedSpellValue()
+    {
+        return isSpellDamageModified;
+    }
+
     public DamageSpellCard(CardInfo cardInfo, boolean upgradesDescription)
     {
         this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription);
@@ -23,6 +31,14 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
     public DamageSpellCard(String cardName, int cost, CardType cardType, CardTarget target, CardRarity rarity, boolean upgradesDescription)
     {
         super (cardName, cost, cardType, target, rarity, upgradesDescription);
+        this.isSpellDamageModified = false;
+        this.spellDamage = SpellDamage.staticBaseValue(this);
+    }
+
+    public void upgrade()
+    {
+        super.upgrade();
+        this.spellDamage = SpellDamage.staticBaseValue(this);
     }
 
 
@@ -41,12 +57,15 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
     {
         AbstractPlayer player = AbstractDungeon.player;
 
+        float baseValue = SpellDamage.staticBaseValue(this);
+        isSpellDamageModified = false;
+
         int targetIndex = -1;
         ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
         float[] tmp = new float[m.size()];
         for (int i = 0; i < tmp.length; i++)
         {
-            tmp[i] = SpellDamage.staticBaseValue(this);
+            tmp[i] = baseValue;
         }
 
         int findIndex = 0;
@@ -134,10 +153,10 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
 
         if (targetIndex < tmp.length)
         {
-            this.magicNumber = MathUtils.floor(tmp[targetIndex]);
-            if (this.magicNumber != this.baseMagicNumber)
+            this.spellDamage = MathUtils.floor(tmp[targetIndex]);
+            if (this.spellDamage != baseValue)
             {
-                this.isMagicNumberModified = true;
+                this.isSpellDamageModified = true;
             }
         }
         else if (this.isMultiDamage && tmp.length > 0)
@@ -159,10 +178,10 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
 
             if (allSame)
             {
-                this.magicNumber = MathUtils.floor(tmp[0]);
-                if (this.magicNumber != this.baseMagicNumber)
+                this.spellDamage = MathUtils.floor(tmp[0]);
+                if (this.spellDamage != baseValue)
                 {
-                    this.isMagicNumberModified = true;
+                    this.isSpellDamageModified = true;
                 }
             }
             else
@@ -180,7 +199,8 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
     {
         AbstractPlayer player = AbstractDungeon.player;
 
-        float tmp = SpellDamage.staticBaseValue(this);
+        float baseValue = SpellDamage.staticBaseValue(this);
+        float tmp = baseValue;
 
         if (AbstractDungeon.player.hasRelic("WristBlade") && (this.costForTurn == 0 || this.freeToPlayOnce)) {
             tmp += 3.0F;
@@ -225,17 +245,18 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
             }
         }
 
-        this.magicNumber = MathUtils.floor(tmp);
-        if (this.magicNumber != this.baseMagicNumber)
+        this.spellDamage = MathUtils.floor(tmp);
+        if (this.spellDamage != baseValue)
         {
-            this.isMagicNumberModified = true;
+            this.isSpellDamageModified = true;
         }
     }
     public void ApplyDamageSpellNoMulti()
     {
         AbstractPlayer player = AbstractDungeon.player;
 
-        float tmp = SpellDamage.staticBaseValue(this);
+        float baseValue = SpellDamage.staticBaseValue(this);
+        float tmp = baseValue;
 
         if (AbstractDungeon.player.hasRelic("WristBlade") && (this.costForTurn == 0 || this.freeToPlayOnce)) {
             tmp += 3.0F;
@@ -270,10 +291,10 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
             tmp = 0.0F;
         }
 
-        this.magicNumber = MathUtils.floor(tmp);
-        if (this.magicNumber != this.baseMagicNumber)
+        this.spellDamage = MathUtils.floor(tmp);
+        if (this.spellDamage != baseValue)
         {
-            this.isMagicNumberModified = true;
+            this.isSpellDamageModified = true;
         }
     }
 }

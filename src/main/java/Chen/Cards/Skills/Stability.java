@@ -23,8 +23,8 @@ public class Stability extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int BLOCK = 8;
-    private final static int UPG_BLOCK = 4;
+    private final static int BLOCK = 13;
+    private final static int UPG_BLOCK = 5;
 
     public Stability()
     {

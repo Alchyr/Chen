@@ -36,7 +36,7 @@
     "NAMES": [
       "disoriented"
     ],
-    "DESCRIPTION": "Upon losing HP, loses #yStrength equal to HP lost until the end of the turn. NL Decreases by #b1 when used, and is halved rounding down at the end of the turn."
+    "DESCRIPTION": "Upon losing HP this round, loses #yStrength equal to HP lost until the end of the turn. NL Decreases by #b1 when used."
   },
   {
     "PROPER_NAME": "Swift",

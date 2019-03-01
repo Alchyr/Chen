@@ -62,7 +62,7 @@ public class Salvo extends DamageSpellCard {
 
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        if (this.magicNumber > 0)
+        if (this.spellDamage > 0)
         {
             Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 

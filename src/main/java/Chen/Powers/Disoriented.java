@@ -50,11 +50,7 @@ public class Disoriented extends Power {
     }
 
     public void atEndOfRound() {
-        this.amount = MathUtils.floor(this.amount / 2.0f);
-        if (this.amount <= 0)
-        {
-            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-        }
+        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
     }
 
     @Override

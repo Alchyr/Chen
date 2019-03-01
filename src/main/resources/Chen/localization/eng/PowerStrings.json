@@ -65,14 +65,14 @@
   "Chen:Exploit": {
     "NAME": "Exploit",
     "DESCRIPTIONS": [
-      "Whenever you attack an enemy with #yDisoriented, apply ",
+      "Whenever you damage an enemy with #yDisoriented, apply ",
       " #yVulnerable."
     ]
   },
   "Chen:Disoriented": {
     "NAME": "Disoriented",
     "DESCRIPTIONS": [
-      "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when triggered, and is halved at the end of the turn."
+      "Upon taking unblocked damage, lose that much #yStrength until the end of the turn. Lose #b1 stack when triggered. Is removed at the end of the round."
     ]
   },
   "Chen:LoseFocusPower": {

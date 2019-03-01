@@ -1,6 +1,7 @@
 package Chen;
 
 import Chen.Abstracts.TwoFormCharacter;
+import Chen.Actions.ChenActions.IncrementSpellsPlayedAction;
 import Chen.Actions.ChenActions.ResetShiftCountAction;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.CardColorEnum;
@@ -280,7 +281,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     public void receiveCardUsed(AbstractCard abstractCard) {
         if (abstractCard instanceof SpellCard)
         {
-            spellsThisCombat += 1;
+            AbstractDungeon.actionManager.addToBottom(new IncrementSpellsPlayedAction());
         }
     }
 
