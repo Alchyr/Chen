@@ -33,7 +33,7 @@ public class Disoriented extends Power {
         if (this.amount > 0 && damageAmount > 0)
         {
             AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -damageAmount), -damageAmount));
-            if (!this.owner.hasPower("Artifact")) {
+            if (!this.owner.hasPower(ArtifactPower.POWER_ID)) {
                 AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(this.owner, this.owner, new GainStrengthPower(this.owner, damageAmount), damageAmount));
             }
 

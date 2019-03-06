@@ -27,9 +27,9 @@ public class Strike extends ShiftChenCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE_A = 6;
-    private final static int DAMAGE_B = 7;
+    private final static int DAMAGE_B = 8;
     private final static int UPG_DAMAGE_A = 3;
-    private final static int UPG_DAMAGE_B = 3;
+    private final static int UPG_DAMAGE_B = 2;
 
     public Strike()
     {

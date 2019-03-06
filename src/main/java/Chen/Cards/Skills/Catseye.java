@@ -35,7 +35,6 @@ public class Catseye extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //TODO: Make power. Stacking: Deals bonus damage = tear * power amount
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new CatseyePower(p, this.magicNumber), this.magicNumber));
     }
 }

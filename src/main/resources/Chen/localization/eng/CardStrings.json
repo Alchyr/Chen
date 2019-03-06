@@ -138,7 +138,7 @@
   },
   "Chen:DazzleFlash": {
     "NAME": "Dazzle",
-    "DESCRIPTION": "chen:Shift. NL chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented and 2 Vulnerable.",
+    "DESCRIPTION": "chen:Shift. NL chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented and 1 Vulnerable.",
     "EXTENDED_DESCRIPTION": [
       "Flash",
       "chen:Shift. NL Deal !D! damage to a random enemy for each stack of chen:Disoriented you've applied this combat.",
@@ -167,7 +167,7 @@
     "DESCRIPTION": "Apply 99 Vulnerable to ALL enemies. NL ALL enemies gain !M! Strength. NL Exhaust."
   },
   "Chen:Shapeshift": {
-    "NAME": "Shapeshift",
+    "NAME": "Transition",
     "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn."
   },
   "Chen:EmergencyEscape": {
@@ -192,7 +192,7 @@
   },
   "Chen:Catseye": {
     "NAME": "Catseye",
-    "DESCRIPTION": "Your next attack deals additional damage equal to the amount of chen:Hemorrhage the target has."
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Your next attack deals additional damage equal to the amount of chen:Hemorrhage the target has and applies 2 chen:Hemorrhage with each hit."
   },
   "Chen:Flit": {
     "NAME": "Flit",
@@ -312,7 +312,7 @@
   },
   "Chen:Salvo": {
     "NAME": "Salvo",
-    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. NL If this card's damage is not 0, add a copy of this card that deals 3 less damage to your hand. NL Exhaust."
+    "DESCRIPTION": "chen:Spell: Damage. NL chen:Shapeshift: Human. NL Deal !SPELL! damage to all enemies. Add a copy of this card with its cost increased by 1 to your hand. Cost is reset at the end of your turn. NL Exhaust."
   },
   "Chen:Unpredictable": {
     "NAME": "Unpredictable",
@@ -321,7 +321,7 @@
   },
   "Chen:Sweep": {
     "NAME": "Sweep",
-    "DESCRIPTION": "chen:Swift. NL Deal !D! damage to all enemies !M! times."
+    "DESCRIPTION": "chen:Swift. NL Deal !D! damage to ALL enemies !M! times."
   },
   "Chen:Shot": {
     "NAME": "Shot",
@@ -329,7 +329,7 @@
   },
   "Chen:Assault": {
     "NAME": "Assault",
-    "DESCRIPTION": "Deal !D! damage and apply !M! chen:Hemorrhage to ALL enemies."
+    "DESCRIPTION": "chen:Shapeshift: Cat. NL Deal !D! damage and apply !M! chen:Hemorrhage to ALL enemies."
   },
   "Chen:CurlUp": {
     "NAME": "Curl Up",

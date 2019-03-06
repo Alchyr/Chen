@@ -61,7 +61,7 @@ public class PounceTurnTail extends ShiftChenCard {
             }
             AbstractDungeon.actionManager.addToBottom(new DamageAction(m,
                     new DamageInfo(p, this.damage, this.damageTypeForTurn),
-                    AbstractGameAction.AttackEffect.NONE));
+                    AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         }
         else //cat
         {

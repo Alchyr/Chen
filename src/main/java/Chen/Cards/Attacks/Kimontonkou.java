@@ -30,7 +30,7 @@ public class Kimontonkou extends DamageSpellCard implements NotMagicSpellCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int HITS = 0;
-    private final static int UPG_HITS = 2;
+    private final static int UPG_HITS = 1;
 
     public Kimontonkou()
     {

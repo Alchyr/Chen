@@ -30,14 +30,14 @@ public class MisdirectSwipe extends ShiftChenCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE_A = 0;
-    private final static int DAMAGE_B = 14;
+    private final static int DAMAGE_B = 17;
     private final static int UPG_DAMAGE_A = 0;
     private final static int UPG_DAMAGE_B = 4;
 
     private final static int DEBUFF_A = 1;
     private final static int DEBUFF_B = 5;
     private final static int UPG_DEBUFF_A = 1;
-    private final static int UPG_DEBUFF_B = 1;
+    private final static int UPG_DEBUFF_B = 2;
 
     private final static int BLOCK_A = 10;
     private final static int BLOCK_B = 0;

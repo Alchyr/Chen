@@ -36,14 +36,15 @@ public class Gash extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 20;
-    private final static int UPG_DAMAGE = 6;
+    private final static int DAMAGE = 17;
+    private final static int UPG_COST = 2;
 
     public Gash()
     {
         super(cardInfo, false);
 
-        setDamage(DAMAGE, UPG_DAMAGE);
+        setDamage(DAMAGE);
+        setCostUpgrade(UPG_COST);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

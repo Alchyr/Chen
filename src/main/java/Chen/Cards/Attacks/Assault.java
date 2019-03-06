@@ -1,6 +1,9 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.BaseCard;
+import Chen.Abstracts.TwoFormCharacter;
+import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Character.Chen;
 import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -31,8 +34,8 @@ public class Assault extends BaseCard {
 
     private final static int DAMAGE = 13;
     private final static int UPG_DAMAGE = 2;
-    private final static int DEBUFF = 3;
-    private final static int UPG_DEBUFF = 1;
+    private final static int DEBUFF = 4;
+    private final static int UPG_DEBUFF = 2;
 
     public Assault()
     {
@@ -47,6 +50,10 @@ public class Assault extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+            AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
+        }
+
         AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_WHIRLWIND"));
         AbstractDungeon.actionManager.addToBottom(new VFXAction(p, new CleaveEffect(), 0.1F));
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));

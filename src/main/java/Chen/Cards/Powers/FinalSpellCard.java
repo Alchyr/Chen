@@ -14,7 +14,7 @@ import static Chen.ChenMod.makeID;
 public class FinalSpellCard extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "FinalSpellCard",
-            3,
+            4,
             CardType.POWER,
             CardTarget.SELF,
             CardRarity.RARE
@@ -23,19 +23,20 @@ public class FinalSpellCard extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private static final int BUFF = 1;
+    private static final int UPG_COST = 3;
 
     public FinalSpellCard()
     {
-        super(cardInfo, true);
+        super(cardInfo, false);
 
         setMagic(BUFF);
+        setCostUpgrade(UPG_COST);
         isEthereal = true;
     }
 
     @Override
     public void upgrade() {
         super.upgrade();
-        isEthereal = false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

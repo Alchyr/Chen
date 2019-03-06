@@ -33,7 +33,7 @@ public class Rapidfire extends Power {
         if (card.type == AbstractCard.CardType.SKILL)
         {
             AbstractMonster m = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
+            AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
     }
 

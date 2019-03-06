@@ -39,6 +39,12 @@ public class BlueOniRedOni extends BaseCard {
         AbstractCard blueOni = new BlueOni();
         AbstractCard redOni = new RedOni();
 
+        if (upgraded)
+        {
+            blueOni.upgrade();
+            redOni.upgrade();
+        }
+
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(blueOni));
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(redOni));
     }

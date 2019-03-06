@@ -2,6 +2,7 @@ package Chen.Powers;
 
 import Chen.Abstracts.Power;
 import Chen.Interfaces.BetterOnDamageGiveSubscriber;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -31,7 +32,10 @@ public class CatseyePower extends Power implements BetterOnDamageGiveSubscriber 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.type == DamageInfo.DamageType.NORMAL)
+        {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, owner, new Hemorrhage(target, owner,this.amount * 2), this.amount * 2));
             AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(owner, owner, this.ID));
+        }
     }
 
     @Override

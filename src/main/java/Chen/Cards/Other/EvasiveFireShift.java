@@ -31,7 +31,7 @@ public class EvasiveFireShift extends ShiftChenCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int DAMAGE_A = 0;
-    private final static int DAMAGE_B = 6;
+    private final static int DAMAGE_B = 8;
     private final static int UPG_DAMAGE_A = 0;
     private final static int UPG_DAMAGE_B = 2;
 

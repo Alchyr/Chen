@@ -7,10 +7,13 @@ import Chen.Character.Chen;
 import Chen.Effects.SalvoEffect;
 import Chen.Interfaces.SpellCard;
 import Chen.Util.CardInfo;
+import com.badlogic.gdx.Game;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.red.BloodForBlood;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,7 +25,7 @@ import static Chen.ChenMod.makeID;
 public class Salvo extends DamageSpellCard {
     private final static CardInfo cardInfo = new CardInfo(
             "Salvo",
-            1,
+            0,
             CardType.ATTACK,
             CardTarget.ALL_ENEMY,
             CardRarity.UNCOMMON
@@ -30,8 +33,11 @@ public class Salvo extends DamageSpellCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 9;
-    private final static int UPG_DAMAGE = 3;
+    private final static int DAMAGE = 5;
+    private final static int UPG_DAMAGE = 2;
+
+    private int timesPlayedThisTurn;
+    private int playedTurn;
 
     public Salvo()
     {
@@ -41,11 +47,27 @@ public class Salvo extends DamageSpellCard {
         setExhaust(true);
 
         this.isMultiDamage = true;
+        timesPlayedThisTurn = 0;
+        playedTurn = 0;
     }
 
     @Override
     public SpellCard getCopyAsSpellCard() {
         return new Salvo();
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard() {
+        updateCost(-999);
+        timesPlayedThisTurn = 0;
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        if (playedTurn != GameActionManager.turn && timesPlayedThisTurn > 0) //wasn't reset properly
+        {
+            updateCost(-999);
+        }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -62,13 +84,12 @@ public class Salvo extends DamageSpellCard {
 
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
 
-        if (this.spellDamage > 0)
-        {
-            Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
+        Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 
-            copyCard.magicNumber = copyCard.baseMagicNumber = this.baseMagicNumber - 3;
+        copyCard.updateCost(1);
+        copyCard.timesPlayedThisTurn = this.timesPlayedThisTurn + 1;
+        copyCard.playedTurn = GameActionManager.turn;
 
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
-        }
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
     }
 }
