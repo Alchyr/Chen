@@ -166,7 +166,7 @@
     "NAME": "尖啸",
     "DESCRIPTION": "对所有敌人施加 99 易伤 . NL 所有敌人获得 !M! 力量. NL 消耗."
   },
-  "Chen:变换形态": {
+  "Chen:Shapeshift": {
     "NAME": "变换形态",
     "DESCRIPTION": "保留. NL chen:变换形态. NL 获得 !M! 点力量, 敏捷, 和集中 直到这回合结束."
   },
@@ -365,7 +365,7 @@
     "NAME": "鬼魂缠身",
     "DESCRIPTION": "在你的回合开始时, 获得 !M! 力量 和 !M! 集中. NL 当受到未被格挡的伤害时, 失去所有因此获得的力量和集中."
   },
-  "Chen:FinalSpell张卡": {
+  "Chen:FinalSpellCard": {
     "NAME": "终焉之咒",
     "DESCRIPTION": "虚无. NL 所有卡将会额外打出一次. NL 所有卡获得虚无和消耗.",
     "UPGRADE_DESCRIPTION": "所有卡将会额外打出一次. NL 所有卡获得虚无和消耗."

@@ -1,14 +1,14 @@
 {
   "ChenResetAction": {
     "TEXT": [
-      "Reset."
+      "重置."
     ]
   },
   "chen:RemoveShiftStrings": {
     "TEXT": [
-      "chen:Shift. NL ",
-      "chen:Shapeshift: Cat. NL ",
-      "chen:Shapeshift: Human. NL "
+      "chen:变化. NL ",
+      "chen:变换形态: 猫. NL ",
+      "chen:变换形态: 人类. NL "
     ]
   }
 }
