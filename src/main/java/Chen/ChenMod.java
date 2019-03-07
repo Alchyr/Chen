@@ -236,6 +236,8 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     private String getLangString()
     {
         switch (Settings.language) {
+			case ZHS:
+                return "zhs";
             default:
                 return "eng";
         }

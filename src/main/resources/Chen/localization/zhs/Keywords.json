@@ -1,0 +1,58 @@
+[
+  {
+    "PROPER_NAME": "变化",
+    "NAMES": [
+      "变化"
+    ],
+    "DESCRIPTION": "这些卡在 #y变换形态 时会变化."
+  },
+  {
+    "PROPER_NAME": "变换形态",
+    "NAMES": [
+      "变换形态"
+    ],
+    "DESCRIPTION": "改变外形, 同时变化所有的 #y变化 卡."
+  },
+  {
+    "PROPER_NAME": "青鬼",
+    "NAMES": [
+      "青鬼"
+    ],
+    "DESCRIPTION": "#y咒语: 伤害. 对最右边的敌人造成 10 [13] 伤害."
+  },
+  {
+    "PROPER_NAME": "赤鬼",
+    "NAMES": [
+      "赤鬼"
+    ],
+    "DESCRIPTION": "对最左边的敌人造成 10 [13] 伤害."
+  },
+  {
+    "PROPER_NAME": "晕眩",
+    "NAMES": [
+      "晕眩"
+    ],
+    "DESCRIPTION": "这回合失去生命时, 在回合结束前失去等量的 #y力量. NL 触发时减少 #b1 层."
+  },
+  {
+    "PROPER_NAME": "迅捷",
+    "NAMES": [
+      "迅捷"
+    ],
+    "DESCRIPTION": "耗能为 0 如果你这回合 #y变换形态."
+  },
+  {
+    "PROPER_NAME": "失血",
+    "NAMES": [
+      "失血"
+    ],
+    "DESCRIPTION": "在攻击的时候会失去生命."
+  },
+  {
+    "PROPER_NAME": "咒语",
+    "NAMES": [
+      "咒语"
+    ],
+    "DESCRIPTION": "具体的数值取决于 #y集中, 而不是 #y力量 或者 #y敏捷."
+  }
+]
