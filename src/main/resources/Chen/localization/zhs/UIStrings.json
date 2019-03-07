@@ -1,0 +1,14 @@
+{
+  "ChenResetAction": {
+    "TEXT": [
+      "Reset."
+    ]
+  },
+  "chen:RemoveShiftStrings": {
+    "TEXT": [
+      "chen:Shift. NL ",
+      "chen:Shapeshift: Cat. NL ",
+      "chen:Shapeshift: Human. NL "
+    ]
+  }
+}
