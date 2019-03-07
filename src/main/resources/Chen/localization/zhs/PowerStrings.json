@@ -192,5 +192,13 @@
     "DESCRIPTIONS": [
       "你下一次 #y变换形态 时, 会立即结束你的回合."
     ]
+  },
+  "Chen:AltFocusPower": {
+    "NAME": "集中",
+    "DESCRIPTIONS": [
+      "所有咒语的效果增加 #b",
+      "所有咒语的效果减少 #b",
+      " 点。"
+    ]
   }
 }
