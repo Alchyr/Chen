@@ -138,7 +138,7 @@
   },
   "Chen:DazzleFlash": {
     "NAME": "眩惑",
-    "DESCRIPTION": " chen:变化 . NL  chen:咒语 :  chen:晕眩 . NL 给予 !SPELL! 层 chen:晕眩  和 2 层 易伤 .",
+    "DESCRIPTION": " chen:变化 . NL  chen:咒语 :  chen:晕眩 . NL 给予 !SPELL! 层 chen:晕眩  和 1 层 易伤 .",
     "EXTENDED_DESCRIPTION": [
       "闪现",
       " chen:变化 . NL 这场战斗中你每造成一次  chen:晕眩  ，对一个随机敌人造成 !D! 点伤害 .",
@@ -167,7 +167,7 @@
     "DESCRIPTION": "对所有敌人给予 99 层 易伤  . NL 所有敌人获得 !M! 点 力量 . NL  消耗 ."
   },
   "Chen:Shapeshift": {
-    "NAME": "变换形态",
+    "NAME": "变形",
     "DESCRIPTION": "保留. NL  chen:变换形态 . NL 获得 !M! 点 力量 ,  敏捷 , 和 集中  直到这回合结束."
   },
   "Chen:EmergencyEscape": {
@@ -192,7 +192,7 @@
   },
   "Chen:Catseye": {
     "NAME": "猫眼",
-    "DESCRIPTION": "你的下一次攻击造成等同于目标  chen:失血  数量的额外伤害."
+    "DESCRIPTION": " chen:变换形态 : 猫. NL 你的下一次攻击造成等同于目标  chen:失血  数量的额外伤害,且每次伤害都会给予目标两层 chen:失血 ."
   },
   "Chen:Flit": {
     "NAME": "飞掠",
@@ -312,7 +312,7 @@
   },
   "Chen:Salvo": {
     "NAME": "齐射",
-    "DESCRIPTION": " chen:咒语 : 伤害. NL  chen:变换形态 : 人形. NL 对所有敌人造成 !SPELL! 点伤害. NL 如果这张卡的伤害不是 0, 复制这张卡到你的手中，它造成的伤害减少 3点. NL  消耗 ."
+    "DESCRIPTION": " chen:咒语 : 伤害. NL  chen:变换形态 : 人形. NL 对所有敌人造成 !SPELL! 点伤害. NL 复制这张牌到手中并使其耗能加1,其能耗会在回合结束时复原 . NL  消耗 ."
   },
   "Chen:Unpredictable": {
     "NAME": "变幻莫测",
@@ -329,7 +329,7 @@
   },
   "Chen:Assault": {
     "NAME": "强袭",
-    "DESCRIPTION": "造成 !D! 伤害 并且 对所有敌人给予 !M! 层 chen:失血  ."
+    "DESCRIPTION": " chen:变换形态 : 猫. NL 造成 !D! 伤害 并且 对所有敌人给予 !M! 层 chen:失血  ."
   },
   "Chen:CurlUp": {
     "NAME": "蜷缩",
