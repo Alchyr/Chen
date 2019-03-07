@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class Power extends AbstractPower {
     protected PowerStrings powerStrings()
     {
-        return CardCrawlGame.languagePack.getPowerStrings(this.ID);
+        return CardCrawlGame.languagePack.getPowerStrings(ID);
     }
     protected String[] descriptions;
     protected AbstractCreature source;

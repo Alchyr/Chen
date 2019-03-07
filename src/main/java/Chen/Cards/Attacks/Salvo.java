@@ -36,9 +36,6 @@ public class Salvo extends DamageSpellCard {
     private final static int DAMAGE = 5;
     private final static int UPG_DAMAGE = 2;
 
-    private int timesPlayedThisTurn;
-    private int playedTurn;
-
     public Salvo()
     {
         super(cardInfo, false);
@@ -47,27 +44,11 @@ public class Salvo extends DamageSpellCard {
         setExhaust(true);
 
         this.isMultiDamage = true;
-        timesPlayedThisTurn = 0;
-        playedTurn = 0;
     }
 
     @Override
     public SpellCard getCopyAsSpellCard() {
         return new Salvo();
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard() {
-        updateCost(-999);
-        timesPlayedThisTurn = 0;
-    }
-
-    @Override
-    public void triggerWhenDrawn() {
-        if (playedTurn != GameActionManager.turn && timesPlayedThisTurn > 0) //wasn't reset properly
-        {
-            updateCost(-999);
-        }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -86,9 +67,12 @@ public class Salvo extends DamageSpellCard {
 
         Salvo copyCard = (Salvo)this.makeStatEquivalentCopy();
 
-        copyCard.updateCost(1);
-        copyCard.timesPlayedThisTurn = this.timesPlayedThisTurn + 1;
-        copyCard.playedTurn = GameActionManager.turn;
+        if (this.freeToPlayOnce)
+        {
+            copyCard.freeToPlayOnce = false;
+        }
+
+        copyCard.setCostForTurn(this.costForTurn + 1);
 
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copyCard));
     }

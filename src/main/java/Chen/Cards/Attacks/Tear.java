@@ -41,6 +41,8 @@ public class Tear extends BaseCard {
 
         setDamage(DAMAGE, UPG_DAMAGE);
         setMagic(DEBUFF, UPG_DEBUFF);
+
+        this.InitializeCard();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -54,6 +54,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import static Chen.Patches.KeywordPatches.SHIFT_KEYWORD;
+import static Chen.Patches.KeywordPatches.SHIFT_WORD;
+
 
 @SpireInitializer
 public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber,
@@ -191,8 +194,16 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         String json = Gdx.files.internal(assetPath("localization/" + lang + "/Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
         KeywordWithProper[] keywords = gson.fromJson(json, KeywordWithProper[].class);
 
+        boolean first = true;
+
         if (keywords != null) {
             for (KeywordWithProper keyword : keywords) {
+                if (first) //First keyword should be Shift keyword
+                {
+                    first = false;
+                    SHIFT_KEYWORD = "chen:" + keyword.NAMES[0];
+                    SHIFT_WORD = keyword.PROPER_NAME;
+                }
                 BaseMod.addKeyword("chen", keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
@@ -200,8 +211,6 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
     public static AbstractCard returnTrulyRandomSpellInCombat() {
         ArrayList<SpellCard> list = new ArrayList();
-
-        Iterator var1 = AbstractDungeon.srcCommonCardPool.group.iterator();
 
         for (AbstractCard c : AbstractDungeon.srcCommonCardPool.group)
         {

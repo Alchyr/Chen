@@ -1,6 +1,9 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
+import Chen.Abstracts.TwoFormCharacter;
+import Chen.Actions.ChenActions.ShapeshiftAction;
+import Chen.Character.Chen;
 import Chen.Powers.CatseyePower;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -35,6 +38,10 @@ public class Catseye extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+            AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
+        }
+
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new CatseyePower(p, this.magicNumber), this.magicNumber));
     }
 }

@@ -16,6 +16,13 @@
     "DESCRIPTION": "Change forms, transforming all cards with #yShift."
   },
   {
+    "PROPER_NAME": "Focus",
+    "NAMES": [
+      "altfocus"
+    ],
+    "DESCRIPTION": "Focus increases the effectiveness of #ySpells."
+  },
+  {
     "PROPER_NAME": "Blue Oni",
     "NAMES": [
       "blue oni",

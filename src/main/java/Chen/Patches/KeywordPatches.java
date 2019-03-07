@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import javassist.CtBehavior;
@@ -20,8 +22,11 @@ import static Chen.ChenMod.logger;
         clz = TipHelper.class,
         method = "renderKeywords"
 )
-public class ShiftChenCardKeywordPatch {
-    public static final String SHIFT_KEYWORD = "chen:shift";
+public class KeywordPatches {
+    public static String SHIFT_KEYWORD = ""; //These are updated in main mod class during keyword initialization
+    public static String SHIFT_WORD = "";
+    public static final String FOCUS_KEYWORD = GameDictionary.FOCUS.NAMES[0].toLowerCase();
+    public static final String ALT_FOCUS_KEYWORD = "chen:altfocus";
 
     private static final Color BASE_COLOR;
     private static final float SHADOW_DIST_Y;
@@ -40,12 +45,17 @@ public class ShiftChenCardKeywordPatch {
         rloc=0,
         localvars={"card", "y"}
     )
-    public static void ShiftKeywordDraw(float x, float stupidDumbUselessYThatIsntByRef, SpriteBatch sb, ArrayList<String> keywords,
+    public static void ModifyKeywords(float x, float stupidDumbUselessYThatIsntByRef, SpriteBatch sb, ArrayList<String> keywords,
                                      AbstractCard card, @ByRef float[] y)
     {
-        if (keywords.contains(SHIFT_KEYWORD) && card instanceof ShiftChenCard)
+        if (keywords.contains(FOCUS_KEYWORD) && card.color == CardColorEnum.CHEN_COLOR)
         {
-            String keywordTitle = "Shift - " + ((ShiftChenCard) card).getShiftName();
+            keywords.remove(FOCUS_KEYWORD);
+            keywords.add(ALT_FOCUS_KEYWORD);
+        }
+        if (keywords.contains(SHIFT_KEYWORD) && card.tags.contains(CardTagsEnum.CHEN_SHIFT_CARD))
+        {
+            String keywordTitle = SHIFT_WORD + " - " + ((ShiftChenCard) card).getShiftName();
             String keywordText = ((ShiftChenCard) card).getShiftDescription();
             float textHeight = -FontHelper.getSmartHeight(FontHelper.tipBodyFont, keywordText, BODY_TEXT_WIDTH, TIP_DESC_LINE_SPACING) - 7.0F * Settings.scale;
 

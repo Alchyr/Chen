@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.beyond.AwakenedOne;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
@@ -38,20 +39,22 @@ public class PhoenixEggAction extends AbstractGameAction {
         {
             AbstractMonster cardTarget = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
-            AbstractDungeon.actionManager.addToTop(new PhoenixEggAction(this.source, info, --hits));
-
-            if (Settings.FAST_MODE)
+            if (cardTarget != null)
             {
-                AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
-            }
-            else
-            {
-                AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
-            }
+                AbstractDungeon.actionManager.addToTop(new PhoenixEggAction(this.source, info, --hits));
 
-            AbstractDungeon.actionManager.addToTop(new ApplyDamageAction(cardTarget, info));
-            AbstractDungeon.actionManager.addToTop(new VFXIfAliveAction(cardTarget, new ExplosionSmallEffect(cardTarget.hb.cX + MathUtils.random(-35.0f * Settings.scale, 35.0f * Settings.scale), cardTarget.hb.cY + MathUtils.random(0, 20.0f * Settings.scale))));
+                if (Settings.FAST_MODE)
+                {
+                    AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
+                }
+                else
+                {
+                    AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
+                }
 
+                AbstractDungeon.actionManager.addToTop(new ApplyDamageAction(cardTarget, info));
+                AbstractDungeon.actionManager.addToTop(new VFXIfAliveAction(cardTarget, new ExplosionSmallEffect(cardTarget.hb.cX + MathUtils.random(-35.0f * Settings.scale, 35.0f * Settings.scale), cardTarget.hb.cY + MathUtils.random(0, 20.0f * Settings.scale))));
+            }
         }
 
         this.isDone = true;

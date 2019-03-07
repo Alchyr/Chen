@@ -192,5 +192,13 @@
     "DESCRIPTIONS": [
       "The next time you #yShapeshift, end your turn immediately."
     ]
+  },
+  "Chen:AltFocusPower": {
+    "NAME": "Focus",
+    "DESCRIPTIONS": [
+      "Increases the effectiveness of #ySpells by #b",
+      "Decreases the effectiveness of #ySpells by #b",
+      "."
+    ]
   }
 }
