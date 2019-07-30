@@ -1,6 +1,5 @@
 package Chen.Patches;
 
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.MultiwordKeywords;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

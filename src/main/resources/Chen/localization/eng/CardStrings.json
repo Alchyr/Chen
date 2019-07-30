@@ -83,7 +83,7 @@
     "DESCRIPTION": "chen:Shift. NL Gain !B! Block. NL Gain !M! Dexterity. At the end of this turn, lose !M! Dexterity.",
     "EXTENDED_DESCRIPTION": [
       "Counter",
-      "chen:Shift. NL Gain !B! Block. NL Whenever you are attacked this turn, deal !M! damage back and apply !M! Hemorrhage."
+      "chen:Shift. NL Gain !B! Block. NL Whenever you are attacked this turn, deal !M! damage back and apply !M! chen:Hemorrhage."
     ]
   },
   "Chen:Nimbleness": {

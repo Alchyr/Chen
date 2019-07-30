@@ -6,10 +6,14 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.HeavyBlade;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
+
+import java.util.ArrayList;
 
 //TODO : Fix targeting all attacks. They do not work.
 
@@ -22,13 +26,20 @@ public class BetterOnDamagePatch {
     {
         @SpireInsertPatch(
                 locator=Locator.class,
-                localvars={"p", "damageTypeForTurn", "tmp"}
+                localvars={"damageTypeForTurn", "tmp"}
         )
-        public static void Insert(AbstractCard __instance, AbstractPower p, DamageInfo.DamageType damageTypeForTurn, @ByRef float[] tmp)
+        public static void Insert(AbstractCard __instance, DamageInfo.DamageType damageTypeForTurn, @ByRef float[] tmp)
         {
-            if (p instanceof BetterOnDamageGiveSubscriber)
+            for (AbstractPower p : AbstractDungeon.player.powers)
             {
-                tmp[0] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[0], damageTypeForTurn, null);
+                if (p instanceof BetterOnDamageGiveSubscriber)
+                {
+                    tmp[0] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[0], damageTypeForTurn, null);
+                    if (__instance.baseDamage != (int)tmp[0])
+                    {
+                        __instance.isDamageModified = true;
+                    }
+                }
             }
         }
         private static class Locator extends SpireInsertLocator
@@ -36,7 +47,7 @@ public class BetterOnDamagePatch {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
             {
-                Matcher finalMatcher = new Matcher.InstanceOfMatcher(HeavyBlade.class);
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "hasRelic");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
@@ -50,13 +61,20 @@ public class BetterOnDamagePatch {
     {
         @SpireInsertPatch(
                 locator=Locator.class,
-                localvars={"tmp", "i", "p", "damageTypeForTurn"}
+                localvars={"tmp", "i", "damageTypeForTurn"}
         )
-        public static void Insert(AbstractCard __instance, float[] tmp, int i, AbstractPower p, DamageInfo.DamageType damageTypeForTurn)
+        public static void Insert(AbstractCard __instance, float[] tmp, int i, DamageInfo.DamageType damageTypeForTurn)
         {
-            if (p instanceof BetterOnDamageGiveSubscriber)
+            for (AbstractPower p : AbstractDungeon.player.powers)
             {
-                tmp[i] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[i], damageTypeForTurn, null);
+                if (p instanceof BetterOnDamageGiveSubscriber)
+                {
+                    tmp[i] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[i], damageTypeForTurn, null);
+                    if (__instance.baseDamage != (int)tmp[i])
+                    {
+                        __instance.isDamageModified = true;
+                    }
+                }
             }
         }
 
@@ -65,8 +83,8 @@ public class BetterOnDamagePatch {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
             {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPower.class, "atDamageGive");
-                return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[5]};
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "hasRelic");
+                return new int[]{ LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[1] };
             }
         }
     }
@@ -79,13 +97,20 @@ public class BetterOnDamagePatch {
     {
         @SpireInsertPatch(
                 locator=Locator.class,
-                localvars={"p", "damageTypeForTurn", "tmp"}
+                localvars={"damageTypeForTurn", "tmp"}
         )
-        public static void Insert(AbstractCard __instance, AbstractMonster mo, AbstractPower p, DamageInfo.DamageType damageTypeForTurn, @ByRef float[] tmp)
+        public static void Insert(AbstractCard __instance, AbstractMonster mo, DamageInfo.DamageType damageTypeForTurn, @ByRef float[] tmp)
         {
-            if (p instanceof BetterOnDamageGiveSubscriber)
+            for (AbstractPower p : AbstractDungeon.player.powers)
             {
-                tmp[0] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[0], damageTypeForTurn, mo);
+                if (p instanceof BetterOnDamageGiveSubscriber)
+                {
+                    tmp[0] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[0], damageTypeForTurn, mo);
+                    if (__instance.baseDamage != (int)tmp[0])
+                    {
+                        __instance.isDamageModified = true;
+                    }
+                }
             }
         }
 
@@ -94,7 +119,7 @@ public class BetterOnDamagePatch {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
             {
-                Matcher finalMatcher = new Matcher.InstanceOfMatcher(HeavyBlade.class);
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "hasRelic");
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
@@ -107,14 +132,21 @@ public class BetterOnDamagePatch {
     public static class CalculateCardMulti
     {
         @SpireInsertPatch(
-                locator= ApplyPowersMulti.Locator.class,
-                localvars={"tmp", "i", "p", "damageTypeForTurn"}
+                locator = Locator.class,
+                localvars={"m", "tmp", "i", "damageTypeForTurn"}
         )
-        public static void Insert(AbstractCard __instance, AbstractMonster mo, float[] tmp, int i, AbstractPower p, DamageInfo.DamageType damageTypeForTurn)
+        public static void Insert(AbstractCard __instance, AbstractMonster mo, ArrayList<AbstractMonster> m, float[] tmp, int i, DamageInfo.DamageType damageTypeForTurn)
         {
-            if (p instanceof BetterOnDamageGiveSubscriber)
+            for (AbstractPower p : AbstractDungeon.player.powers)
             {
-                tmp[i] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[i], damageTypeForTurn, mo);
+                if (p instanceof BetterOnDamageGiveSubscriber)
+                {
+                    tmp[i] = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(tmp[i], damageTypeForTurn, m.get(i));
+                    if (__instance.baseDamage != (int)tmp[i])
+                    {
+                        __instance.isDamageModified = true;
+                    }
+                }
             }
         }
 
@@ -123,8 +155,8 @@ public class BetterOnDamagePatch {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
             {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPower.class, "atDamageGive");
-                return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[5]};
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class, "hasRelic");
+                return new int[]{ LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[1] };
             }
         }
     }

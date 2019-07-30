@@ -42,7 +42,7 @@ public abstract class BaseCard extends CustomCard {
 
     public BaseCard(String cardName, int cost, CardType cardType, CardTarget target, CardRarity rarity, boolean upgradesDescription)
     {
-        super(ChenMod.makeID(cardName), "", null, cost, "", cardType, COLOR, rarity, target);
+        super(ChenMod.makeID(cardName), "", (String)null, cost, "", cardType, COLOR, rarity, target);
 
         cardStrings = CardCrawlGame.languagePack.getCardStrings(cardID);
 

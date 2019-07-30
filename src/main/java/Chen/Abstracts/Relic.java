@@ -18,13 +18,4 @@ public abstract class Relic extends CustomRelic {
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];
     }
-
-    @Override
-    public AbstractRelic makeCopy() {
-        try{
-            return this.getClass().newInstance();
-        }catch(IllegalAccessException | InstantiationException e){
-            throw new RuntimeException("Failed to auto-generate makeCopy for relic: " + this.relicId);
-        }
-    }
 }

@@ -6,6 +6,7 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.Necronomicon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public abstract class TwoFormCharacter extends CustomPlayer {
