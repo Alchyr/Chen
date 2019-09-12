@@ -1,10 +1,10 @@
 package Chen.Cards.Basic;
 
 import Chen.Abstracts.ShiftChenCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Effects.CustomVerticalImpactEffect;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -50,7 +50,7 @@ public class PounceTurnTail extends ShiftChenCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (Form) //human
         {
-            if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+            if (TwoFormFields.getForm()) {
                 AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
             }
 
@@ -65,7 +65,7 @@ public class PounceTurnTail extends ShiftChenCard {
         }
         else //cat
         {
-            if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+            if (!TwoFormFields.getForm()) {
                 AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
             }
 

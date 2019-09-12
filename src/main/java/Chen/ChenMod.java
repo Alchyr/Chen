@@ -1,6 +1,5 @@
 package Chen;
 
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.IncrementSpellsPlayedAction;
 import Chen.Actions.ChenActions.ResetShiftCountAction;
 import Chen.Interfaces.SpellCard;
@@ -52,7 +51,6 @@ import javassist.NotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import static Chen.Patches.KeywordPatches.SHIFT_KEYWORD;
 import static Chen.Patches.KeywordPatches.SHIFT_WORD;
@@ -61,7 +59,7 @@ import static Chen.Patches.KeywordPatches.SHIFT_WORD;
 @SpireInitializer
 public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber,
         EditCharactersSubscriber, EditKeywordsSubscriber, PostPowerApplySubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
-        PostInitializeSubscriber, StartGameSubscriber, PreMonsterTurnSubscriber, OnCardUseSubscriber
+        PostInitializeSubscriber, StartGameSubscriber, OnCardUseSubscriber
 {
     public static final Logger logger = LogManager.getLogger(ChenMod.class.getSimpleName());
 
@@ -120,7 +118,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
         try {
             autoAddCards();
-        } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | CannotCompileException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -279,14 +277,11 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         spellsThisCombat = 0;
     }
 
-    @Override
+    /*@Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
-        if (AbstractDungeon.player instanceof TwoFormCharacter)
-        {
-            AbstractDungeon.actionManager.addToBottom(new ResetShiftCountAction());
-        }
+        AbstractDungeon.actionManager.addToBottom(new ResetShiftCountAction());
         return true;
-    }
+    }*/
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
@@ -297,8 +292,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     }
 
     //I totally didn't copy this from Hubris, made by kiooeht.
-    private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, CannotCompileException
-    {
+    private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, CannotCompileException, ClassNotFoundException {
         ClassFinder finder = new ClassFinder();
         URL url = ChenMod.class.getProtectionDomain().getCodeSource().getLocation();
         finder.add(new File(url.toURI()));
@@ -335,7 +329,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
             logger.info("Card: " + classInfo.getClassName());
 
-            AbstractCard card = (AbstractCard) Loader.getClassPool().toClass(cls).newInstance();
+            AbstractCard card = (AbstractCard) Loader.getClassPool().getClassLoader().loadClass(cls.getName()).newInstance();
 
             BaseMod.addCard(card);
             addedCards.add(card);

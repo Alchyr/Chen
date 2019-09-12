@@ -1,9 +1,9 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
+import Chen.Patches.TwoFormFields;
 import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
 import com.badlogic.gdx.math.MathUtils;
@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 import static Chen.ChenMod.makeID;
+import static Chen.Patches.TwoFormFields.getForm;
 
 public class Lacerate extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
@@ -44,7 +45,7 @@ public class Lacerate extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+        if (TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
         }
 

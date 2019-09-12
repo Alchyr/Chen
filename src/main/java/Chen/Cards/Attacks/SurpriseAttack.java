@@ -1,10 +1,10 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Effects.RandomFastSliceEffect;
+import Chen.Patches.TwoFormFields;
 import Chen.Powers.Disoriented;
 import Chen.Util.CardInfo;
 import com.badlogic.gdx.graphics.Color;
@@ -47,7 +47,7 @@ public class SurpriseAttack extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+        if (TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
         }
 

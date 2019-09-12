@@ -1,7 +1,6 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.DamageSpellCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.KimontonkouAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Actions.GenericActions.PerformXAction;
@@ -9,8 +8,8 @@ import Chen.Character.Chen;
 import Chen.ChenMod;
 import Chen.Interfaces.NotMagicSpellCard;
 import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -64,7 +63,7 @@ public class Kimontonkou extends DamageSpellCard implements NotMagicSpellCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

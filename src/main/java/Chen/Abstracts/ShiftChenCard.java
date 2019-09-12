@@ -1,6 +1,8 @@
 package Chen.Abstracts;
 
 import Chen.Interfaces.BetterOnDamageGiveSubscriber;
+import Chen.Patches.TwoFormFields;
+import Chen.Patches.TwoFormPatches;
 import Chen.Util.CardInfo;
 import Chen.Util.TextureLoader;
 import Chen.Variables.SpellDamage;
@@ -93,9 +95,9 @@ public abstract class ShiftChenCard extends BaseCard {
         this.magicUpgradeB = 0;
 
         if (AbstractDungeon.isPlayerInDungeon()) {
-            if (AbstractDungeon.player instanceof TwoFormCharacter)
+            if (AbstractDungeon.player != null)
             {
-                this.Form = ((TwoFormCharacter)AbstractDungeon.player).Form;
+                this.Form = TwoFormFields.getForm(AbstractDungeon.player);
             }
         }
 

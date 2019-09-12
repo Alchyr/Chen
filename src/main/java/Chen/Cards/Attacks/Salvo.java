@@ -1,24 +1,20 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.DamageSpellCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Effects.SalvoEffect;
 import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import com.badlogic.gdx.Game;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
-import com.megacrit.cardcrawl.cards.red.BloodForBlood;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
 
 import static Chen.ChenMod.makeID;
 
@@ -53,7 +49,7 @@ public class Salvo extends DamageSpellCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         int salvoCount = this.baseMagicNumber + 1;
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

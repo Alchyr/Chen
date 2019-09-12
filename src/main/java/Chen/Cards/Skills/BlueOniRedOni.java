@@ -1,11 +1,11 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Cards.Attacks.BlueOni;
 import Chen.Cards.Attacks.RedOni;
 import Chen.Character.Chen;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,7 +32,7 @@ public class BlueOniRedOni extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

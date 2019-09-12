@@ -1,13 +1,10 @@
 package Chen.Cards.Other;
 
 import Chen.Abstracts.ShiftChenCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
-import Chen.Interfaces.BlockSpellCard;
-import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -55,16 +52,15 @@ public class EvasiveFireShift extends ShiftChenCard {
 
         if (Form) //human
         {
-            if (p instanceof TwoFormCharacter) {
-                if (((TwoFormCharacter) p).Form)
-                    AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
-            }
+            if (TwoFormFields.getForm())
+                AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
+
 
             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
         }
         else //cat
         {
-            if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+            if (!TwoFormFields.getForm()) {
                 AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
             }
 

@@ -1,23 +1,19 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.NotMagicSpellCard;
 import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Powers.Disoriented;
 import Chen.Util.CardInfo;
 import Chen.Variables.SpellDamage;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EchoPower;
-import com.megacrit.cardcrawl.relics.BronzeScales;
 
 import static Chen.ChenMod.makeID;
 
@@ -60,7 +56,7 @@ public class Flicker extends BaseCard implements NotMagicSpellCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

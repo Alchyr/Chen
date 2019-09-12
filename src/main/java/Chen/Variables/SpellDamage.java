@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.NoBlockPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 
 public class SpellDamage extends DynamicVariable {
@@ -56,7 +57,10 @@ public class SpellDamage extends DynamicVariable {
     public static int getSpellDamage(AbstractCard card, int base)
     {
         int modifier = 0;
-        if (AbstractDungeon.player != null)
+        if (AbstractDungeon.player != null && AbstractDungeon.isPlayerInDungeon()
+                && AbstractDungeon.currMapNode != null
+                && AbstractDungeon.getCurrRoom() != null
+                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT)
         {
             if (AbstractDungeon.player.hasPower(FocusPower.POWER_ID))
                 modifier = AbstractDungeon.player.getPower(FocusPower.POWER_ID).amount;

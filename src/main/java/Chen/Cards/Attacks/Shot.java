@@ -1,16 +1,15 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.DamageSpellCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Actions.GenericActions.AlwaysDamageRandomEnemyAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -45,7 +44,7 @@ public class Shot extends DamageSpellCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

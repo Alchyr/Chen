@@ -1,6 +1,5 @@
 package Chen.Character;
 
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Cards.Basic.Defend;
 import Chen.Cards.Basic.PounceTurnTail;
 import Chen.Cards.Basic.Strike;
@@ -8,6 +7,7 @@ import Chen.Cards.Basic.Strike;
 import Chen.Cards.Basic.GlitterPoke;
 import Chen.Patches.CardColorEnum;
 import Chen.Relics.Catnip;
+import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -28,8 +28,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 import static Chen.ChenMod.assetPath;
+import static Chen.Patches.TwoFormFields.getForm;
 
-public class Chen extends TwoFormCharacter {
+public class Chen extends CustomPlayer {
     private final static Logger logger = LogManager.getLogger(Chen.class.getSimpleName());
 
     public static final com.megacrit.cardcrawl.localization.CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString("chen:Character");
@@ -69,9 +70,7 @@ public class Chen extends TwoFormCharacter {
         super(name,
                 setClass,
                 orbTextures, assetPath("img/Character/orb/vfx.png"), layerSpeeds,
-                new SpriterAnimation(assetPath("img/Character/Spriter/Human/human.scml")),
-                new SpriterAnimation(assetPath("img/Character/Spriter/Cat/cat.scml")),
-                CHEN_COLOR_A, CHEN_COLOR_B);
+                new SpriterAnimation(assetPath("img/Character/Spriter/Human/human.scml")));
 
         initializeClass(null, // required call to load textures and setup energy/loadout
                 assetPath("img/Character/shoulder.png"), // human
@@ -180,6 +179,26 @@ public class Chen extends TwoFormCharacter {
 
 
 
+    @Override
+    public Color getCardTrailColor() {
+        if (getForm(this))
+            return CHEN_COLOR_A;
+        return CHEN_COLOR_B;
+    }
+    @Override
+    public Color getCardRenderColor() {
+        if (getForm(this))
+            return CHEN_COLOR_A;
+        return CHEN_COLOR_B;
+    }
+
+    @Override
+    public Color getSlashAttackColor() {
+        if (getForm(this))
+            return Color.WHITE.cpy();
+
+        return Color.BLACK.cpy();
+    }
 
 
 
@@ -192,22 +211,6 @@ public class Chen extends TwoFormCharacter {
     }
 
 
-
-
-
-
-
-
-
-
-
-    @Override
-    public Color getSlashAttackColor() {
-        if (Form)
-            return Color.WHITE.cpy();
-
-        return Color.BLACK.cpy();
-    }
 
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {

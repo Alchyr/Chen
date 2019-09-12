@@ -1,24 +1,19 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.DamageSpellCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.PhoenixWingsAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
-import Chen.Actions.GenericActions.ApplyDamageAction;
 import Chen.Actions.GenericActions.VFXIfAliveAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import Chen.Util.DamageInfoUtil;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.Necronomicon;
 import com.megacrit.cardcrawl.vfx.FireBurstParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 
@@ -114,7 +109,7 @@ public class PhoenixWings extends DamageSpellCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && !((TwoFormCharacter) p).Form) {
+        if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 

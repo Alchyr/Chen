@@ -1,9 +1,9 @@
 package Chen.Cards.Attacks;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.TwoFormCharacter;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
+import Chen.Patches.TwoFormFields;
 import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -14,9 +14,6 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.Dodecahedron;
-import com.megacrit.cardcrawl.relics.Lantern;
-import com.megacrit.cardcrawl.relics.NinjaScroll;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 
 import static Chen.ChenMod.makeID;
@@ -50,7 +47,7 @@ public class Assault extends BaseCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (p instanceof TwoFormCharacter && ((TwoFormCharacter) p).Form) {
+        if (TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenCat));
         }
 
