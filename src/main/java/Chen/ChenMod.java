@@ -1,11 +1,11 @@
 package Chen;
 
 import Chen.Actions.ChenActions.IncrementSpellsPlayedAction;
-import Chen.Actions.ChenActions.ResetShiftCountAction;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.CardColorEnum;
 import Chen.Patches.CharacterEnum;
 
+import Chen.Patches.TwoFormFields;
 import Chen.Powers.Disoriented;
 import Chen.Relics.Catnip;
 import Chen.Relics.SacredCatnip;
@@ -31,7 +31,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -46,7 +45,6 @@ import java.net.URL;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 
-import javassist.CannotCompileException;
 import javassist.NotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -65,7 +63,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
 
     // Character color
-    public static final Color CHEN_COLOR = CardHelper.getColor(229.0f, 160.0f, 139.0f);
+    public static final Color CHEN_COLOR = CardHelper.getColor(229, 160, 139);
 
     // Card backgrounds/basic images
     private static final String CHEN_ATTACK_BACK = "img/Character/CardGeneric/bg_attack.png";
@@ -87,7 +85,6 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     //Tracking
     public static int battleDisorientCount = 0;
     public static int spellsThisCombat = 0;
-    public static int shiftsThisTurn = 0;
 
     
     public ChenMod()
@@ -208,7 +205,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     }
 
     public static AbstractCard returnTrulyRandomSpellInCombat() {
-        ArrayList<SpellCard> list = new ArrayList();
+        ArrayList<SpellCard> list = new ArrayList<>();
 
         for (AbstractCard c : AbstractDungeon.srcCommonCardPool.group)
         {
@@ -252,7 +249,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     @Override
     public void receiveStartGame() {
         battleDisorientCount = 0;
-        shiftsThisTurn = 0;
+        TwoFormFields.shiftsThisTurn = 0;
         spellsThisCombat = 0;
     }
     @Override
@@ -267,13 +264,13 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         battleDisorientCount = 0;
-        shiftsThisTurn = 0;
+        TwoFormFields.shiftsThisTurn = 0;
         spellsThisCombat = 0;
     }
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         battleDisorientCount = 0;
-        shiftsThisTurn = 0;
+        TwoFormFields.shiftsThisTurn = 0;
         spellsThisCombat = 0;
     }
 
@@ -292,7 +289,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     }
 
     //I totally didn't copy this from Hubris, made by kiooeht.
-    private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, CannotCompileException, ClassNotFoundException {
+    private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, ClassNotFoundException {
         ClassFinder finder = new ClassFinder();
         URL url = ChenMod.class.getProtectionDomain().getCodeSource().getLocation();
         finder.add(new File(url.toURI()));

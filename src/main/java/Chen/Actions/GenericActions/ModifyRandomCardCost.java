@@ -51,7 +51,7 @@ public class ModifyRandomCardCost extends AbstractGameAction {
                 }
                 else
                 {
-                    toModify.modifyCostForTurn(this.amount);
+                    toModify.setCostForTurn(toModify.costForTurn + this.amount);
                 }
             }
         }

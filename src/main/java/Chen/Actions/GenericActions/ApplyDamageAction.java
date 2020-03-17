@@ -18,8 +18,6 @@ public class ApplyDamageAction extends AbstractGameAction {
     @Override
     public void update() {
         if (target.currentHealth > 0) {
-            target.damageFlash = true;
-            target.damageFlashFrames = 4;
             this.info.applyPowers(this.info.owner, target);
             target.damage(this.info);
         }

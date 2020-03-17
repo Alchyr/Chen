@@ -30,6 +30,12 @@ public class CatseyePower extends Power implements BetterOnDamageGiveSubscriber 
     }
 
     @Override
+    public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
+        super.onInflictDamage(info, damageAmount, target);
+
+    }
+
+    @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.type == DamageInfo.DamageType.NORMAL)
         {

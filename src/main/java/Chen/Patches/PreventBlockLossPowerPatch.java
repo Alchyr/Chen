@@ -36,13 +36,7 @@ public class PreventBlockLossPowerPatch {
         )
         public static void EnableLoseBlock(GameActionManager __instance)
         {
-            for (AbstractPower p : AbstractDungeon.player.powers)
-            {
-                if (p instanceof NoLoseBlockPower)
-                {
-                    NoLoseBlockSpireField.loseBlock.set(AbstractDungeon.player, true);
-                }
-            }
+            NoLoseBlockSpireField.loseBlock.set(AbstractDungeon.player, true);
         }
 
 

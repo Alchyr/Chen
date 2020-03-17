@@ -1,6 +1,7 @@
 package Chen.Abstracts;
 
 import Chen.ChenMod;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.brashmonkey.spriter.Player;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
@@ -20,9 +21,9 @@ public abstract class SwiftCard extends BaseCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (ChenMod.shiftsThisTurn > 0)
+        if (TwoFormFields.shiftsThisTurn > 0)
         {
-            this.modifyCostForTurn(-10000); //hopefully nothing ever costs more than 10000 energy
+            this.setCostForTurn(0); //hopefully nothing ever costs more than 10000 energy
         }
     }
 }

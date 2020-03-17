@@ -1,26 +1,15 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Abstracts.ShiftChenCard;
-import Chen.Actions.ChenActions.FlashAction;
-import Chen.Cards.Other.DazzleFlash;
-import Chen.Character.Chen;
-import Chen.Effects.DazzleEffect;
-import Chen.Interfaces.SpellCard;
-import Chen.Powers.Disoriented;
+import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AlwaysRetainField;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Chen.ChenMod.makeID;
-import static Chen.ChenMod.shiftsThisTurn;
 
 public class Excitement extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
@@ -67,6 +56,6 @@ public class Excitement extends BaseCard {
 
     private int getEnergyGain()
     {
-        return shiftsThisTurn;
+        return TwoFormFields.shiftsThisTurn;
     }
 }

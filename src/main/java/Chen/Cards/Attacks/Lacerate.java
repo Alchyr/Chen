@@ -55,8 +55,6 @@ public class Lacerate extends BaseCard {
         {
             for (int i = 0; i < this.damage; i++)
             {
-                m.damageFlash = true;
-                m.damageFlashFrames = 2;
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new FlashAtkImgEffect(m.hb.cX + MathUtils.random(-20.0f, 20.0f) * Settings.scale, m.hb.cY, AbstractGameAction.AttackEffect.SLASH_VERTICAL, true)));
                 AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_DAGGER_3", 0.05f));
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Hemorrhage(m, p, this.magicNumber), this.magicNumber, true));

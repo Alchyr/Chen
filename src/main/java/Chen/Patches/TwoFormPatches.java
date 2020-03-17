@@ -3,6 +3,7 @@ package Chen.Patches;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -35,7 +36,7 @@ public class TwoFormPatches {
     )
     public static class ResetOnTurnStart
     {
-        @SpirePostfixPatch
+        @SpirePrefixPatch
         public static void reset(AbstractPlayer __instance)
         {
             TwoFormFields.shiftsThisTurn = 0;
@@ -58,13 +59,13 @@ public class TwoFormPatches {
                 cat.setFlip(__instance.flipHorizontal, __instance.flipVertical);
                 cat.renderSprite(sb, __instance.drawX + __instance.animX, __instance.drawY + __instance.animY + AbstractDungeon.sceneOffsetY);
 
-                if (__instance.damageFlash) {
+                /*if (__instance.damageFlash) {
                     ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
                     --__instance.damageFlashFrames;
                     if (__instance.damageFlashFrames == 0) {
                         __instance.damageFlash = false;
                     }
-                }
+                }*/
 
                 __instance.hb.render(sb);
                 __instance.healthHb.render(sb);

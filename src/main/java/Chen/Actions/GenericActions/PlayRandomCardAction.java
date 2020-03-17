@@ -1,10 +1,7 @@
 package Chen.Actions.GenericActions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
-import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -60,7 +57,6 @@ public class PlayRandomCardAction extends AbstractGameAction {
         {
             AbstractCard card = possibleCards.get(AbstractDungeon.cardRandomRng.random(0, possibleCards.size() - 1));
 
-            card.freeToPlayOnce = true;
             card.exhaustOnUseOnce = this.exhaustCards;
 
             cardSource.group.remove(card);
@@ -78,20 +74,15 @@ public class PlayRandomCardAction extends AbstractGameAction {
             card.lighten(false);
             card.targetDrawScale = 0.75F;
 
-            if (!card.canUse(AbstractDungeon.player, cardTarget)) {
-                if (this.exhaustCards) {
-                    AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(card, AbstractDungeon.player.limbo));
-                } else {
-                    AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
-                    AbstractDungeon.actionManager.addToTop(new DiscardSpecificCardAction(card, AbstractDungeon.player.limbo));
-                    AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
-                }
+            card.applyPowers();
+            this.addToTop(new NewQueueCardAction(card, true, false, true));
+            this.addToTop(new UnlimboAction(card));
+            if (!Settings.FAST_MODE) {
+                this.addToTop(new WaitAction(Settings.ACTION_DUR_MED));
             } else {
-                card.applyPowers();
-                AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, cardTarget));
-                AbstractDungeon.actionManager.addToTop(new UnlimboAction(card));
-                AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
+                this.addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
             }
+
             if (cardSource.type == CardGroup.CardGroupType.HAND)
             {
                 AbstractDungeon.actionManager.addToBottom(new UpdateHandAction());

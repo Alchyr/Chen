@@ -1,6 +1,7 @@
 package Chen.Actions.GenericActions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ReduceCostForTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -34,7 +35,7 @@ public class ReduceDrawnCostAction extends AbstractGameAction {
                 }
                 else
                 {
-                    c.modifyCostForTurn(-reduction);
+                    c.setCostForTurn(c.costForTurn - reduction);
                 }
             }
         }

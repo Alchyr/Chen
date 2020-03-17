@@ -31,8 +31,6 @@ public class FlashAction extends AbstractGameAction {
             this.isDone = true;
         } else {
             if (this.target.currentHealth > 0) {
-                this.target.damageFlash = true;
-                this.target.damageFlashFrames = 4;
                 this.damageInfo.applyPowers(this.damageInfo.owner, this.target);
                 AbstractDungeon.effectList.add(new RandomFastSliceEffect(target.hb.cX, target.hb.cY, Color.GOLD, Color.WHITE));
                 this.target.damage(this.damageInfo);

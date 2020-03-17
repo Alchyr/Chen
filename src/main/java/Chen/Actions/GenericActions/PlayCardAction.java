@@ -3,6 +3,7 @@ package Chen.Actions.GenericActions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.QueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -27,7 +28,6 @@ public class PlayCardAction extends AbstractGameAction {
     }
 
     public void update() {
-        card.freeToPlayOnce = true;
         card.exhaustOnUseOnce = this.exhaustCards;
 
         AbstractMonster cardTarget = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
@@ -46,7 +46,7 @@ public class PlayCardAction extends AbstractGameAction {
             card.target_y = (float)Settings.HEIGHT / 2.0F;
 
             card.purgeOnUse = true;
-            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(card, cardTarget, AbstractDungeon.player.energy.energy));
+            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(card, cardTarget, AbstractDungeon.player.energy.energy, true, true));
         }
         else if (!card.canUse(AbstractDungeon.player, cardTarget)) {
             if (this.exhaustCards) {
@@ -58,7 +58,7 @@ public class PlayCardAction extends AbstractGameAction {
         } else {
             card.applyPowers();
             AbstractDungeon.actionManager.addToTop(new WaitAction(0.1F));
-            AbstractDungeon.actionManager.addToTop(new QueueCardAction(card, cardTarget));
+            AbstractDungeon.actionManager.addToTop(new NewQueueCardAction(card, cardTarget, false, true));
         }
 
 

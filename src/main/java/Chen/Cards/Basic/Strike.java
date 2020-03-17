@@ -39,6 +39,7 @@ public class Strike extends ShiftChenCard {
 
         this.tags.add(CardTags.STRIKE);
         this.tags.add(BaseModCardTags.BASIC_STRIKE);
+        this.tags.add(CardTags.STARTER_STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

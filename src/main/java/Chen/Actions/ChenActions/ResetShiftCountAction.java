@@ -1,6 +1,7 @@
 package Chen.Actions.ChenActions;
 
 import Chen.ChenMod;
+import Chen.Patches.TwoFormFields;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -14,7 +15,7 @@ public class ResetShiftCountAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        ChenMod.shiftsThisTurn = 0;
+        TwoFormFields.shiftsThisTurn = 0;
         AbstractDungeon.player.hand.glowCheck();
 
         this.isDone = true;

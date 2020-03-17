@@ -34,7 +34,6 @@ public class TwoFormFields {
     {
         if (TwoFormFields.form.get(AbstractDungeon.player) ^ form)
         {
-            shiftsThisTurn++;
             TwoFormFields.form.set(AbstractDungeon.player, form);
         }
     }

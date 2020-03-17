@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Chen.ChenMod.makeID;
-import static Chen.ChenMod.shiftsThisTurn;
 
 public class EvasiveFireShift extends ShiftChenCard {
     private final static CardInfo cardInfo = new CardInfo(
@@ -45,7 +44,7 @@ public class EvasiveFireShift extends ShiftChenCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (shiftsThisTurn > 0)
+        if (TwoFormFields.shiftsThisTurn > 0)
         {
             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
         }

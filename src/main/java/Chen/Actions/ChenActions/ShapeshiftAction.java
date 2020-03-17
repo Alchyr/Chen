@@ -131,9 +131,9 @@ public class ShapeshiftAction extends AbstractGameAction {
         if (this.isDone && trigger)
         {
             TwoFormFields.Shift(targetForm);
+            TwoFormFields.shiftsThisTurn++;
             AbstractDungeon.player.hand.applyPowers();
             AbstractDungeon.player.hand.glowCheck();
-            ChenMod.shiftsThisTurn++;
             AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
         }
     }

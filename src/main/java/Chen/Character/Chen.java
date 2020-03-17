@@ -44,8 +44,8 @@ public class Chen extends CustomPlayer {
     public static final boolean ChenHuman = true;
     public static final boolean ChenCat = false;
 
-    private static final Color CHEN_COLOR_A = CardHelper.getColor(219.0f, 69.0f, 63.0f);
-    private static final Color CHEN_COLOR_B = CardHelper.getColor(14.0f, 8.0f, 9.0f);
+    private static final Color CHEN_COLOR_A = CardHelper.getColor(219, 69, 63);
+    private static final Color CHEN_COLOR_B = CardHelper.getColor(14, 8, 9);
 
 
     //TODO - ALL image files
