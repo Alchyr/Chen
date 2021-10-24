@@ -16,9 +16,10 @@
   {
     "PROPER_NAME": "集中",
     "NAMES": [
+      "集中",
       "altfocus"
     ],
-    "DESCRIPTION": "集中 会加强 #y咒语 的效果。"
+    "DESCRIPTION": "集中 会加强 #y咒语 的效果."
   },
   {
     "PROPER_NAME": "青鬼",
@@ -39,7 +40,7 @@
     "NAMES": [
       "晕眩"
     ],
-    "DESCRIPTION": "这回合失去生命时, 在回合结束前失去等量的 #y力量 ."
+    "DESCRIPTION": "对晕眩敌人造成未被格挡的伤害时, 消耗1层晕眩使其该回合失去等量的 #y力量, 你的回合结束时其失去所有晕眩."
   },
   {
     "PROPER_NAME": "迅捷",
@@ -53,13 +54,13 @@
     "NAMES": [
       "失血"
     ],
-    "DESCRIPTION": "在攻击的时候会失去生命."
+    "DESCRIPTION": "失血敌人在攻击时失去生命."
   },
   {
     "PROPER_NAME": "咒语",
     "NAMES": [
       "咒语"
     ],
-    "DESCRIPTION": "具体的数值取决于 #y集中, 而不是 #y力量 或者 #y敏捷."
+    "DESCRIPTION": "特定效果被 #y集中 增强, 而不是 #y力量 或 #y敏捷."
   }
 ]

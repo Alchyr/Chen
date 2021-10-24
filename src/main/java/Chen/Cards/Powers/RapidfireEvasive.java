@@ -8,6 +8,7 @@ import Chen.Powers.Rapidfire;
 import Chen.Util.CardInfo;
 import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -30,17 +31,25 @@ public class RapidfireEvasive extends ShiftChenCard implements SpellCard {
     private final static int UPG_MAGIC_A = 1;
     private final static int UPG_MAGIC_B = 1;
 
-    public RapidfireEvasive()
+    public RapidfireEvasive(boolean preview)
     {
-        super(cardInfo,false);
+        super(cardInfo,false, preview);
 
         setMagic(MAGIC_A, MAGIC_B, UPG_MAGIC_A, UPG_MAGIC_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new RapidfireEvasive(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new RapidfireEvasive(false);
     }
 
     @Override
     public SpellCard getCopyAsSpellCard() {
-        RapidfireEvasive returnCard = new RapidfireEvasive();
-        returnCard.Shift(Chen.ChenHuman);
+        RapidfireEvasive returnCard = new RapidfireEvasive(true);
+        returnCard.shift(Chen.ChenHuman);
         return returnCard;
     }
 

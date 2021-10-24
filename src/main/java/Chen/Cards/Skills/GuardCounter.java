@@ -5,6 +5,7 @@ import Chen.Powers.CounterPower;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,12 +33,20 @@ public class GuardCounter extends ShiftChenCard {
     private final static int UPG_BUFF_A = 1;
     private final static int UPG_BUFF_B = 1;
 
-    public GuardCounter()
+    public GuardCounter(boolean preview)
     {
-        super(cardInfo, false);
+        super(cardInfo, false, preview);
 
         setBlock(BLOCK, BLOCK, UPG_BLOCK, UPG_BLOCK);
         setMagic(BUFF_A, BUFF_B, UPG_BUFF_A, UPG_BUFF_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new GuardCounter(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new GuardCounter(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

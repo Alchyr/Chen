@@ -112,7 +112,7 @@ public class Chen extends CustomPlayer {
     }
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new PounceTurnTail();
+        return new PounceTurnTail(true);
     }
 
     public ArrayList<String> getStartingRelics() {

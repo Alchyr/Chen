@@ -2,7 +2,6 @@ package Chen.Cards.Basic;
 
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Util.CardInfo;
-import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -32,14 +31,21 @@ public class Defend extends ShiftChenCard {
         return super.canPlay(card);
     }
 
-    public Defend()
+    public Defend(boolean preview)
     {
-        super(cardInfo, false);
+        super(cardInfo, false, preview);
 
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
 
-        this.tags.add(BaseModCardTags.BASIC_DEFEND);
         this.tags.add(CardTags.STARTER_DEFEND);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new Defend(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new Defend(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

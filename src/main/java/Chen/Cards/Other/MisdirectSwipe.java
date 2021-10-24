@@ -1,7 +1,6 @@
 package Chen.Cards.Other;
 
 import Chen.Abstracts.ShiftChenCard;
-import Chen.Character.Chen;
 import Chen.Powers.Disoriented;
 import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
@@ -10,6 +9,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -44,13 +44,21 @@ public class MisdirectSwipe extends ShiftChenCard {
     private final static int UPG_BLOCK_A = 6;
     private final static int UPG_BLOCK_B = 0;
 
-    public MisdirectSwipe()
+    public MisdirectSwipe(boolean preview)
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
         setMagic(DEBUFF_A, DEBUFF_B, UPG_DEBUFF_A, UPG_DEBUFF_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new MisdirectSwipe(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new MisdirectSwipe(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

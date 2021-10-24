@@ -4,6 +4,7 @@ import Chen.Abstracts.ShiftChenCard;
 import Chen.Actions.ChenActions.ConditionalCardEnergyGain;
 import Chen.Actions.GenericActions.DrawAndSaveCardsAction;
 import Chen.Util.CardInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -24,11 +25,19 @@ public class Nimbleness extends ShiftChenCard {
     private final static int DRAW = 2;
     private final static int UPG_DRAW = 1;
 
-    public Nimbleness()
+    public Nimbleness(boolean preview)
     {
-        super(cardInfo, false);
+        super(cardInfo, false, preview);
 
         setMagic(DRAW, DRAW, UPG_DRAW, UPG_DRAW);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new Nimbleness(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new Nimbleness(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

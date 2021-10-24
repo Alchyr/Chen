@@ -2,7 +2,6 @@ package Chen.Abstracts;
 
 import Chen.Interfaces.BetterOnDamageGiveSubscriber;
 import Chen.Patches.TwoFormFields;
-import Chen.Patches.TwoFormPatches;
 import Chen.Util.CardInfo;
 import Chen.Util.TextureLoader;
 import Chen.Variables.SpellDamage;
@@ -12,6 +11,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Chen.Patches.CardTagsEnum.CHEN_SHIFT_CARD;
@@ -49,18 +49,31 @@ public abstract class ShiftChenCard extends BaseCard {
 
     public ShiftChenCard(CardInfo cardInfo, boolean upgradesDescription)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, true);
     }
     public ShiftChenCard(CardInfo cardInfo, CardType cardTypeB, boolean upgradesDescription)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, true);
     }
     public ShiftChenCard(CardInfo cardInfo, CardType cardTypeB, CardTarget cardTargetB, boolean upgradesDescription)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription, true);
     }
 
-    public ShiftChenCard(String cardName, int cost, CardType cardTypeA, CardType cardTypeB, CardTarget cardTargetA, CardTarget cardTargetB, CardRarity rarity, boolean upgradesDescription)
+    public ShiftChenCard(CardInfo cardInfo, boolean upgradesDescription, boolean preview)
+    {
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, preview);
+    }
+    public ShiftChenCard(CardInfo cardInfo, CardType cardTypeB, boolean upgradesDescription, boolean preview)
+    {
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, preview);
+    }
+    public ShiftChenCard(CardInfo cardInfo, CardType cardTypeB, CardTarget cardTargetB, boolean upgradesDescription, boolean preview)
+    {
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription, preview);
+    }
+
+    protected ShiftChenCard(String cardName, int cost, CardType cardTypeA, CardType cardTypeB, CardTarget cardTargetA, CardTarget cardTargetB, CardRarity rarity, boolean upgradesDescription, boolean generatePreview)
     {
         super(cardName, cost, cardTypeA, cardTargetA, rarity, upgradesDescription);
 
@@ -101,8 +114,14 @@ public abstract class ShiftChenCard extends BaseCard {
             }
         }
 
-        this.Shift(Form);
+        if (generatePreview) {
+            cardsToPreview = noPreviewCopy();
+        }
+
+        this.shift(Form);
     }
+
+    protected abstract ShiftChenCard noPreviewCopy();
 
     //Discourage use of inherited base methods
     @Override
@@ -174,9 +193,7 @@ public abstract class ShiftChenCard extends BaseCard {
         this.baseMagicNumber = this.magicNumber = (Form ? baseMagicNumberA : baseMagicNumberB);
     }
 
-
-
-    public void Shift(boolean form)
+    public void shift(boolean form)
     {
         if (form)
         {
@@ -228,6 +245,34 @@ public abstract class ShiftChenCard extends BaseCard {
 
         this.initializeTitle();
         this.initializeDescription();
+
+        if (this.cardsToPreview instanceof ShiftChenCard)
+            ((ShiftChenCard) cardsToPreview).shift(!form);
+    }
+
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+
+        if (cardsToPreview != null)
+            cardsToPreview.applyPowers();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+
+        if (cardsToPreview != null)
+            cardsToPreview.applyPowers();
+    }
+
+    @Override
+    public void resetAttributes() {
+        super.resetAttributes();
+
+        if (cardsToPreview != null)
+            cardsToPreview.resetAttributes();
     }
 
     @Override
@@ -260,6 +305,9 @@ public abstract class ShiftChenCard extends BaseCard {
 
             if (baseExhaust ^ upgExhaust) //one true, one false. so, different
                 this.exhaust = upgExhaust;
+
+            if (this.cardsToPreview != null)
+                this.cardsToPreview.upgrade();
         }
     }
 

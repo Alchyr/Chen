@@ -7,6 +7,7 @@ import Chen.Powers.Hemorrhage;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -31,11 +32,19 @@ public class UpperHand extends ShiftChenCard {
     private final static int UPG_DAMAGE_B = 2;
     private final static int MAGIC = 1;
 
-    public UpperHand() {
-        super(cardInfo, false);
+    public UpperHand(boolean preview) {
+        super(cardInfo, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setMagic(MAGIC);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new UpperHand(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new UpperHand(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

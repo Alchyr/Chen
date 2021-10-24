@@ -2,10 +2,10 @@ package Chen.Cards.Basic;
 
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Util.CardInfo;
-import basemod.helpers.BaseModCardTags;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -31,15 +31,22 @@ public class Strike extends ShiftChenCard {
     private final static int UPG_DAMAGE_A = 3;
     private final static int UPG_DAMAGE_B = 2;
 
-    public Strike()
+    public Strike(boolean preview)
     {
-        super(cardInfo, false);
+        super(cardInfo, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
 
         this.tags.add(CardTags.STRIKE);
-        this.tags.add(BaseModCardTags.BASIC_STRIKE);
         this.tags.add(CardTags.STARTER_STRIKE);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new Strike(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new Strike(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

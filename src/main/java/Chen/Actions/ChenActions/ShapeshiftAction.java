@@ -1,7 +1,6 @@
 package Chen.Actions.ChenActions;
 
 import Chen.Abstracts.ShiftChenCard;
-import Chen.ChenMod;
 import Chen.Effects.PoofEffect;
 import Chen.Effects.ShiftCardEffect;
 import Chen.Interfaces.NoShapeshiftPower;
@@ -84,21 +83,21 @@ public class ShapeshiftAction extends AbstractGameAction {
                     {
                         if (c instanceof ShiftChenCard)
                         {
-                            ((ShiftChenCard)c).Shift(targetForm);
+                            ((ShiftChenCard)c).shift(targetForm);
                         }
                     }
                     for (AbstractCard c : AbstractDungeon.player.discardPile.group)
                     {
                         if (c instanceof ShiftChenCard)
                         {
-                            ((ShiftChenCard)c).Shift(targetForm);
+                            ((ShiftChenCard)c).shift(targetForm);
                         }
                     }
                     for (AbstractCard c : AbstractDungeon.player.exhaustPile.group)
                     {
                         if (c instanceof ShiftChenCard)
                         {
-                            ((ShiftChenCard)c).Shift(targetForm);
+                            ((ShiftChenCard)c).shift(targetForm);
                         }
                     }
                     if (sourceCard != null && sourceCard instanceof ShiftChenCard)

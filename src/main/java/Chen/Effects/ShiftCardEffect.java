@@ -4,11 +4,9 @@ import Chen.Abstracts.ShiftChenCard;
 import Chen.ChenMod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.ExhaustBlurEffect;
 import com.megacrit.cardcrawl.vfx.ExhaustEmberEffect;
 
 public class ShiftCardEffect extends AbstractGameEffect {
@@ -45,7 +43,7 @@ public class ShiftCardEffect extends AbstractGameEffect {
             this.c.fadingOut = false;
             this.c.targetTransparency = 1.0f;
             this.c.transparency = 1.0f;
-            c.Shift(targetForm);
+            c.shift(targetForm);
             c.flash(ChenMod.CHEN_COLOR.cpy());
         }
     }

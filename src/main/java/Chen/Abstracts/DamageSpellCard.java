@@ -11,8 +11,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.WristBlade;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class DamageSpellCard extends BaseCard implements SpellCard {
     public int spellDamage;
@@ -30,7 +32,7 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
 
     public DamageSpellCard(String cardName, int cost, CardType cardType, CardTarget target, CardRarity rarity, boolean upgradesDescription)
     {
-        super (cardName, cost, cardType, target, rarity, upgradesDescription);
+        super(cardName, cost, cardType, target, rarity, upgradesDescription);
         this.isSpellDamageModified = false;
         this.spellDamage = SpellDamage.staticBaseValue(this);
     }
@@ -63,10 +65,7 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
         int targetIndex = -1;
         ArrayList<AbstractMonster> m = AbstractDungeon.getCurrRoom().monsters.monsters;
         float[] tmp = new float[m.size()];
-        for (int i = 0; i < tmp.length; i++)
-        {
-            tmp[i] = baseValue;
-        }
+        Arrays.fill(tmp, baseValue);
 
         int findIndex = 0;
         for (AbstractMonster monster : m)
@@ -79,7 +78,7 @@ public abstract class DamageSpellCard extends BaseCard implements SpellCard {
         }
         targetIndex = findIndex;
 
-        if (AbstractDungeon.player.hasRelic("WristBlade") && (this.costForTurn == 0 || this.freeToPlayOnce)) {
+        if (AbstractDungeon.player.hasRelic(WristBlade.ID) && (this.costForTurn == 0 || this.freeToPlay())) {
             for (int i = 0; i < tmp.length; i++)
             {
                 tmp[i] += 3.0F;

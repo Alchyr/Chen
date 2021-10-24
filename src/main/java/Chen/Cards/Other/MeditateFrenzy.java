@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -47,15 +47,23 @@ public class MeditateFrenzy extends ShiftChenCard {
 
     private final static int HITS = 6;
 
-    public MeditateFrenzy()
+    public MeditateFrenzy(boolean preview)
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
         setMagic(MAGIC_A, MAGIC_B, UPG_MAGIC_A, UPG_MAGIC_B);
 
         setExhaust(true, true);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new MeditateFrenzy(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new MeditateFrenzy(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

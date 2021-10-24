@@ -4,6 +4,7 @@ import Chen.Abstracts.ShiftChenCard;
 import Chen.Powers.Sharpen;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -27,11 +28,19 @@ public class StudySharpen extends ShiftChenCard {
     private final static int MAGIC_B = 1;
     private final static int UPG_MAGIC_B = 1;
 
-    public StudySharpen()
+    public StudySharpen(boolean preview)
     {
-        super(cardInfo,false);
+        super(cardInfo,false, preview);
 
         setMagic(MAGIC_A, UPG_MAGIC_A, MAGIC_B, UPG_MAGIC_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new StudySharpen(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new StudySharpen(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -28,9 +28,9 @@ public class Adaptability extends ShiftChenCard {
     private final static int BASE_BONUS = 0;
     private final static int UPG_BONUS = 5;
 
-    public Adaptability()
+    public Adaptability(boolean preview)
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY,true);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY,true, preview);
 
         setMagic(BASE_BONUS, BASE_BONUS, UPG_BONUS, UPG_BONUS);
     }
@@ -85,5 +85,14 @@ public class Adaptability extends ShiftChenCard {
                     new DamageInfo(p, this.damage, this.damageTypeForTurn),
                     AbstractGameAction.AttackEffect.SMASH));
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Adaptability(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new Adaptability(false);
     }
 }

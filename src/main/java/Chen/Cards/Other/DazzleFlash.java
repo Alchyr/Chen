@@ -41,12 +41,20 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
 
     private final static int VULN = 1;
 
-    public DazzleFlash()
+    public DazzleFlash(boolean preview)
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ALL_ENEMY, false);
+        super(cardInfo, CardType.ATTACK, CardTarget.ALL_ENEMY, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setMagic(DEBUFF_A, 0, UPG_DEBUFF_A, 0);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new DazzleFlash(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new DazzleFlash(false);
     }
 
     @Override
@@ -63,8 +71,8 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
 
     @Override
     public SpellCard getCopyAsSpellCard() {
-        DazzleFlash returnCard = new DazzleFlash();
-        returnCard.Shift(Chen.ChenHuman);
+        DazzleFlash returnCard = new DazzleFlash(true);
+        returnCard.shift(Chen.ChenHuman);
         return returnCard;
     }
 

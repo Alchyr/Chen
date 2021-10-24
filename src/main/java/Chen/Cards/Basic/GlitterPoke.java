@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -38,9 +38,9 @@ public class GlitterPoke extends AnimatedShiftCard {
 
     private final static int DRAW = 1;
 
-    public GlitterPoke()
+    public GlitterPoke(boolean preview)
     {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, true, 0.35f);
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, true, preview, 0.35f);
 
         setDamage(DAMAGE_A, DAMAGE_B);
         setMagic(DEBUFF_A, DEBUFF_B);
@@ -63,5 +63,13 @@ public class GlitterPoke extends AnimatedShiftCard {
         {
             AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, DRAW));
         }
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new GlitterPoke(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new GlitterPoke(false);
     }
 }

@@ -5,6 +5,7 @@ import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -31,12 +32,20 @@ public class CatPunch extends ShiftChenCard {
     private final static int BLOCK = 4;
     private final static int UPG_BLOCK = 2;
 
-    public CatPunch()
+    public CatPunch(boolean preview)
     {
-        super(cardInfo, false);
+        super(cardInfo, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK, 0, UPG_BLOCK, 0);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new CatPunch(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new CatPunch(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

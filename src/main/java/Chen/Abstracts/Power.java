@@ -32,9 +32,9 @@ public class Power extends AbstractPower {
         this.amount = amount;
         this.type = powerType;
 
-        this.img = TextureLoader.getPowerTexture(this.name);
+        this.img = TextureLoader.getPowerTexture(name);
 
-        Texture HiDefImage = TextureLoader.getHiDefPowerTexture(this.name);
+        Texture HiDefImage = TextureLoader.getHiDefPowerTexture(name);
         if (HiDefImage != null)
             HiDefPowerPatch.HiDefImage.img84.set(this, HiDefImage);
 

@@ -1,22 +1,16 @@
-package Chen.Patches;
+/*package Chen.Patches;
 
-import Chen.Abstracts.ShiftChenCard;
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import javassist.CtBehavior;
 
 import java.util.ArrayList;
-
-import static Chen.ChenMod.logger;
 
 @SpirePatch(
         clz = TipHelper.class,
@@ -124,3 +118,4 @@ public class KeywordPatches {
         TIP_DESC_LINE_SPACING = 26.0F * Settings.scale;
     }
 }
+*/

@@ -15,20 +15,24 @@ public abstract class AnimatedShiftCard extends ShiftChenCard {
 
     public AnimatedShiftCard(CardInfo cardInfo, boolean upgradesDescription, float frameRate)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, frameRate);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardInfo.cardType, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, false, frameRate);
     }
     public AnimatedShiftCard(CardInfo cardInfo, CardType cardTypeB, boolean upgradesDescription, float frameRate)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, frameRate);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardInfo.cardTarget, cardInfo.cardRarity, upgradesDescription, false, frameRate);
     }
     public AnimatedShiftCard(CardInfo cardInfo, CardType cardTypeB, CardTarget cardTargetB, boolean upgradesDescription, float frameRate)
     {
-        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription, frameRate);
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription, false, frameRate);
+    }
+    public AnimatedShiftCard(CardInfo cardInfo, CardType cardTypeB, CardTarget cardTargetB, boolean upgradesDescription, boolean preview, float frameRate)
+    {
+        this(cardInfo.cardName, cardInfo.cardCost, cardInfo.cardType, cardTypeB, cardInfo.cardTarget, cardTargetB, cardInfo.cardRarity, upgradesDescription, preview, frameRate);
     }
 
-    public AnimatedShiftCard(String cardName, int cost, CardType cardTypeA, CardType cardTypeB, CardTarget cardTargetA, CardTarget cardTargetB, CardRarity rarity, boolean upgradesDescription, float frameRate)
+    public AnimatedShiftCard(String cardName, int cost, CardType cardTypeA, CardType cardTypeB, CardTarget cardTargetA, CardTarget cardTargetB, CardRarity rarity, boolean upgradesDescription, boolean preview, float frameRate)
     {
-        super(cardName, cost, cardTypeA, cardTypeB, cardTargetA, cardTargetB, rarity, upgradesDescription);
+        super(cardName, cost, cardTypeA, cardTypeB, cardTargetA, cardTargetB, rarity, upgradesDescription, preview);
 
         textureFramesA = TextureLoader.getAnimatedCardTextureStrings(cardName, cardTypeA);
         textureFramesB = TextureLoader.getAnimatedShiftedCardTextureStrings(cardName, cardTypeB);
@@ -39,13 +43,13 @@ public abstract class AnimatedShiftCard extends ShiftChenCard {
     }
 
     @Override
-    public void Shift(boolean form) {
+    public void shift(boolean form) {
         if (this.Form != form)
         {
             frameIndex = 0;
             frameTime = frameRate;
         }
-        super.Shift(form);
+        super.shift(form);
     }
 
     @Override

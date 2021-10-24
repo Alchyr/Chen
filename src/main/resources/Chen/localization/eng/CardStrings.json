@@ -64,7 +64,7 @@
   },
   "Chen:MeditateFrenzy": {
     "NAME": "Meditate",
-    "DESCRIPTION": "chen:Shift. NL Gain !B! Block. NL Gain !M! Focus. NL Exhaust.",
+    "DESCRIPTION": "chen:Shift. NL Gain !B! Block. NL Gain !M! chen:Focus. NL Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "Frenzy",
       "chen:Shift. NL Deal !D! damage 6 times. NL Gain !M! Strength. NL Exhaust."
@@ -112,7 +112,7 @@
   },
   "Chen:StudySharpen": {
     "NAME": "Study",
-    "DESCRIPTION": "chen:Shift. NL Gain !M! Focus.",
+    "DESCRIPTION": "chen:Shift. NL Gain !M! chen:Focus.",
     "EXTENDED_DESCRIPTION": [
       "Sharpen",
       "chen:Shift. NL Whenever an attack deals unblocked damage, apply !M! chen:Hemorrhage."
@@ -168,7 +168,7 @@
   },
   "Chen:Shapeshift": {
     "NAME": "Transition",
-    "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and Focus until the end of the turn."
+    "DESCRIPTION": "Retain. NL chen:Shapeshift. NL Gain !M! Strength, Dexterity, and chen:Focus until the end of the turn."
   },
   "Chen:EmergencyEscape": {
     "NAME": "Emergency Escape",
@@ -213,8 +213,8 @@
   },
   "Chen:BlueOniRedOni": {
     "NAME": "Blue Oni, Red Oni",
-    "DESCRIPTION": "chen:Shapeshift: Human. NL Add a chen:Blue_Oni and chen:Red_Oni to your hand.",
-    "UPGRADE_DESCRIPTION": "chen:Shapeshift: Human. NL Add an upgraded chen:Blue_Oni and chen:Red_Oni to your hand."
+    "DESCRIPTION": "chen:Shapeshift: Human. NL Add a *Blue *Oni and *Red *Oni to your hand.",
+    "UPGRADE_DESCRIPTION": "chen:Shapeshift: Human. NL Add an upgraded *Blue *Oni and *Red *Oni to your hand."
   },
   "Chen:BlueOni": {
     "NAME": "Blue Oni",
@@ -250,8 +250,8 @@
   },
   "Chen:Clarity": {
     "NAME": "Clarity",
-    "DESCRIPTION": "Double your Focus. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Double your Focus."
+    "DESCRIPTION": "Double your chen:Focus. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Double your chen:Focus."
   },
   "Chen:SurpriseAttack": {
     "NAME": "Surprise Attack",
@@ -337,7 +337,7 @@
   },
   "Chen:SelfConfidence": {
     "NAME": "Self-Confidence",
-    "DESCRIPTION": "Remove all your Block. NL You cannot gain Block for 1 turn. NL Gain !M! Strength and Focus."
+    "DESCRIPTION": "Remove all your Block. NL You cannot gain Block for 1 turn. NL Gain !M! Strength and chen:Focus."
   },
   "Chen:WhateverWorks": {
     "NAME": "Whatever Works",
@@ -363,7 +363,7 @@
   },
   "Chen:Possession": {
     "NAME": "Possession",
-    "DESCRIPTION": "At the start of your turn, gain !M! Strength and !M! Focus. NL Upon taking unblocked attack damage, lose all gained Strength and Focus."
+    "DESCRIPTION": "At the start of your turn, gain !M! Strength and !M! chen:Focus. NL Upon taking unblocked attack damage, lose all gained Strength and chen:Focus."
   },
   "Chen:FinalSpellCard": {
     "NAME": "Final Spell Card",
@@ -377,7 +377,7 @@
   },
   "Chen:PentagramFlight": {
     "NAME": "Pentagram Flight",
-    "DESCRIPTION": "chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented to ALL enemies. NL Lose 1 Focus."
+    "DESCRIPTION": "chen:Spell: chen:Disoriented. NL Apply !SPELL! chen:Disoriented to ALL enemies. NL Lose 1 chen:Focus."
   },
   "Chen:Copycat": {
     "NAME": "Copycat",
@@ -385,7 +385,7 @@
   },
   "Chen:ResistTemptation": {
     "NAME": "Resist Temptation",
-    "DESCRIPTION": "Gain !M! Focus."
+    "DESCRIPTION": "Gain !M! chen:Focus."
   },
   "Chen:Afterimages": {
     "NAME": "Afterimages",

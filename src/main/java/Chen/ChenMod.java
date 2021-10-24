@@ -1,21 +1,25 @@
 package Chen;
 
+import Chen.Abstracts.ShiftChenCard;
 import Chen.Actions.ChenActions.IncrementSpellsPlayedAction;
+import Chen.Cards.Attacks.Shot;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.CardColorEnum;
 import Chen.Patches.CharacterEnum;
 
+import Chen.Patches.LibraryTypeEnum;
 import Chen.Patches.TwoFormFields;
 import Chen.Powers.Disoriented;
 import Chen.Relics.Catnip;
 import Chen.Relics.SacredCatnip;
-import Chen.Util.CardFilter;
 
 import Chen.Character.Chen;
 
 import Chen.Util.KeywordWithProper;
 import Chen.Variables.SpellDamage;
+import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
 import basemod.interfaces.*;
 
 import com.badlogic.gdx.Gdx;
@@ -29,30 +33,21 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
 
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import javassist.ClassPool;
 import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import org.clapper.util.classutil.*;
-
-import java.io.File;
-import java.net.URL;
-import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 
-import javassist.NotFoundException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import static Chen.Patches.KeywordPatches.SHIFT_KEYWORD;
-import static Chen.Patches.KeywordPatches.SHIFT_WORD;
-
 
 @SpireInitializer
 public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber,
@@ -114,7 +109,32 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         BaseMod.addDynamicVariable(new SpellDamage());
 
         try {
-            autoAddCards();
+            AutoAdd a = new AutoAdd("Chen")
+                    .packageFilter("Chen.Cards");
+
+            ClassPool pool = Loader.getClassPool();
+
+            try {
+                Collection<CtClass> foundClasses = a.findClasses(CustomCard.class);
+                CustomCard card;
+
+                for (CtClass ctClass : foundClasses) {
+                    if (!ctClass.hasAnnotation(AutoAdd.Ignore.class)) {
+                        Class<?> c = pool.getClassLoader().loadClass(ctClass.getName());
+                        if (ShiftChenCard.class.isAssignableFrom(c)) {
+                            card = (CustomCard) c.getConstructor(boolean.class).newInstance(true);
+                        }
+                        else {
+                            card = (CustomCard) c.newInstance();
+                        }
+
+                        BaseMod.addCard(card);
+                        UnlockTracker.unlockCard(card.cardID);
+                    }
+                }
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException var8) {
+                throw new RuntimeException(var8);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -189,16 +209,16 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         String json = Gdx.files.internal(assetPath("localization/" + lang + "/Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
         KeywordWithProper[] keywords = gson.fromJson(json, KeywordWithProper[].class);
 
-        boolean first = true;
+        //boolean first = true;
 
         if (keywords != null) {
             for (KeywordWithProper keyword : keywords) {
-                if (first) //First keyword should be Shift keyword
+                /*if (first) //First keyword should be Shift keyword
                 {
                     first = false;
                     SHIFT_KEYWORD = "chen:" + keyword.NAMES[0];
                     SHIFT_WORD = keyword.PROPER_NAME;
-                }
+                }*/
                 BaseMod.addKeyword("chen", keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
@@ -207,22 +227,17 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     public static AbstractCard returnTrulyRandomSpellInCombat() {
         ArrayList<SpellCard> list = new ArrayList<>();
 
-        for (AbstractCard c : AbstractDungeon.srcCommonCardPool.group)
+        for (AbstractCard c : CardLibrary.getCardList(LibraryTypeEnum.CHEN_COLOR))
         {
             if (!c.hasTag(AbstractCard.CardTags.HEALING) && c instanceof SpellCard) {
-                list.add((SpellCard)c);
+                list.add((SpellCard)c.makeCopy());
             }
         }
-        for (AbstractCard c : AbstractDungeon.srcUncommonCardPool.group)
+
+        if (list.isEmpty())
         {
-            if (!c.hasTag(AbstractCard.CardTags.HEALING) && c instanceof SpellCard) {
-                list.add((SpellCard)c);
-            }
-        }
-        for (AbstractCard c : AbstractDungeon.srcRareCardPool.group) {
-            if (!c.hasTag(AbstractCard.CardTags.HEALING) && c instanceof SpellCard) {
-                list.add((SpellCard) c);
-            }
+            //wat how
+            return (AbstractCard) new Shot().getCopyAsSpellCard();
         }
 
         return (AbstractCard)list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1)).getCopyAsSpellCard();
@@ -289,7 +304,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     }
 
     //I totally didn't copy this from Hubris, made by kiooeht.
-    private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, ClassNotFoundException {
+    /*private static void autoAddCards() throws URISyntaxException, IllegalAccessException, InstantiationException, NotFoundException, ClassNotFoundException {
         ClassFinder finder = new ClassFinder();
         URL url = ChenMod.class.getProtectionDomain().getCodeSource().getLocation();
         finder.add(new File(url.toURI()));
@@ -336,7 +351,7 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         {
             UnlockTracker.unlockCard(c.cardID);
         }
-    }
+    }*/
 
 
     public static String makeID(String partialID)

@@ -8,6 +8,7 @@ import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -36,11 +37,19 @@ public class EvasiveFireShift extends ShiftChenCard {
     private final static int UPG_BLOCK_A = 2;
     private final static int UPG_BLOCK_B = 2;
 
-    public EvasiveFireShift() {
-        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false);
+    public EvasiveFireShift(boolean preview) {
+        super(cardInfo, CardType.ATTACK, CardTarget.ENEMY, false, preview);
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new EvasiveFireShift(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new EvasiveFireShift(false);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

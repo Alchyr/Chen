@@ -3,6 +3,7 @@ package Chen.Cards.Skills;
 import Chen.Abstracts.ShiftChenCard;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,10 +27,18 @@ public class TauntHiss extends ShiftChenCard {
     private final static int DEBUFF_A = 1;
     private final static int DEBUFF_B = 2;
 
-    public TauntHiss()
+    public TauntHiss(boolean preview)
     {
-        super(cardInfo, true);
+        super(cardInfo, true, preview);
         this.setMagic(DEBUFF_A, DEBUFF_B);
+    }
+    @Override
+    public AbstractCard makeCopy() {
+        return new TauntHiss(true);
+    }
+    @Override
+    protected ShiftChenCard noPreviewCopy() {
+        return new TauntHiss(false);
     }
 
     @Override
