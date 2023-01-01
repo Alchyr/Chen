@@ -23,7 +23,7 @@ public abstract class SwiftCard extends BaseCard {
         super.applyPowers();
         if (TwoFormFields.shiftsThisTurn > 0)
         {
-            this.setCostForTurn(0); //hopefully nothing ever costs more than 10000 energy
+            this.setCostForTurn(0);
         }
     }
 }
