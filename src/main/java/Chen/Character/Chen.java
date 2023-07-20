@@ -1,16 +1,15 @@
 package Chen.Character;
 
 import Chen.Cards.Basic.Defend;
+import Chen.Cards.Basic.GlitterPoke;
 import Chen.Cards.Basic.PounceTurnTail;
 import Chen.Cards.Basic.Strike;
-
-import Chen.Cards.Basic.GlitterPoke;
 import Chen.Patches.CardColorEnum;
 import Chen.Relics.Catnip;
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -48,8 +47,6 @@ public class Chen extends CustomPlayer {
     private static final Color CHEN_COLOR_B = CardHelper.getColor(14, 8, 9);
 
 
-    //TODO - ALL image files
-
     private static final String[] orbTextures = {
             assetPath("img/Character/orb/layer1.png"),
             assetPath("img/Character/orb/layer2.png"),
@@ -64,19 +61,30 @@ public class Chen extends CustomPlayer {
             assetPath("img/Character/orb/layer5d.png")
     };
 
+    public static final String SKELETON_JSON = assetPath("img/Character/Spine/chen.json");
+    public static final String SKELETON_ATLAS = assetPath("img/Character/Spine/chen.atlas");
+
     private static final float[] layerSpeeds = new float[]{20.0F, 30.0F, -40.0F, 20.0F, 0.0F};
 
     public Chen(String name, PlayerClass setClass) {
         super(name,
                 setClass,
                 orbTextures, assetPath("img/Character/orb/vfx.png"), layerSpeeds,
-                new SpriterAnimation(assetPath("img/Character/Spriter/Human/human.scml")));
+                null, null);
 
         initializeClass(null, // required call to load textures and setup energy/loadout
                 assetPath("img/Character/shoulder.png"), // human
                 assetPath("img/Character/shoulder2.png"), // cat
                 assetPath("img/Character/corpse.png"), // dead corpse
-                getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+                getLoadout(), -20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
+
+        loadAnimation(
+                SKELETON_ATLAS,
+                SKELETON_JSON,
+                1.0f);
+
+        AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
+        e.setTimeScale(0.83F);
 
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale); // set location for text bubbles

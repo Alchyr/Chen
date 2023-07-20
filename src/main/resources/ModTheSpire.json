@@ -3,7 +3,7 @@
   "name": "Chen",
   "author_list": ["Alchyr"],
   "description": "Chen.",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "sts_version": "01-27-2020",
   "mts_version": "3.23.0",
   "dependencies": ["basemod","stslib"],

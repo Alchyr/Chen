@@ -227,7 +227,7 @@ public class TextureLoader {
     }
 
     private static void loadTexture(final String textureString, boolean linearFilter) throws GdxRuntimeException {
-        Texture texture =  new Texture(textureString);
+        Texture texture = new Texture(textureString);
         if (linearFilter)
         {
             texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
