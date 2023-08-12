@@ -1,31 +1,24 @@
 package Chen.Actions.ChenActions;
 
-import Chen.Actions.GenericActions.ApplyDamageAction;
 import Chen.Actions.GenericActions.VFXIfAliveAction;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.unique.SwordBoomerangAction;
-import com.megacrit.cardcrawl.actions.unique.WhirlwindAction;
+import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.beyond.AwakenedOne;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
 public class PhoenixEggAction extends AbstractGameAction {
+    private AbstractCard c;
     private int hits;
-    private DamageInfo info;
 
-    public PhoenixEggAction(AbstractCreature source, DamageInfo info, int hits) {
-        this.setValues(null, source, info.base);
-        this.info = info;
+    public PhoenixEggAction(AbstractCreature source, AbstractCard c, int hits) {
+        this.source = source;
+        this.c = c;
         this.actionType = ActionType.DAMAGE;
         this.attackEffect = AttackEffect.NONE;
         this.hits = hits;
@@ -41,7 +34,7 @@ public class PhoenixEggAction extends AbstractGameAction {
 
             if (cardTarget != null)
             {
-                AbstractDungeon.actionManager.addToTop(new PhoenixEggAction(this.source, info, --hits));
+                AbstractDungeon.actionManager.addToTop(new PhoenixEggAction(this.source, c, --hits));
 
                 if (Settings.FAST_MODE)
                 {
@@ -52,7 +45,7 @@ public class PhoenixEggAction extends AbstractGameAction {
                     AbstractDungeon.actionManager.addToTop(new WaitAction(0.2F));
                 }
 
-                AbstractDungeon.actionManager.addToTop(new ApplyDamageAction(cardTarget, info));
+                addToTop(new AttackDamageRandomEnemyAction(c, this.attackEffect));
                 AbstractDungeon.actionManager.addToTop(new VFXIfAliveAction(cardTarget, new ExplosionSmallEffect(cardTarget.hb.cX + MathUtils.random(-35.0f * Settings.scale, 35.0f * Settings.scale), cardTarget.hb.cY + MathUtils.random(0, 20.0f * Settings.scale))));
             }
         }

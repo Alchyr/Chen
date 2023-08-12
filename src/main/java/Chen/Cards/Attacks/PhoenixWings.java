@@ -1,11 +1,10 @@
 package Chen.Cards.Attacks;
 
-import Chen.Abstracts.DamageSpellCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Actions.ChenActions.PhoenixWingsAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Actions.GenericActions.VFXIfAliveAction;
 import Chen.Character.Chen;
-import Chen.Interfaces.SpellCard;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -19,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 
 import static Chen.ChenMod.makeID;
 
-public class PhoenixWings extends DamageSpellCard {
+public class PhoenixWings extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "PhoenixWings",
             3,
@@ -37,18 +36,18 @@ public class PhoenixWings extends DamageSpellCard {
     {
         super(cardInfo, false);
 
-        setMagic(DAMAGE,  UPG_DAMAGE);
+        setDamage(DAMAGE,  UPG_DAMAGE);
 
         this.isMultiDamage = true;
     }
 
     @Override
     public void applyPowers() {
-        CalculateDamageSpell(null);
+        super.applyPowers();
 
         int index = 0;
         int totalDamage = 0;
-        int baseHit = this.baseMagicNumber;
+        int baseHit = this.baseDamage;
         int baseTotal = 0;
 
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
@@ -61,13 +60,10 @@ public class PhoenixWings extends DamageSpellCard {
             index++;
         }
 
-        this.baseDamage = baseTotal;
-        this.damage = totalDamage;
+        baseMagicNumber = baseTotal;
+        magicNumber = totalDamage;
 
-        isDamageModified = false;
-
-        if (this.damage != baseDamage)
-            isDamageModified = true;
+        isMagicNumberModified = baseMagicNumber != magicNumber;
 
         this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
@@ -75,11 +71,11 @@ public class PhoenixWings extends DamageSpellCard {
 
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(null);
+        super.calculateCardDamage(mo);
 
         int index = 0;
         int totalDamage = 0;
-        int baseHit = this.baseMagicNumber;
+        int baseHit = this.baseDamage;
         int baseTotal = 0;
 
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
@@ -92,19 +88,17 @@ public class PhoenixWings extends DamageSpellCard {
             index++;
         }
 
-        isDamageModified = false;
-        this.baseDamage = baseTotal;
-        this.damage = totalDamage;
+        baseMagicNumber = baseTotal;
+        magicNumber = totalDamage;
 
-        if (this.damage != baseDamage)
-            isDamageModified = true;
+        isMagicNumberModified = baseMagicNumber != magicNumber;
 
         this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
     }
 
     @Override
-    public SpellCard getCopyAsSpellCard() {
+    public StandardSpell getCopyAsSpellCard() {
         return new PhoenixWings();
     }
 
@@ -117,6 +111,6 @@ public class PhoenixWings extends DamageSpellCard {
 
         AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(m, new FireBurstParticleEffect(m.hb.cX, m.hb.cY)));
         AbstractDungeon.actionManager.addToBottom(new VFXIfAliveAction(m, new InflameEffect(m)));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.magicNumber, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
     }
 }

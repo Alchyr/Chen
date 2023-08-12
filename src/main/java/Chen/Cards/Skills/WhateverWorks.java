@@ -12,7 +12,7 @@ import static Chen.ChenMod.makeID;
 public class WhateverWorks extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "WhateverWorks",
-            3,
+            2,
             CardType.SKILL,
             CardTarget.NONE,
             CardRarity.RARE

@@ -30,8 +30,8 @@ public class Scratch extends BaseCard {
     private final static int DAMAGE = 4;
     private final static int UPG_DAMAGE = 1;
 
-    private final static int DEBUFF = 2;
-    private final static int UPG_DEBUFF = 1;
+    private final static int DEBUFF = 3;
+    private final static int UPG_DEBUFF = 2;
 
     public Scratch()
     {

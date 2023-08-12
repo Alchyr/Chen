@@ -1,21 +1,22 @@
 package Chen.Cards.Attacks;
 
-import Chen.Abstracts.BaseCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Actions.ChenActions.PhoenixEggAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Interfaces.SpellCard;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import java.util.List;
+
 import static Chen.ChenMod.makeID;
 
-public class PhoenixEgg extends BaseCard implements SpellCard {
+public class PhoenixEgg extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "PhoenixEgg",
             1,
@@ -37,6 +38,12 @@ public class PhoenixEgg extends BaseCard implements SpellCard {
 
         setDamage(DAMAGE,  UPG_DAMAGE);
         setMagic(HITS);
+        magicNumSpell();
+    }
+
+    @Override
+    public List<String> getCardDescriptors() {
+        return SpellCard.spellDescriptor;
     }
 
     @Override
@@ -49,9 +56,9 @@ public class PhoenixEgg extends BaseCard implements SpellCard {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 
-        if (SpellDamage.getSpellDamage(this) > 0)
+        if (this.magicNumber > 0)
         {
-            AbstractDungeon.actionManager.addToBottom(new PhoenixEggAction(p, new DamageInfo(p, this.baseDamage, this.damageTypeForTurn), SpellDamage.getSpellDamage(this)));
+            AbstractDungeon.actionManager.addToBottom(new PhoenixEggAction(p, this, this.magicNumber));
         }
     }
 }

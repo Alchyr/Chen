@@ -1,5 +1,6 @@
 package Chen.Patches;
 
+import Chen.Effects.PoofEffect;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -40,6 +41,10 @@ public class TwoFormFields {
 
     public static void ShiftDefault()
     {
-        TwoFormFields.Shift(DEFAULT_FORM);
+        if (TwoFormFields.form.get(AbstractDungeon.player) ^ DEFAULT_FORM)
+        {
+            AbstractDungeon.effectList.add(new PoofEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY));
+            TwoFormFields.form.set(AbstractDungeon.player, DEFAULT_FORM);
+        }
     }
 }

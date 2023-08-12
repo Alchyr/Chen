@@ -8,7 +8,6 @@ import Chen.Effects.DazzleEffect;
 import Chen.Interfaces.SpellCard;
 import Chen.Powers.Disoriented;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,9 +15,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
+import java.util.List;
+
 import static Chen.ChenMod.makeID;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class DazzleFlash extends ShiftChenCard implements SpellCard {
     private final static CardInfo cardInfo = new CardInfo(
@@ -70,6 +74,11 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
     }
 
     @Override
+    public List<String> getCardDescriptors() {
+        return SpellCard.spellDescriptor;
+    }
+
+    @Override
     public SpellCard getCopyAsSpellCard() {
         DazzleFlash returnCard = new DazzleFlash(true);
         returnCard.shift(Chen.ChenHuman);
@@ -83,7 +92,7 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
                 AbstractDungeon.actionManager.addToBottom(new VFXAction(new DazzleEffect(m.hb.cX, m.hb.cY)));
             }
 
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Disoriented(m, SpellDamage.getSpellDamage(this)), SpellDamage.getSpellDamage(this)));
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new Disoriented(m, this.magicNumber), this.magicNumber));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(m, p, new VulnerablePower(m, VULN, false), VULN));
         }
         else //cat
@@ -95,13 +104,40 @@ public class DazzleFlash extends ShiftChenCard implements SpellCard {
     public void applyPowers() {
         if (!Form) //cat form only
         {
-            super.applyPowers();
             this.baseMagicNumber = this.magicNumber = getHits();
+            this.isMagicNumberModified = false;
             this.rawDescription = descriptionB + cardStrings.EXTENDED_DESCRIPTION[2];
             this.initializeDescription();
-            return;
+        }
+        else {
+            this.magicNumber = this.baseMagicNumber;
+            AbstractPower pow = player.getPower(FocusPower.POWER_ID);
+            if (pow != null)
+                this.magicNumber += pow.amount;
+
+            this.isMagicNumberModified = this.magicNumber != this.baseMagicNumber;
         }
         super.applyPowers();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        if (!Form) //cat form only
+        {
+            this.baseMagicNumber = this.magicNumber = getHits();
+            this.isMagicNumberModified = false;
+            this.rawDescription = descriptionB + cardStrings.EXTENDED_DESCRIPTION[2];
+            this.initializeDescription();
+        }
+        else {
+            this.magicNumber = this.baseMagicNumber;
+            AbstractPower pow = player.getPower(FocusPower.POWER_ID);
+            if (pow != null)
+                this.magicNumber += pow.amount;
+
+            this.isMagicNumberModified = this.magicNumber != this.baseMagicNumber;
+        }
+        super.calculateCardDamage(mo);
     }
 
     private int getHits()

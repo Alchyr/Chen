@@ -1,11 +1,10 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Interfaces.BlockSpellCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Interfaces.SpellCard;
 import Chen.Powers.BlockOnShift;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Chen.ChenMod.makeID;
 
-public class UnstableBoundary extends BaseCard implements BlockSpellCard {
+public class UnstableBoundary extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "UnstableBoundary",
             1,
@@ -32,7 +31,7 @@ public class UnstableBoundary extends BaseCard implements BlockSpellCard {
     {
         super(cardInfo, false);
 
-        setMagic(BLOCK, UPG_BLOCK);
+        setBlock(BLOCK, UPG_BLOCK);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class UnstableBoundary extends BaseCard implements BlockSpellCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, SpellDamage.getSpellDamage(this)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BlockOnShift(p, p, SpellDamage.getSpellDamage(this)), SpellDamage.getSpellDamage(this)));
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BlockOnShift(p, p, this.block), this.block));
     }
 }

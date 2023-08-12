@@ -30,6 +30,7 @@ public class Nimbleness extends ShiftChenCard {
         super(cardInfo, false, preview);
 
         setMagic(DRAW, DRAW, UPG_DRAW, UPG_DRAW);
+        setExhaust(true);
     }
     @Override
     public AbstractCard makeCopy() {

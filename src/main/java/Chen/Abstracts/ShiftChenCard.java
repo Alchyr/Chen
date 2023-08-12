@@ -4,7 +4,6 @@ import Chen.Interfaces.BetterOnDamageGiveSubscriber;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import Chen.Util.TextureLoader;
-import Chen.Variables.SpellDamage;
 import basemod.BaseMod;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -392,194 +391,194 @@ public abstract class ShiftChenCard extends BaseCard {
         return baseCopy;
     }
 
-    //return what is not currently the main data
-    public String getShiftName()
-    {
-        return (Form ? nameB : nameA);
-    }
-    public String getShiftDescription()
-    {
-        String rawAltDescription = Form ? descriptionB : descriptionA;
-
-        for (String s : removeStrings)
-        {
-            rawAltDescription = rawAltDescription.replaceFirst(s, "");
-        }
-
-        return processDescriptionForShiftKeyword(rawAltDescription);
-    }
-
-
-    public String processDescriptionForShiftKeyword(String rawDescription)
-    {
-        StringBuilder processedDescription = new StringBuilder("");
-
-        String[] rawDescriptionWords = rawDescription.split(" ");
-        int numWords = rawDescriptionWords.length;
-
-        for(int i = 0; i < numWords; ++i) {
-            String word = rawDescriptionWords[i];
-
-            StringBuilder lastChar = new StringBuilder(" ");
-            if (word.length() > 0 && word.charAt(word.length() - 1) != ']' && !Character.isLetterOrDigit(word.charAt(word.length() - 1))) {
-                lastChar.insert(0, word.charAt(word.length() - 1));
-                word = word.substring(0, word.length() - 1);
-            }
-
-            String keywordTmp = word.toLowerCase();
-            keywordTmp = this.dedupeKeyword(keywordTmp);
-
-            if (GameDictionary.keywords.containsKey(keywordTmp)) {
-                if (BaseMod.keywordIsUnique(keywordTmp))
-                {
-                    String prefix = BaseMod.getKeywordPrefix(keywordTmp);
-                    word = word.replaceFirst(prefix, "");
-                }
-
-                processedDescription.append("#y").append(word).append(lastChar.toString());
-            } else {
-                if (word.equals("!D")) {
-                    processedDescription.append(getColoredDamageString(!Form)).append(" ");
-                } else if (word.equals("!B")) {
-                    processedDescription.append(getColoredBlockString(!Form)).append(" ");
-                } else if (word.equals("!M")) {
-                    processedDescription.append(getColoredMagicString(!Form)).append(" ");
-                } else if (word.equals("!SPELL")) {
-                    processedDescription.append(getColoredSpellString(!Form)).append(" ");
-                } else {
-                    processedDescription.append(word).append(lastChar.toString());
-                }
-            }
-        }
-
-        return processedDescription.toString();
-    }
-
-    private String getColoredDamageString(boolean Form)
-    {
-        int baseDamage = Form ? baseDamageA : baseDamageB;
-        int finalDamage = applyDamagePowers(baseDamage);
-
-        String colorString = "#b";
-
-        if (finalDamage < baseDamage)
-        {
-            colorString = "#r";
-        }
-        else if (finalDamage > baseDamage || isDamageModified)
-        {
-            colorString = "#g";
-        }
-
-        return colorString + finalDamage;
-    }
-    private String getColoredBlockString(boolean Form)
-    {
-        int baseBlock = Form ? baseBlockA : baseBlockB;
-        int finalBlock = applyBlockPowers(baseBlock);
-
-        String colorString = "#b";
-
-        if (finalBlock < baseBlock)
-        {
-            colorString = "#r";
-        }
-        else if (finalBlock > baseBlock || isBlockModified)
-        {
-            colorString = "#g";
-        }
-
-        return colorString + finalBlock;
-    }
-    private String getColoredMagicString(boolean Form)
-    {
-        int baseMagic = Form ? baseMagicNumberA : baseMagicNumberB;
-
-        String colorString = "#b";
-
-        if (isMagicNumberModified)
-        {
-            colorString = "#g";
-        }
-
-        return colorString + baseMagic;
-    }
-    private String getColoredSpellString(boolean Form)
-    {
-        int baseSpell = Form ? baseMagicNumberA : baseMagicNumberB;
-
-        int finalSpell = SpellDamage.getSpellDamage(this, baseSpell);
-
-        String colorString = "#b";
-
-        if (finalSpell < baseSpell)
-        {
-            colorString = "#r";
-        }
-        else if (finalSpell > baseSpell || isMagicNumberModified)
-        {
-            colorString = "#g";
-        }
-
-            return colorString + finalSpell;
-    }
-
-    private int applyDamagePowers(int baseDamage)
-    {
-        if (AbstractDungeon.player != null)
-        {
-            float dmg = (float)baseDamage;
-
-            if (AbstractDungeon.player.hasRelic("WristBlade") && (this.costForTurn == 0 || this.freeToPlayOnce)) {
-                dmg += 3.0F;
-            }
-
-            for (AbstractPower p : AbstractDungeon.player.powers)
-            {
-                dmg = p.atDamageGive(dmg, this.damageTypeForTurn);
-                if (p instanceof BetterOnDamageGiveSubscriber)
-                {
-                    dmg = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(dmg, this.damageTypeForTurn, null);
-                }
-            }
-            for (AbstractPower p : AbstractDungeon.player.powers)
-            {
-                dmg = p.atDamageFinalGive(dmg, this.damageTypeForTurn);
-            }
-
-            if (dmg < 0.0F) {
-                dmg = 0.0F;
-            }
-
-            return MathUtils.floor(dmg);
-        }
-
-        return baseDamage;
-    }
-
-    private int applyBlockPowers(int baseBlock)
-    {
-        if (AbstractDungeon.player != null)
-        {
-            float blk = (float)baseBlock;
-
-            for (AbstractPower p : AbstractDungeon.player.powers)
-            {
-                blk = p.modifyBlock(blk);
-            }
-
-            if (blk < 0.0F) {
-                blk = 0.0F;
-            }
-
-            return MathUtils.floor(blk);
-        }
-
-        return baseBlock;
-    }
-
-    private String dedupeKeyword(String keyword) {
-        String retVal = GameDictionary.parentWord.get(keyword);
-        return retVal != null ? retVal : keyword;
-    }
+//    //return what is not currently the main data
+//    public String getShiftName()
+//    {
+//        return (Form ? nameB : nameA);
+//    }
+//    public String getShiftDescription()
+//    {
+//        String rawAltDescription = Form ? descriptionB : descriptionA;
+//
+//        for (String s : removeStrings)
+//        {
+//            rawAltDescription = rawAltDescription.replaceFirst(s, "");
+//        }
+//
+//        return processDescriptionForShiftKeyword(rawAltDescription);
+//    }
+//
+//
+//    public String processDescriptionForShiftKeyword(String rawDescription)
+//    {
+//        StringBuilder processedDescription = new StringBuilder("");
+//
+//        String[] rawDescriptionWords = rawDescription.split(" ");
+//        int numWords = rawDescriptionWords.length;
+//
+//        for(int i = 0; i < numWords; ++i) {
+//            String word = rawDescriptionWords[i];
+//
+//            StringBuilder lastChar = new StringBuilder(" ");
+//            if (word.length() > 0 && word.charAt(word.length() - 1) != ']' && !Character.isLetterOrDigit(word.charAt(word.length() - 1))) {
+//                lastChar.insert(0, word.charAt(word.length() - 1));
+//                word = word.substring(0, word.length() - 1);
+//            }
+//
+//            String keywordTmp = word.toLowerCase();
+//            keywordTmp = this.dedupeKeyword(keywordTmp);
+//
+//            if (GameDictionary.keywords.containsKey(keywordTmp)) {
+//                if (BaseMod.keywordIsUnique(keywordTmp))
+//                {
+//                    String prefix = BaseMod.getKeywordPrefix(keywordTmp);
+//                    word = word.replaceFirst(prefix, "");
+//                }
+//
+//                processedDescription.append("#y").append(word).append(lastChar.toString());
+//            } else {
+//                if (word.equals("!D")) {
+//                    processedDescription.append(getColoredDamageString(!Form)).append(" ");
+//                } else if (word.equals("!B")) {
+//                    processedDescription.append(getColoredBlockString(!Form)).append(" ");
+//                } else if (word.equals("!M")) {
+//                    processedDescription.append(getColoredMagicString(!Form)).append(" ");
+//                } else if (word.equals("!SPELL")) {
+//                    processedDescription.append(getColoredSpellString(!Form)).append(" ");
+//                } else {
+//                    processedDescription.append(word).append(lastChar.toString());
+//                }
+//            }
+//        }
+//
+//        return processedDescription.toString();
+//    }
+//
+//    private String getColoredDamageString(boolean Form)
+//    {
+//        int baseDamage = Form ? baseDamageA : baseDamageB;
+//        int finalDamage = applyDamagePowers(baseDamage);
+//
+//        String colorString = "#b";
+//
+//        if (finalDamage < baseDamage)
+//        {
+//            colorString = "#r";
+//        }
+//        else if (finalDamage > baseDamage || isDamageModified)
+//        {
+//            colorString = "#g";
+//        }
+//
+//        return colorString + finalDamage;
+//    }
+//    private String getColoredBlockString(boolean Form)
+//    {
+//        int baseBlock = Form ? baseBlockA : baseBlockB;
+//        int finalBlock = applyBlockPowers(baseBlock);
+//
+//        String colorString = "#b";
+//
+//        if (finalBlock < baseBlock)
+//        {
+//            colorString = "#r";
+//        }
+//        else if (finalBlock > baseBlock || isBlockModified)
+//        {
+//            colorString = "#g";
+//        }
+//
+//        return colorString + finalBlock;
+//    }
+//    private String getColoredMagicString(boolean Form)
+//    {
+//        int baseMagic = Form ? baseMagicNumberA : baseMagicNumberB;
+//
+//        String colorString = "#b";
+//
+//        if (isMagicNumberModified)
+//        {
+//            colorString = "#g";
+//        }
+//
+//        return colorString + baseMagic;
+//    }
+//    private String getColoredSpellString(boolean Form)
+//    {
+//        int baseSpell = Form ? baseMagicNumberA : baseMagicNumberB;
+//
+//        int finalSpell = SpellDamage.getSpellDamage(this, baseSpell);
+//
+//        String colorString = "#b";
+//
+//        if (finalSpell < baseSpell)
+//        {
+//            colorString = "#r";
+//        }
+//        else if (finalSpell > baseSpell || isMagicNumberModified)
+//        {
+//            colorString = "#g";
+//        }
+//
+//            return colorString + finalSpell;
+//    }
+//
+//    private int applyDamagePowers(int baseDamage)
+//    {
+//        if (AbstractDungeon.player != null)
+//        {
+//            float dmg = (float)baseDamage;
+//
+//            if (AbstractDungeon.player.hasRelic("WristBlade") && (this.costForTurn == 0 || this.freeToPlayOnce)) {
+//                dmg += 3.0F;
+//            }
+//
+//            for (AbstractPower p : AbstractDungeon.player.powers)
+//            {
+//                dmg = p.atDamageGive(dmg, this.damageTypeForTurn);
+//                if (p instanceof BetterOnDamageGiveSubscriber)
+//                {
+//                    dmg = ((BetterOnDamageGiveSubscriber) p).betterAtDamageGive(dmg, this.damageTypeForTurn, null);
+//                }
+//            }
+//            for (AbstractPower p : AbstractDungeon.player.powers)
+//            {
+//                dmg = p.atDamageFinalGive(dmg, this.damageTypeForTurn);
+//            }
+//
+//            if (dmg < 0.0F) {
+//                dmg = 0.0F;
+//            }
+//
+//            return MathUtils.floor(dmg);
+//        }
+//
+//        return baseDamage;
+//    }
+//
+//    private int applyBlockPowers(int baseBlock)
+//    {
+//        if (AbstractDungeon.player != null)
+//        {
+//            float blk = (float)baseBlock;
+//
+//            for (AbstractPower p : AbstractDungeon.player.powers)
+//            {
+//                blk = p.modifyBlock(blk);
+//            }
+//
+//            if (blk < 0.0F) {
+//                blk = 0.0F;
+//            }
+//
+//            return MathUtils.floor(blk);
+//        }
+//
+//        return baseBlock;
+//    }
+//
+//    private String dedupeKeyword(String keyword) {
+//        String retVal = GameDictionary.parentWord.get(keyword);
+//        return retVal != null ? retVal : keyword;
+//    }
 }

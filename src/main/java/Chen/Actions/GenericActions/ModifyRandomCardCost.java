@@ -37,13 +37,13 @@ public class ModifyRandomCardCost extends AbstractGameAction {
                 if (condition.test(c))
                 {
                     if ((this.amount < 0 && ((c.cost > 0 && forCombat) || c.costForTurn > 0)) || this.amount > 0) //If reduction, make sure it can be reduced
-                        possibleCards.addToRandomSpot(c);
+                        possibleCards.addToTop(c);
                 }
             }
 
             if (possibleCards.size() > 0)
             {
-                AbstractCard toModify = possibleCards.getTopCard();
+                AbstractCard toModify = possibleCards.getRandomCard(AbstractDungeon.cardRandomRng);
 
                 if (forCombat)
                 {

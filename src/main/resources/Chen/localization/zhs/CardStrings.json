@@ -88,10 +88,10 @@
   },
   "Chen:Nimbleness": {
     "NAME": "灵活",
-    "DESCRIPTION": " chen:变化 . NL 抽 !M! 张卡. NL 每抽到一张技能卡获得 [E] .",
+    "DESCRIPTION": " chen:变化 . NL 抽 !M! 张卡. NL 每抽到一张技能卡获得 [E] . NL 消耗 .",
     "EXTENDED_DESCRIPTION": [
       "灵活",
-      " chen:变化 . NL 抽 !M! 张卡. NL 每抽到一张攻击卡获得 [E] ."
+      " chen:变化 . NL 抽 !M! 张卡. NL 每抽到一张攻击卡获得 [E] . NL 消耗 ."
     ]
   },
   "Chen:EvasiveFireShift": {
@@ -104,7 +104,7 @@
   },
   "Chen:RapidfireEvasive": {
     "NAME": "速射",
-    "DESCRIPTION": " chen:变化 . NL chen:咒语 : 伤害. NL 打出技能卡时对随机敌人造成 !SPELL! 点伤害.",
+    "DESCRIPTION": " chen:变化 . NL chen:咒语 : 伤害. NL 打出技能卡时对随机敌人造成 !M! 点伤害.",
     "EXTENDED_DESCRIPTION": [
       "躲避",
       " chen:变化 . NL 打出一张攻击卡时, 获得 !M! 点 格挡 ."
@@ -128,17 +128,17 @@
   },
   "Chen:TauntHiss": {
     "NAME": "嘲讽",
-    "DESCRIPTION": " chen:变化 . NL 给予 1 层 易伤 .",
-    "UPGRADE_DESCRIPTION": " chen:变化 . NL 给予所有敌人1层 易伤 .",
+    "DESCRIPTION": " chen:变化 . NL 给予 !M! 层 易伤 .",
+    "UPGRADE_DESCRIPTION": " chen:变化 . NL 给予所有敌人 !M! 层 易伤 .",
     "EXTENDED_DESCRIPTION": [
       "嘘声",
-      " chen:变化 . NL 给予1层 虚弱 .",
-      " chen:变化 . NL 给予所有敌人1层 虚弱 ."
+      " chen:变化 . NL 给予 !M! 层 虚弱 .",
+      " chen:变化 . NL 给予所有敌人 !M! 层 虚弱 ."
     ]
   },
   "Chen:DazzleFlash": {
     "NAME": "眩惑",
-    "DESCRIPTION": " chen:变化 . NL chen:咒语 : chen:晕眩 . NL 给予 !SPELL! 层 chen:晕眩 和1层 易伤 .",
+    "DESCRIPTION": " chen:变化 . NL chen:咒语 : chen:晕眩 . NL 给予 !M! 层 chen:晕眩 和1层 易伤 .",
     "EXTENDED_DESCRIPTION": [
       "闪现",
       " chen:变化 . NL 这场战斗中你每给予一次 chen:晕眩 , 对随机敌人造成 !D! 点伤害.",
@@ -157,9 +157,9 @@
   },
   "Chen:PhoenixWings": {
     "NAME": "凤凰之羽",
-    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 !SPELL! 点伤害, 然后造成等同于总伤害的伤害.",
+    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 !D! 点伤害, 然后造成等同于总伤害的伤害.",
     "EXTENDED_DESCRIPTION": [
-      " NL (造成 !D! 点伤害.)"
+      " NL (造成 !M! 点伤害.)"
     ]
   },
   "Chen:Honk": {
@@ -201,15 +201,15 @@
   },
   "Chen:UnstableBoundary": {
     "NAME": "不稳定边界",
-    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !SPELL! 点 格挡 . NL 下一次你 chen:变换形态 时, 获得 !SPELL! 点 格挡 ."
+    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !B! 点 格挡 . NL 下一次你 chen:变换形态 时, 获得 !B! 点 格挡 ."
   },
   "Chen:Fadeout": {
     "NAME": "渐隐",
-    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !SPELL! 点 格挡 . NL 给予所有敌人 !M! 层 虚弱 . NL 消耗 ."
+    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !B! 点 格挡 . NL 给予所有敌人 !M! 层 虚弱 . NL 消耗 ."
   },
   "Chen:Spray": {
     "NAME": "喷洒",
-    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 !SPELL! 点伤害."
+    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 !D! 点伤害."
   },
   "Chen:BlueOniRedOni": {
     "NAME": "青鬼与赤鬼",
@@ -218,7 +218,7 @@
   },
   "Chen:BlueOni": {
     "NAME": "青鬼",
-    "DESCRIPTION": " chen:咒语 :伤害. NL 对最右边的敌人造成 !SPELL! 点 伤害. NL 消耗 ."
+    "DESCRIPTION": " chen:咒语 :伤害. NL 对最右边的敌人造成 !D! 点 伤害. NL 消耗 ."
   },
   "Chen:RedOni": {
     "NAME": "赤鬼",
@@ -226,7 +226,7 @@
   },
   "Chen:Flicker": {
     "NAME": "摇曳",
-    "DESCRIPTION": " chen:咒语 : chen:晕眩 . NL chen:变换形态 :人形. NL 给予 !SPELL! 层 chen:晕眩 . NL 抽 !M! 张卡."
+    "DESCRIPTION": " chen:咒语 : chen:晕眩 . NL chen:变换形态 :人形. NL 给予 !M! 层 chen:晕眩 . NL 抽 2 张卡."
   },
   "Chen:FlankingStrike": {
     "NAME": "侧翼打击",
@@ -267,14 +267,14 @@
   },
   "Chen:PhoenixEgg": {
     "NAME": "凤凰蛋",
-    "DESCRIPTION": " chen:咒语 : 打击次数. NL chen:变换形态 : 人形. NL 对随机敌人造成 !D! 点伤害 !SPELL! 次."
+    "DESCRIPTION": " chen:咒语 : 打击次数. NL chen:变换形态 : 人形. NL 对随机敌人造成 !D! 点伤害 !M! 次."
   },
   "Chen:Kimontonkou": {
     "NAME": "鬼门遁甲",
     "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 X 次已打出 chen:咒语 卡数量的伤害.",
     "UPGRADE_DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 对所有敌人造成 X + !M! 次已打出 chen:咒语 卡数量的伤害.",
     "EXTENDED_DESCRIPTION": [
-       " NL (造成 !SPELL! 点伤害.)"
+       " NL (造成 !D! 点伤害.)"
     ]
   },
   "Chen:Excitement": {
@@ -312,7 +312,7 @@
   },
   "Chen:Salvo": {
     "NAME": "齐射",
-    "DESCRIPTION": " chen:咒语 :伤害. NL chen:变换形态 :人形. NL 对所有敌人造成 !SPELL! 点伤害并复制一张耗能加1的该卡, 回合结束耗能复原. NL 消耗 ."
+    "DESCRIPTION": " chen:咒语 :伤害. NL chen:变换形态 :人形. NL 对所有敌人造成 !D! 点伤害并复制一张耗能加1的该卡, 回合结束耗能复原. NL 消耗 ."
   },
   "Chen:Unpredictable": {
     "NAME": "变幻莫测",
@@ -325,7 +325,7 @@
   },
   "Chen:Shot": {
     "NAME": "射击",
-    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 造成 !SPELL! 点伤害, 然后对随机敌人造成双倍伤害."
+    "DESCRIPTION": " chen:咒语 : 伤害. NL chen:变换形态 : 人形. NL 造成 !D! 点伤害, 然后对随机敌人造成双倍伤害."
   },
   "Chen:Assault": {
     "NAME": "强袭",
@@ -346,7 +346,7 @@
   },
   "Chen:Barrier": {
     "NAME": "屏障",
-    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !SPELL! 点 格挡 ."
+    "DESCRIPTION": " chen:咒语 : 格挡 . NL 获得 !B! 点 格挡 . NL 在本回合 保留 你的手牌 ."
   },
   "Chen:Frivolous": {
     "NAME": "挥霍",
@@ -377,7 +377,7 @@
   },
   "Chen:PentagramFlight": {
     "NAME": "五角星飞翔",
-    "DESCRIPTION": " chen:咒语 : chen:晕眩 . NL 给予所有敌人 !SPELL! 层 chen:晕眩 . NL 失去1点 chen:集中 ."
+    "DESCRIPTION": " chen:咒语 : chen:晕眩 . NL 给予所有敌人 !M! 层 chen:晕眩 . NL 失去1点 chen:集中 ."
   },
   "Chen:Copycat": {
     "NAME": "复制猫",

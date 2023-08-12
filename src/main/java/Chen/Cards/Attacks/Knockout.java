@@ -27,8 +27,8 @@ public class Knockout extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 12;
-    private final static int UPG_DAMAGE = 6;
+    private final static int DAMAGE = 14;
+    private final static int UPG_DAMAGE = 4;
 
     private boolean critical;
 

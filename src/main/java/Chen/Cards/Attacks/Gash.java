@@ -21,7 +21,7 @@ import static Chen.ChenMod.makeID;
 public class Gash extends BaseCard {
     private final static CardInfo cardInfo = new CardInfo(
             "Gash",
-            3,
+            2,
             CardType.ATTACK,
             CardTarget.ENEMY,
             CardRarity.RARE
@@ -29,8 +29,8 @@ public class Gash extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 17;
-    private final static int UPG_COST = 2;
+    private final static int DAMAGE = 12;
+    private final static int UPG_COST = 1;
 
     public Gash()
     {

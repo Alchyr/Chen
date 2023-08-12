@@ -8,6 +8,7 @@ import Chen.Patches.CardColorEnum;
 import Chen.Relics.Catnip;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -82,6 +83,9 @@ public class Chen extends CustomPlayer {
                 SKELETON_ATLAS,
                 SKELETON_JSON,
                 1.0f);
+        for (Texture t : atlas.getTextures()) {
+            t.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTimeScale(0.83F);

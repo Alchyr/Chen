@@ -22,12 +22,13 @@ public class FallingDarkEffect extends AbstractGameEffect {
     private float floorY;
     private Texture img;
     private int salvoCount;
+    private boolean sound;
 
     private static Texture img1;
     private static Texture img2;
     private static Texture img3;
 
-    public FallingDarkEffect(int salvoCount, boolean flipped) {
+    public FallingDarkEffect(int salvoCount, boolean sound, boolean flipped) {
         if (img1 == null || img2 == null || img3 == null)
         {
             img1 = ImageMaster.loadImage("images/orbs/d1.png");
@@ -36,6 +37,7 @@ public class FallingDarkEffect extends AbstractGameEffect {
         }
 
         this.salvoCount = salvoCount;
+        this.sound = sound;
         switch(MathUtils.random(2)) {
             case 0:
                 this.img = img1;
@@ -89,7 +91,8 @@ public class FallingDarkEffect extends AbstractGameEffect {
                 float pitch = 0.8F;
                 pitch -= (float)this.salvoCount * 0.025F;
                 pitch += MathUtils.random(-0.2F, 0.2F);
-                CardCrawlGame.sound.playA("ORB_DARK_EVOKE", pitch);
+                if (sound)
+                    CardCrawlGame.sound.playA("ORB_DARK_EVOKE", pitch);
 
                 for(int i = 0; i < 4; ++i) {
                     AbstractDungeon.effectsQueue.add(new DarkOrbActivateEffect(this.x, this.y));

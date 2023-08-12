@@ -24,13 +24,12 @@ public class TauntHiss extends ShiftChenCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DEBUFF_A = 1;
-    private final static int DEBUFF_B = 2;
+    private final static int DEBUFF = 2;
 
     public TauntHiss(boolean preview)
     {
         super(cardInfo, true, preview);
-        this.setMagic(DEBUFF_A, DEBUFF_B);
+        this.setMagic(DEBUFF, DEBUFF);
     }
     @Override
     public AbstractCard makeCopy() {

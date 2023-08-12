@@ -16,7 +16,6 @@ import Chen.Relics.SacredCatnip;
 import Chen.Character.Chen;
 
 import Chen.Util.KeywordWithProper;
-import Chen.Variables.SpellDamage;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
@@ -48,11 +47,12 @@ import java.nio.charset.StandardCharsets;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @SpireInitializer
 public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditStringsSubscriber,
-        EditCharactersSubscriber, EditKeywordsSubscriber, PostPowerApplySubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
-        PostInitializeSubscriber, StartGameSubscriber, OnCardUseSubscriber
+        EditCharactersSubscriber, EditKeywordsSubscriber, PostPowerApplySubscriber, OnStartBattleSubscriber,
+        PostBattleSubscriber, StartGameSubscriber, OnCardUseSubscriber
 {
     public static final Logger logger = LogManager.getLogger(ChenMod.class.getSimpleName());
 
@@ -105,9 +105,6 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
 
     @Override
     public void receiveEditCards() {
-        logger.info("Adding Spell variable");
-        BaseMod.addDynamicVariable(new SpellDamage());
-
         try {
             AutoAdd a = new AutoAdd("Chen")
                     .packageFilter("Chen.Cards");
@@ -128,6 +125,8 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
                             card = (CustomCard) c.newInstance();
                         }
 
+                        if (card instanceof SpellCard && !card.hasTag(AbstractCard.CardTags.HEALING))
+                            spells.add((SpellCard) card);
                         BaseMod.addCard(card);
                         UnlockTracker.unlockCard(card.cardID);
                     }
@@ -138,35 +137,6 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void receivePostInitialize() {
-        logger.info("TEST: Setting unlock progress to max");
-        AbstractPlayer.PlayerClass c = CharacterEnum.CHEN;
-
-        String key_unlock_level = c.toString() + "UnlockLevel";
-        String key_progress = c.toString() + "Progress";
-        String key_current_cost = c.toString() + "CurrentCost";
-
-        int p = UnlockTracker.unlockProgress.getInteger(key_progress, 0);
-        p += 100000;
-        int total;
-        while (p >= UnlockTracker.unlockProgress.getInteger(key_current_cost, 300)) { //progress > cost
-            total = UnlockTracker.unlockProgress.getInteger(key_unlock_level, 0);
-            ++total;
-            UnlockTracker.unlockProgress.putInteger(key_unlock_level, total); //level up
-
-            p -= UnlockTracker.unlockProgress.getInteger(key_current_cost, 300); //reduce progress by cost
-            UnlockTracker.unlockProgress.putInteger(key_progress, p);
-
-            int currentRequirement = UnlockTracker.unlockProgress.getInteger(key_current_cost, 300); //update cost
-            UnlockTracker.unlockProgress.putInteger(key_current_cost, UnlockTracker.incrementUnlockRamp(currentRequirement));
-        } //check again
-
-        UnlockTracker.unlockProgress.putInteger(key_progress, p); //remaining progress, put in progress
-
-        UnlockTracker.unlockProgress.flush();
     }
 
     @Override
@@ -209,38 +179,25 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
         String json = Gdx.files.internal(assetPath("localization/" + lang + "/Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
         KeywordWithProper[] keywords = gson.fromJson(json, KeywordWithProper[].class);
 
-        //boolean first = true;
-
         if (keywords != null) {
             for (KeywordWithProper keyword : keywords) {
-                /*if (first) //First keyword should be Shift keyword
-                {
-                    first = false;
-                    SHIFT_KEYWORD = "chen:" + keyword.NAMES[0];
-                    SHIFT_WORD = keyword.PROPER_NAME;
-                }*/
                 BaseMod.addKeyword("chen", keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                if (keyword.ID.equals("SPELL") && SpellCard.spellDescriptor.isEmpty()) {
+                    SpellCard.spellDescriptor.add(keyword.PROPER_NAME);
+                }
             }
         }
     }
 
+    private static final List<SpellCard> spells = new ArrayList<>();
     public static AbstractCard returnTrulyRandomSpellInCombat() {
-        ArrayList<SpellCard> list = new ArrayList<>();
-
-        for (AbstractCard c : CardLibrary.getCardList(LibraryTypeEnum.CHEN_COLOR))
-        {
-            if (!c.hasTag(AbstractCard.CardTags.HEALING) && c instanceof SpellCard) {
-                list.add((SpellCard)c.makeCopy());
-            }
-        }
-
-        if (list.isEmpty())
+        if (spells.isEmpty())
         {
             //wat how
-            return (AbstractCard) new Shot().getCopyAsSpellCard();
+            return new Shot().getCopyAsSpellCard();
         }
 
-        return (AbstractCard)list.get(AbstractDungeon.cardRandomRng.random(list.size() - 1)).getCopyAsSpellCard();
+        return (AbstractCard)spells.get(AbstractDungeon.cardRandomRng.random(spells.size() - 1)).getCopyAsSpellCard();
     }
 
     private String getLangString()

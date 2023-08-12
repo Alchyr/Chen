@@ -32,16 +32,15 @@ public class MisdirectSwipe extends ShiftChenCard {
     private final static int DAMAGE_A = 0;
     private final static int DAMAGE_B = 17;
     private final static int UPG_DAMAGE_A = 0;
-    private final static int UPG_DAMAGE_B = 4;
+    private final static int UPG_DAMAGE_B = 3;
 
     private final static int DEBUFF_A = 1;
-    private final static int DEBUFF_B = 5;
-    private final static int UPG_DEBUFF_A = 1;
+    private final static int DEBUFF_B = 7;
     private final static int UPG_DEBUFF_B = 2;
 
-    private final static int BLOCK_A = 10;
+    private final static int BLOCK_A = 12;
     private final static int BLOCK_B = 0;
-    private final static int UPG_BLOCK_A = 6;
+    private final static int UPG_BLOCK_A = 4;
     private final static int UPG_BLOCK_B = 0;
 
     public MisdirectSwipe(boolean preview)
@@ -50,7 +49,7 @@ public class MisdirectSwipe extends ShiftChenCard {
 
         setDamage(DAMAGE_A, DAMAGE_B, UPG_DAMAGE_A, UPG_DAMAGE_B);
         setBlock(BLOCK_A, BLOCK_B, UPG_BLOCK_A, UPG_BLOCK_B);
-        setMagic(DEBUFF_A, DEBUFF_B, UPG_DEBUFF_A, UPG_DEBUFF_B);
+        setMagic(DEBUFF_A, DEBUFF_B, 0, UPG_DEBUFF_B);
     }
     @Override
     public AbstractCard makeCopy() {

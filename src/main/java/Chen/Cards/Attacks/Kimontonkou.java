@@ -1,13 +1,11 @@
 package Chen.Cards.Attacks;
 
-import Chen.Abstracts.DamageSpellCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Actions.ChenActions.KimontonkouAction;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Actions.GenericActions.PerformXAction;
 import Chen.Character.Chen;
 import Chen.ChenMod;
-import Chen.Interfaces.NotMagicSpellCard;
-import Chen.Interfaces.SpellCard;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,7 +15,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Chen.ChenMod.makeID;
 
-public class Kimontonkou extends DamageSpellCard implements NotMagicSpellCard {
+public class Kimontonkou extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "Kimontonkou",
             -1,
@@ -35,31 +33,31 @@ public class Kimontonkou extends DamageSpellCard implements NotMagicSpellCard {
     {
         super(cardInfo, true);
 
+        setDamage(0);
         setMagic(HITS, UPG_HITS);
 
         this.isMultiDamage = true;
     }
 
     @Override
-    public int getBaseValue() {
-        return ChenMod.spellsThisCombat;
-    }
-
-    @Override
-    public boolean upgradedSpellValue() {
-        return false;
+    public StandardSpell getCopyAsSpellCard() {
+        return new Kimontonkou();
     }
 
     @Override
     public void applyPowers() {
+        this.baseDamage = ChenMod.spellsThisCombat;
         super.applyPowers();
         this.rawDescription = (upgraded ? cardStrings.UPGRADE_DESCRIPTION : cardStrings.DESCRIPTION) + cardStrings.EXTENDED_DESCRIPTION[0];
         initializeDescription();
     }
 
     @Override
-    public SpellCard getCopyAsSpellCard() {
-        return new Kimontonkou();
+    public void calculateCardDamage(AbstractMonster mo) {
+        this.baseDamage = ChenMod.spellsThisCombat;
+        super.calculateCardDamage(mo);
+        this.rawDescription = (upgraded ? cardStrings.UPGRADE_DESCRIPTION : cardStrings.DESCRIPTION) + cardStrings.EXTENDED_DESCRIPTION[0];
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

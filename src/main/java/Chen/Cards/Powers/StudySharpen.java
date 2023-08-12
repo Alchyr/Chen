@@ -15,7 +15,7 @@ import static Chen.ChenMod.makeID;
 public class StudySharpen extends ShiftChenCard {
     private final static CardInfo cardInfo = new CardInfo(
             "StudySharpen",
-            2,
+            1,
             CardType.POWER,
             CardTarget.SELF,
             CardRarity.UNCOMMON
@@ -23,7 +23,7 @@ public class StudySharpen extends ShiftChenCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int MAGIC_A = 3;
+    private final static int MAGIC_A = 2;
     private final static int UPG_MAGIC_A = 1;
     private final static int MAGIC_B = 1;
     private final static int UPG_MAGIC_B = 1;

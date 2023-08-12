@@ -1,9 +1,8 @@
 package Chen.Cards.Attacks;
 
-import Chen.Abstracts.DamageSpellCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
-import Chen.Interfaces.SpellCard;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -16,7 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 
 import static Chen.ChenMod.makeID;
 
-public class Spray extends DamageSpellCard {
+public class Spray extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "Spray",
             1,
@@ -27,18 +26,19 @@ public class Spray extends DamageSpellCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 7;
+    private final static int DAMAGE = 9;
     private final static int UPG_DAMAGE = 3;
 
     public Spray()
     {
         super(cardInfo, false);
 
-        setMagic(DAMAGE,  UPG_DAMAGE);
+        setDamage(DAMAGE,  UPG_DAMAGE);
+        isMultiDamage = true;
     }
 
     @Override
-    public SpellCard getCopyAsSpellCard() {
+    public StandardSpell getCopyAsSpellCard() {
         return new Spray();
     }
 

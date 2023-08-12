@@ -1,13 +1,9 @@
 package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
-import Chen.Powers.Disoriented;
 import Chen.Powers.PreventAllBlockPower;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -30,7 +26,7 @@ public class SelfConfidence extends BaseCard {
 
     private final static int SELF_DEBUFF = 1;
     private final static int UPGRADE_COST = 0;
-    private final static int BUFF = 2;
+    private final static int BUFF = 3;
 
     public SelfConfidence()
     {

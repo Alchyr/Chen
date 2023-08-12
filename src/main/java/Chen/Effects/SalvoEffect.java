@@ -27,8 +27,10 @@ public class SalvoEffect extends AbstractGameEffect {
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.MED, true);
         AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(Color.ORANGE.cpy()));
 
+        int sfx = 3;
         for(int i = 0; i < this.salvoCount; ++i) {
-            AbstractDungeon.effectsQueue.add(new FallingDarkEffect(this.salvoCount, this.flipped));
+            --sfx;
+            AbstractDungeon.effectsQueue.add(new FallingDarkEffect(this.salvoCount, sfx > 0, this.flipped));
         }
 
         this.isDone = true;

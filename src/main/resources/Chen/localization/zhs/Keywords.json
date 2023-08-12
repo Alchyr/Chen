@@ -57,6 +57,7 @@
     "DESCRIPTION": "失血敌人在攻击时失去生命."
   },
   {
+    "ID": "SPELL",
     "PROPER_NAME": "咒语",
     "NAMES": [
       "咒语"

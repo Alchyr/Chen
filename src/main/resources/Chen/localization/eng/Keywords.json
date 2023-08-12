@@ -60,11 +60,19 @@
     "DESCRIPTION": "Upon attacking, loses HP."
   },
   {
+    "ID": "SPELL",
     "PROPER_NAME": "Spell",
     "NAMES": [
       "spell",
       "spells"
     ],
-    "DESCRIPTION": "The specified value scales with #yFocus, rather than #yStrength or #yDexterity."
+    "DESCRIPTION": "#ySpells are cards that #yCast, scaling with #yFocus."
+  },
+  {
+    "PROPER_NAME": "Cast",
+    "NAMES": [
+      "cast"
+    ],
+    "DESCRIPTION": "This card is a #ySpell, scaling with #yFocus instead of #yStrength or #yDexterity."
   }
 ]

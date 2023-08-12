@@ -2,11 +2,8 @@ package Chen.Cards.Skills;
 
 import Chen.Abstracts.BaseCard;
 import Chen.Actions.ChenActions.ShapeshiftAction;
-import Chen.Interfaces.BlockSpellCard;
-import Chen.Interfaces.SpellCard;
 import Chen.Powers.Unbalanced;
 import Chen.Util.CardInfo;
-import Chen.Variables.SpellDamage;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,7 +24,7 @@ public class EmergencyEscape extends BaseCard {
     public final static String ID = makeID(cardInfo.cardName);
 
     private final static int BLOCK = 18;
-    private final static int UPG_BLOCK = 4;
+    private final static int UPG_BLOCK = 5;
 
     public EmergencyEscape()
     {

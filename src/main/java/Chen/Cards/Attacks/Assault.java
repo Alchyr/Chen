@@ -29,10 +29,10 @@ public class Assault extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private final static int DAMAGE = 13;
-    private final static int UPG_DAMAGE = 2;
+    private final static int DAMAGE = 14;
+    private final static int UPG_DAMAGE = 3;
     private final static int DEBUFF = 4;
-    private final static int UPG_DEBUFF = 2;
+    private final static int UPG_DEBUFF = 1;
 
     public Assault()
     {

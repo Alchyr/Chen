@@ -1,10 +1,9 @@
 package Chen.Cards.Attacks;
 
-import Chen.Abstracts.DamageSpellCard;
+import Chen.Abstracts.StandardSpell;
 import Chen.Actions.ChenActions.ShapeshiftAction;
 import Chen.Character.Chen;
 import Chen.Effects.SalvoEffect;
-import Chen.Interfaces.SpellCard;
 import Chen.Patches.TwoFormFields;
 import Chen.Util.CardInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -18,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Chen.ChenMod.makeID;
 
-public class Salvo extends DamageSpellCard {
+public class Salvo extends StandardSpell {
     private final static CardInfo cardInfo = new CardInfo(
             "Salvo",
             0,
@@ -36,27 +35,26 @@ public class Salvo extends DamageSpellCard {
     {
         super(cardInfo, false);
 
-        setMagic(DAMAGE,  UPG_DAMAGE);
+        setDamage(DAMAGE, UPG_DAMAGE);
         setExhaust(true);
 
         this.isMultiDamage = true;
     }
 
     @Override
-    public SpellCard getCopyAsSpellCard() {
+    public StandardSpell getCopyAsSpellCard() {
         return new Salvo();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int salvoCount = this.baseMagicNumber + 1;
         if (!TwoFormFields.getForm()) {
             AbstractDungeon.actionManager.addToBottom(new ShapeshiftAction(this, Chen.ChenHuman));
         }
 
         if (Settings.FAST_MODE) {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new SalvoEffect(salvoCount, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.25F));
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new SalvoEffect((int) (this.damage * 1.5f), AbstractDungeon.getMonsters().shouldFlipVfx()), 0.25F));
         } else {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new SalvoEffect(salvoCount, AbstractDungeon.getMonsters().shouldFlipVfx()), 1.0F));
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(new SalvoEffect((int) (this.damage * 1.5f), AbstractDungeon.getMonsters().shouldFlipVfx()), 1.0F));
         }
 
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));

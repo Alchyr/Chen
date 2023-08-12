@@ -23,7 +23,7 @@ public class ShikigamiForm extends BaseCard {
 
     public final static String ID = makeID(cardInfo.cardName);
 
-    private static final int BUFF = 1;
+    private static final int BUFF = 2;
 
     public ShikigamiForm()
     {
