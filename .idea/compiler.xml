@@ -9,8 +9,5 @@
         <module name="Chen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Chen" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

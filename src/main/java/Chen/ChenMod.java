@@ -319,4 +319,8 @@ public class ChenMod implements EditCardsSubscriber, EditRelicsSubscriber, EditS
     {
         return "Chen/" + partialPath;
     }
+
+    public static String imagePath(String file) {
+        return assetPath("img/" + file);
+    }
 }

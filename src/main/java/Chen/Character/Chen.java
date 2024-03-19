@@ -6,6 +6,7 @@ import Chen.Cards.Basic.PounceTurnTail;
 import Chen.Cards.Basic.Strike;
 import Chen.Patches.CardColorEnum;
 import Chen.Relics.Catnip;
+import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,6 +29,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 import static Chen.ChenMod.assetPath;
+import static Chen.ChenMod.imagePath;
 import static Chen.Patches.TwoFormFields.getForm;
 
 public class Chen extends CustomPlayer {
@@ -48,35 +50,37 @@ public class Chen extends CustomPlayer {
     private static final Color CHEN_COLOR_B = CardHelper.getColor(14, 8, 9);
 
 
+    public static final String SKELETON_JSON = imagePath("Character/Spine/chen.json");
+    public static final String SKELETON_ATLAS = imagePath("Character/Spine/chen.atlas");
+
+
     private static final String[] orbTextures = {
-            assetPath("img/Character/orb/layer1.png"),
-            assetPath("img/Character/orb/layer2.png"),
-            assetPath("img/Character/orb/layer3.png"),
-            assetPath("img/Character/orb/layer4.png"),
-            assetPath("img/Character/orb/layer5.png"),
-            assetPath("img/Character/orb/layer6.png"),
-            assetPath("img/Character/orb/layer1d.png"),
-            assetPath("img/Character/orb/layer2d.png"),
-            assetPath("img/Character/orb/layer3d.png"),
-            assetPath("img/Character/orb/layer4d.png"),
-            assetPath("img/Character/orb/layer5d.png")
+            imagePath("Character/orb/layer1.png"),
+            imagePath("Character/orb/layer2.png"),
+            imagePath("Character/orb/layer3.png"),
+            imagePath("Character/orb/layer4.png"),
+            imagePath("Character/orb/layer5.png"),
+            imagePath("Character/orb/layer6.png"), //The middle image is treated as the "top" of the energy orb
+            imagePath("Character/orb/layer1d.png"),
+            imagePath("Character/orb/layer2d.png"),
+            imagePath("Character/orb/layer3d.png"),
+            imagePath("Character/orb/layer4d.png"),
+            imagePath("Character/orb/layer5d.png")
     };
 
-    public static final String SKELETON_JSON = assetPath("img/Character/Spine/chen.json");
-    public static final String SKELETON_ATLAS = assetPath("img/Character/Spine/chen.atlas");
-
-    private static final float[] layerSpeeds = new float[]{20.0F, 30.0F, -40.0F, 20.0F, 0.0F};
+    private static final float[] layerSpeeds = new float[]{
+            20.0F, 30.0F, -40.0F, 20.0F, 0.0F
+    };
 
     public Chen(String name, PlayerClass setClass) {
-        super(name,
-                setClass,
-                orbTextures, assetPath("img/Character/orb/vfx.png"), layerSpeeds,
+        super(name, setClass,
+                new CustomEnergyOrb(orbTextures, imagePath("Character/orb/vfx.png"), layerSpeeds),
                 null, null);
 
         initializeClass(null, // required call to load textures and setup energy/loadout
-                assetPath("img/Character/shoulder.png"), // human
-                assetPath("img/Character/shoulder2.png"), // cat
-                assetPath("img/Character/corpse.png"), // dead corpse
+                imagePath("Character/shoulder.png"), // human
+                imagePath("Character/shoulder2.png"), // cat
+                imagePath("Character/corpse.png"), // dead corpse
                 getLoadout(), -20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         loadAnimation(
